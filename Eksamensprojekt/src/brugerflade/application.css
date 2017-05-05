@@ -1,8 +1,9 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
 .root{
-    -fx-background-image: url("https://stocklogos.com/sites/default/files/ferrari-logo_0.jpg");
-    -fx-background-repeat: stretch;   
-    -fx-background-size: 900 506;
-    -fx-background-position: center center;
+    -fx-background-image: url("http://cardealermagazine.co.uk/publish/wp-content/uploads/2014/03/Lancaster-Ferrari-Colchester-1-690x450.jpg");
+    -fx-background-repeat: no-repeat;   
+    -fx-background-position: top left;
     -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0); 
+    -fx-font-weight: bold;
     }
+    

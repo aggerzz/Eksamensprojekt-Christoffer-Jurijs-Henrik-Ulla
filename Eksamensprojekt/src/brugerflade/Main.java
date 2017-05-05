@@ -12,6 +12,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -30,15 +31,18 @@ public class Main extends Application {
 		        grid.setPadding(new Insets(25, 25, 25, 25));
 		        Text scenetitle = new Text("Ferrari forhandler");
 		        scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+		        scenetitle.setFill(Color.RED);
 		        grid.add(scenetitle, 0, 0, 2, 1);
 
 		        Label userName = new Label("User Name:");
+		        userName.setTextFill(Color.RED);
 		        grid.add(userName, 0, 1);
 
 		        TextField userTextField = new TextField();
 		        grid.add(userTextField, 1, 1);
 
 		        Label pw = new Label("Password:");
+		        pw.setTextFill(Color.RED);
 		        grid.add(pw, 0, 2);
 
 		        PasswordField pwBox = new PasswordField();
@@ -66,7 +70,7 @@ public class Main extends Application {
 		            }
 		        });
 
-		        Scene scene = new Scene(grid, 300, 275);
+		        Scene scene = new Scene(grid, 400, 375);
 		        primaryStage.setScene(scene);
 		        scene.getStylesheets().addAll(this.getClass().getResource("application.css").toExternalForm());
 		        
