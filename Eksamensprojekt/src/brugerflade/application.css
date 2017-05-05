@@ -1,5 +1,5 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
-#Gridpane{
+.root{
     -fx-background-image: url("https://stocklogos.com/sites/default/files/ferrari-logo_0.jpg");
     -fx-background-repeat: stretch;   
     -fx-background-size: 900 506;
