@@ -12,7 +12,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -23,14 +22,14 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-		        primaryStage.setTitle("Ferreri forhandler");
+		        primaryStage.setTitle("Ferrari forhandler");
 		        GridPane grid = new GridPane();
 		        grid.setAlignment(Pos.CENTER);
 		        grid.setHgap(10);
 		        grid.setVgap(10);
 		        grid.setPadding(new Insets(25, 25, 25, 25));
 
-		        Text scenetitle = new Text("Ferreri forhandler");
+		        Text scenetitle = new Text("Ferrari forhandler");
 		        scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
 		        grid.add(scenetitle, 0, 0, 2, 1);
 

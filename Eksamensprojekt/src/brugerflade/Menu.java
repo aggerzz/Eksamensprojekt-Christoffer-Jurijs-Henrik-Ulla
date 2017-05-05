@@ -15,14 +15,14 @@ import javafx.stage.Stage;
 
 public class Menu {
 	public void start(Stage menuStage) {
-		try {menuStage.setTitle("Ferreri forhandler");
+		try {menuStage.setTitle("Ferrari forhandler");
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(10);
         grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
 
-        Text scenetitle = new Text("Ferreri forhandler");
+        Text scenetitle = new Text("Ferrari forhandler");
         scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         grid.add(scenetitle, 0, 0, 2, 1);
         // Opret kunde
