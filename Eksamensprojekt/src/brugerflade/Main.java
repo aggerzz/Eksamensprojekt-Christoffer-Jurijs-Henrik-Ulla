@@ -28,7 +28,6 @@ public class Main extends Application {
 		        grid.setHgap(10);
 		        grid.setVgap(10);
 		        grid.setPadding(new Insets(25, 25, 25, 25));
-
 		        Text scenetitle = new Text("Ferrari forhandler");
 		        scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
 		        grid.add(scenetitle, 0, 0, 2, 1);
@@ -69,6 +68,7 @@ public class Main extends Application {
 
 		        Scene scene = new Scene(grid, 300, 275);
 		        primaryStage.setScene(scene);
+		        scene.getStylesheets().addAll(this.getClass().getResource("application.css").toExternalForm());
 		        
 		        
 		        primaryStage.show();
