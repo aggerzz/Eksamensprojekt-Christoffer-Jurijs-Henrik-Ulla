@@ -1,5 +1,5 @@
 package domain;
 
-public class Navn {
+public class Kunde {
 
 }
