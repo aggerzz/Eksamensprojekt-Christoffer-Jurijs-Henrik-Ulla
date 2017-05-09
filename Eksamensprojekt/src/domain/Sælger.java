@@ -2,6 +2,8 @@ package domain;
 
 public class Sælger {
 
+	private String login;
+	private String adgangskode;
 	private String forNavn;
 	private String efterNavn;
 	private int telefonNummer;
@@ -29,5 +31,17 @@ public class Sælger {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public String getLogin() {
+		return login;
+	}
+	public void setLogin(String login) {
+		this.login = login;
+	}
+	public String getAdgangskode() {
+		return adgangskode;
+	}
+	public void setAdgangskode(String adgangskode) {
+		this.adgangskode = adgangskode;
 	}
 }
