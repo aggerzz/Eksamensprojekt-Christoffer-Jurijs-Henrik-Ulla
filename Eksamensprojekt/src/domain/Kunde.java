@@ -3,7 +3,7 @@ package domain;
 public class Kunde {
 
 	private String forNavn;
-	private String efterNAvn;
+	private String efterNavn;
 	private String adresse;
 	private int postNummer;
 	private String by;
@@ -16,11 +16,11 @@ public class Kunde {
 	public void setForNavn(String forNavn) {
 		this.forNavn = forNavn;
 	}
-	public String getEfterNAvn() {
-		return efterNAvn;
+	public String getEfterNavn() {
+		return efterNavn;
 	}
-	public void setEfterNAvn(String efterNAvn) {
-		this.efterNAvn = efterNAvn;
+	public void setEfterNAvn(String efterNavn) {
+		this.efterNavn = efterNavn;
 	}
 	public String getAdresse() {
 		return adresse;
