@@ -3,7 +3,7 @@ package domain;
 public class Bil {
 
 	private String model;
-	private int setlNummer;
+	private int stelNummer;
 	private int årgang;
 	private int bilID;
 	public String getModel() {
@@ -13,10 +13,10 @@ public class Bil {
 		this.model = model;
 	}
 	public int getSetlNummer() {
-		return setlNummer;
+		return stelNummer;
 	}
 	public void setSetlNummer(int setlNummer) {
-		this.setlNummer = setlNummer;
+		this.stelNummer = setlNummer;
 	}
 	public int getÅrgang() {
 		return årgang;
