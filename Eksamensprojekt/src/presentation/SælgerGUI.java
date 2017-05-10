@@ -1,5 +1,6 @@
 package presentation;
 
+import domain.Sælger;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -8,6 +9,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -60,6 +62,20 @@ public class SælgerGUI extends Application {
 			TextField emailTextField = new TextField();
 			grid.add(emailTextField, 1, 4);
 			
+			// Login
+			Label login = new Label("Login:");
+			login.setTextFill(Color.RED);
+			grid.add(login, 0, 5);
+			TextField loginTextField = new TextField();
+			grid.add(loginTextField, 1, 5);
+
+			// Adgangskode
+			Label adgangskode = new Label("Adgangskode:");
+			adgangskode.setTextFill(Color.RED);
+			grid.add(adgangskode, 0, 6);
+			PasswordField adgangskodeTextField = new PasswordField();
+			grid.add(adgangskodeTextField, 1, 6);
+			
 			Button btnTilbage = new Button("Tilbage");
 			HBox hbBtnTilbage = new HBox(7);
 			hbBtnTilbage.setAlignment(Pos.TOP_LEFT);
@@ -80,30 +96,22 @@ public class SælgerGUI extends Application {
 			hbBtnOpretkunde1.setAlignment(Pos.TOP_LEFT);
 			hbBtnOpretkunde1.getChildren().add(btnOpretKunde1);
 			grid.add(hbBtnOpretkunde1, 15, 15);
-//			btnOpretKunde1.setOnAction(new EventHandler<ActionEvent>() {
-//				@Override
-//				public void handle(ActionEvent e) {
-//					FFLogic logic = new FFLogic();
-//					Kunde nyKunde = new Kunde();
-//					nyKunde.setForNavn(forNavnTextField.getText());
-//					nyKunde.setEfterNavn(efterNavnTextField.getText());
-//					nyKunde.setAdresse(adresseTextField.getText());
-//					nyKunde.setBy(byenTextField.getText());
-//					nyKunde.setPostNummer(postnummerTextField.getText());
-//					nyKunde.setFodselsdato(fødselsdatoTextField.getText());
-//					nyKunde.setTelefonNummer(telefonNummerTextField.getText());
-//					nyKunde.setEmail(emailTextField.getText());
-//
-//					if (forNavn.getText().trim().isEmpty()) {
-//						Label fejl = new Label("Insert a name");
-//						fejl.setTextFill(Color.web("#fc1919"));
-//						grid.add(fejl, 3, 2);
-//					} else {
-//						logic.opretKunde(nyKunde);
-//					}
-//
-//				}
-//			});
+			btnOpretKunde1.setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent e) {
+					FFLogic logic = new FFLogic();
+					Sælger nySælger = new Sælger();
+					nySælger.setLogin(loginTextField.getText());
+					nySælger.setAdgangskode(adgangskodeTextField.getText());
+					nySælger.setForNavn(forNavnTextField.getText());
+					nySælger.setEfterNavn(efterNavnTextField.getText());
+					nySælger.setTelefonNummer(telefonNummerTextField.getText());
+					nySælger.setEmail(emailTextField.getText());
+					
+					logic.opretSælger(nySælger);
+
+				}
+			});
 			Scene scene = new Scene(grid, 640, 450);
 			SælgerStage.setScene(scene);
 			scene.getStylesheets().addAll(this.getClass().getResource("/application/application.css").toExternalForm());

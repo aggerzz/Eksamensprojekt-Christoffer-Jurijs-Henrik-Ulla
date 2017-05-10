@@ -1,6 +1,6 @@
 package presentation;
 
-import domain.Kunde;
+import domain.Bil;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -35,25 +35,25 @@ public class BilGUI extends Application {
 			grid.add(scenetitle, 0, 0, 2, 1);
 
 			// Model
-			Label forNavn = new Label("Model:");
-			forNavn.setTextFill(Color.RED);
-			grid.add(forNavn, 0, 1);
-			TextField forNavnTextField = new TextField();
-			grid.add(forNavnTextField, 1, 1);
+			Label model = new Label("Model:");
+			model.setTextFill(Color.RED);
+			grid.add(model, 0, 1);
+			TextField modelTextField = new TextField();
+			grid.add(modelTextField, 1, 1);
 
 			// Stelnummer
-			Label efterNavn = new Label("Stelnummer:");
-			efterNavn.setTextFill(Color.RED);
-			grid.add(efterNavn, 0, 2);
-			TextField efterNavnTextField = new TextField();
-			grid.add(efterNavnTextField, 1, 2);
+			Label stelNummer = new Label("Stelnummer:");
+			stelNummer.setTextFill(Color.RED);
+			grid.add(stelNummer, 0, 2);
+			TextField stelNummerTextField = new TextField();
+			grid.add(stelNummerTextField, 1, 2);
 
 			// Årgang
-			Label adresse = new Label("Årgang:");
-			adresse.setTextFill(Color.RED);
-			grid.add(adresse, 0, 3);
-			TextField adresseTextField = new TextField();
-			grid.add(adresseTextField, 1, 3);
+			Label årgang = new Label("Årgang:");
+			årgang.setTextFill(Color.RED);
+			grid.add(årgang, 0, 3);
+			TextField årgangTextField = new TextField();
+			grid.add(årgangTextField, 1, 3);
 
 			
 			
@@ -77,30 +77,17 @@ public class BilGUI extends Application {
 			hbBtnOpretkunde1.setAlignment(Pos.TOP_LEFT);
 			hbBtnOpretkunde1.getChildren().add(btnOpretKunde1);
 			grid.add(hbBtnOpretkunde1, 15, 15);
-//			btnOpretKunde1.setOnAction(new EventHandler<ActionEvent>() {
-//				@Override
-//				public void handle(ActionEvent e) {
-//					FFLogic logic = new FFLogic();
-//					Kunde nyKunde = new Kunde();
-//					nyKunde.setForNavn(forNavnTextField.getText());
-//					nyKunde.setEfterNavn(efterNavnTextField.getText());
-//					nyKunde.setAdresse(adresseTextField.getText());
-//					nyKunde.setBy(byenTextField.getText());
-//					nyKunde.setPostNummer(postnummerTextField.getText());
-//					nyKunde.setFodselsdato(fødselsdatoTextField.getText());
-//					nyKunde.setTelefonNummer(telefonNummerTextField.getText());
-//					nyKunde.setEmail(emailTextField.getText());
-//
-//					if (forNavn.getText().trim().isEmpty()) {
-//						Label fejl = new Label("Insert a name");
-//						fejl.setTextFill(Color.web("#fc1919"));
-//						grid.add(fejl, 3, 2);
-//					} else {
-//						logic.opretKunde(nyKunde);
-//					}
-//
-//				}
-//			});
+			btnOpretKunde1.setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent e) {
+					FFLogic logic = new FFLogic();
+					Bil nyBil = new Bil();
+					nyBil.setModel(modelTextField.getText());
+					nyBil.setStelNummer(stelNummerTextField.getText());
+					nyBil.setÅrgang(årgang.getText());
+					logic.opretBil(nyBil);
+				}
+			});
 			Scene scene = new Scene(grid, 640, 450);
 			BilStage.setScene(scene);
 			scene.getStylesheets().addAll(this.getClass().getResource("/application/application.css").toExternalForm());

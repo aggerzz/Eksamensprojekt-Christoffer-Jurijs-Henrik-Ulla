@@ -6,8 +6,9 @@ public class Sælger {
 	private String adgangskode;
 	private String forNavn;
 	private String efterNavn;
-	private int telefonNummer;
+	private String telefonNummer;
 	private String email;
+	private int id;
 	public String getForNavn() {
 		return forNavn;
 	}
@@ -20,10 +21,10 @@ public class Sælger {
 	public void setEfterNavn(String efterNavn) {
 		this.efterNavn = efterNavn;
 	}
-	public int getTelefonNummer() {
+	public String getTelefonNummer() {
 		return telefonNummer;
 	}
-	public void setTelefonNummer(int telefonNummer) {
+	public void setTelefonNummer(String telefonNummer) {
 		this.telefonNummer = telefonNummer;
 	}
 	public String getEmail() {
@@ -43,5 +44,11 @@ public class Sælger {
 	}
 	public void setAdgangskode(String adgangskode) {
 		this.adgangskode = adgangskode;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 }

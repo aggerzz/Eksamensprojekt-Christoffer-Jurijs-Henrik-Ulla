@@ -3,8 +3,8 @@ package domain;
 public class Bil {
 
 	private String model;
-	private int stelNummer;
-	private int årgang;
+	private String stelNummer;
+	private String årgang;
 	private int bilID;
 	public String getModel() {
 		return model;
@@ -12,16 +12,16 @@ public class Bil {
 	public void setModel(String model) {
 		this.model = model;
 	}
-	public int getSetlNummer() {
+	public String getStelNummer() {
 		return stelNummer;
 	}
-	public void setSetlNummer(int setlNummer) {
-		this.stelNummer = setlNummer;
+	public void setStelNummer(String stelNummer) {
+		this.stelNummer = stelNummer;
 	}
-	public int getÅrgang() {
+	public String getÅrgang() {
 		return årgang;
 	}
-	public void setÅrgang(int årgang) {
+	public void setÅrgang(String årgang) {
 		this.årgang = årgang;
 	}
 	public int getBilID() {
