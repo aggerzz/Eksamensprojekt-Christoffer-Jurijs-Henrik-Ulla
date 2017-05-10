@@ -21,6 +21,7 @@ import logic.FFLogic;
 
 public class BilGUI extends Application {
 	public void start(Stage BilStage) {
+		//Bil
 		try {
 			BilStage.setTitle("Ferrari forhandler");
 			GridPane grid = new GridPane();

@@ -50,9 +50,6 @@ public class MenuGUI {
 			btnOpretSælger.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent e) {
-					SælgerGUI SælgerStage = new SælgerGUI();
-					SælgerStage.start(new Stage());
-					menuStage.hide();
 				}
 			});
 
