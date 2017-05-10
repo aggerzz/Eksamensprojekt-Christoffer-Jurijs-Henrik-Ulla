@@ -2,13 +2,13 @@ package application;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import presentation.Login;
+import presentation.LoginGUI;
 
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 
-		Login login = new Login();
+		LoginGUI login = new LoginGUI();
 		login.start(primaryStage);
 		
 	
