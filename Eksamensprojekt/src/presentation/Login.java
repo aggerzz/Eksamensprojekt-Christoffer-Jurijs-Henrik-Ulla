@@ -20,9 +20,9 @@ import javafx.stage.Stage;
 import presentation.Menu;
 
 public class Login extends Application {
-	public void start(Stage stage) {
+	public void start(Stage primaryStage) {
 		try {
-			stage.setTitle("Ferrari forhandler");
+			primaryStage.setTitle("Ferrari forhandler");
 			GridPane grid = new GridPane();
 			grid.setAlignment(Pos.CENTER);
 			grid.setHgap(10);
@@ -65,15 +65,15 @@ public class Login extends Application {
 				public void handle(ActionEvent e) {
 					Menu menuStage = new Menu();
 					menuStage.start(new Stage());
-					stage.hide();
+					primaryStage.hide();
 				}
 			});
 
 			Scene scene = new Scene(grid, 400, 375);
-			stage.setScene(scene);
+			primaryStage.setScene(scene);
 			scene.getStylesheets().addAll(this.getClass().getResource("/application/application.css").toExternalForm());
 
-			stage.show();
+			primaryStage.show();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

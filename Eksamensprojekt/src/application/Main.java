@@ -6,10 +6,10 @@ import presentation.Login;
 
 public class Main extends Application {
 	@Override
-	public void start(Stage stage) {
+	public void start(Stage primaryStage) {
 
 		Login login = new Login();
-		login.start(stage);
+		login.start(primaryStage);
 		
 	
 	}

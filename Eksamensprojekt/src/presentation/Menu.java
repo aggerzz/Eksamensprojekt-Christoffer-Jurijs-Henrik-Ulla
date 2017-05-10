@@ -64,7 +64,7 @@ public class Menu {
 
 			Scene scene = new Scene(grid, 300, 275);
 			menuStage.setScene(scene);
-			scene.getStylesheets().addAll(this.getClass().getResource("application.css").toExternalForm());
+			scene.getStylesheets().addAll(this.getClass().getResource("/application/application.css").toExternalForm());
 
 			menuStage.show();
 		} catch (Exception e) {
