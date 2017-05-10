@@ -1,16 +1,24 @@
 package presentation;
 
+
+import domain.Kunde;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import logic.FFLogic;
 
 public class KundeGUI extends Application {
 	public void start(Stage menuStage) {
@@ -54,28 +62,63 @@ public class KundeGUI extends Application {
 			TextField postnummerTextField = new TextField();
 			grid.add(postnummerTextField, 1, 4);
 			
+			//By
+			Label byen = new Label("By:");
+			byen.setTextFill(Color.RED);
+			grid.add(byen, 0, 5);
+			TextField byenTextField = new TextField();
+			grid.add(byenTextField, 1, 5);
+			
 			//Fødselsdato
 			Label fødselsdato = new Label("Fødselsdato:");
 			fødselsdato.setTextFill(Color.RED);
-			grid.add(fødselsdato, 0, 5);
-			TextField fødselsdatoNavnTextField = new TextField();
-			grid.add(fødselsdatoNavnTextField, 1, 5);
+			grid.add(fødselsdato, 0, 6);
+			TextField fødselsdatoTextField = new TextField();
+			grid.add(fødselsdatoTextField, 1, 6);
 			
 			//TelefonNummer
 			Label telefonNummer = new Label("Telefonnummer:");
 			telefonNummer.setTextFill(Color.RED);
-			grid.add(telefonNummer, 0, 6);
+			grid.add(telefonNummer, 0, 7);
 			TextField telefonNummerTextField = new TextField();
-			grid.add(telefonNummerTextField, 1, 6);
+			grid.add(telefonNummerTextField, 1, 7);
 			
 			//Email
 			Label email = new Label("Email:");
 			email.setTextFill(Color.RED);
-			grid.add(email, 0, 7);
+			grid.add(email, 0, 8);
 			TextField emailTextField = new TextField();
-			grid.add(emailTextField, 1, 7);
+			grid.add(emailTextField, 1, 8);
 			
+			Button btnOpretKunde1 = new Button("Opret kunde");
+			HBox hbBtnOpretkunde1 = new HBox(10);
+			hbBtnOpretkunde1.setAlignment(Pos.TOP_LEFT);
+			hbBtnOpretkunde1.getChildren().add(btnOpretKunde1);
+			grid.add(hbBtnOpretkunde1, 3, 3);
+			btnOpretKunde1.setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent e) {
+					FFLogic logic = new FFLogic();
+					Kunde nyKunde = new Kunde();
+					nyKunde.setForNavn(forNavnTextField.getText());
+					nyKunde.setEfterNavn(efterNavnTextField.getText());
+					nyKunde.setAdresse(adresseTextField.getText());
+					nyKunde.setBy(byenTextField.getText());
+					nyKunde.setPostNummer(postnummerTextField.getText());
+					nyKunde.setFodselsdato(fødselsdatoTextField.getText());
+					nyKunde.setTelefonNummer(telefonNummerTextField.getText());
+					nyKunde.setEmail(emailTextField.getText());
 
+					if (forNavn.getText().trim().isEmpty()) {
+						Label fejl = new Label("Insert a name");
+						fejl.setTextFill(Color.web("#fc1919"));
+						grid.add(fejl, 3, 2);
+					} else {
+						logic.opretKunde(nyKunde);
+					}
+
+				}
+			});
 			Scene scene = new Scene(grid, 640, 450);
 			menuStage.setScene(scene);
 			scene.getStylesheets().addAll(this.getClass().getResource("/application/application.css").toExternalForm());

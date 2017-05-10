@@ -5,10 +5,10 @@ public class Kunde {
 	private String forNavn;
 	private String efterNavn;
 	private String adresse;
-	private int postNummer;
+	private String postNummer;
 	private String by;
 	private String fodselsdato;
-	private int telefonNummer;
+	private String telefonNummer;
 	private String email;
 	public String getForNavn() {
 		return forNavn;
@@ -19,7 +19,7 @@ public class Kunde {
 	public String getEfterNavn() {
 		return efterNavn;
 	}
-	public void setEfterNAvn(String efterNavn) {
+	public void setEfterNavn(String efterNavn) {
 		this.efterNavn = efterNavn;
 	}
 	public String getAdresse() {
@@ -28,10 +28,10 @@ public class Kunde {
 	public void setAdresse(String adresse) {
 		this.adresse = adresse;
 	}
-	public int getPostNummer() {
+	public String getPostNummer() {
 		return postNummer;
 	}
-	public void setPostNummer(int postNummer) {
+	public void setPostNummer(String postNummer) {
 		this.postNummer = postNummer;
 	}
 	public String getBy() {
@@ -46,10 +46,10 @@ public class Kunde {
 	public void setFodselsdato(String fodselsdato) {
 		this.fodselsdato = fodselsdato;
 	}
-	public int getTelefonNummer() {
+	public String getTelefonNummer() {
 		return telefonNummer;
 	}
-	public void setTelefonNummer(int telefonNummer) {
+	public void setTelefonNummer(String telefonNummer) {
 		this.telefonNummer = telefonNummer;
 	}
 	public String getEmail() {

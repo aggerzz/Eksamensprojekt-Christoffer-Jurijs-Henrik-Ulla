@@ -26,9 +26,9 @@ public class OpretKundeDB {
 			statement.setString(2, kunde.getEfterNavn());
 			statement.setString(3, kunde.getAdresse());
 			statement.setString(4, kunde.getBy());
-			statement.setInt(5, kunde.getPostNummer());
+			statement.setString(5, kunde.getPostNummer());
 			statement.setString(6, kunde.getFodselsdato());
-			statement.setInt(7, kunde.getTelefonNummer());
+			statement.setString(7, kunde.getTelefonNummer());
 			statement.setString(8, kunde.getEmail());
 			int antal = statement.executeUpdate();
 			System.out.println("Antal rækker berørt : " + antal);
