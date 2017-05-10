@@ -64,6 +64,21 @@ public class MenuGUI {
 				public void handle(ActionEvent e) {
 				}
 			});
+			
+			// Opret bil
+						Button btnBil = new Button("Bil");
+						HBox hbBtnBil = new HBox(10);
+						hbBtnBil.setAlignment(Pos.TOP_CENTER);
+						hbBtnBil.getChildren().add(btnBil);
+						grid.add(hbBtnBil, 1, 4);
+						btnBil.setOnAction(new EventHandler<ActionEvent>() {
+							@Override
+							public void handle(ActionEvent e) {
+								BilGUI bilStage = new BilGUI();
+								bilStage.start(new Stage());
+								menuStage.hide();
+							}
+						});
 
 			Scene scene = new Scene(grid, 300, 275);
 			menuStage.setScene(scene);
