@@ -17,9 +17,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import presentation.Menu;
+import presentation.MenuGUI;
 
-public class Login extends Application {
+public class LoginGUI extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			primaryStage.setTitle("Ferrari forhandler");
@@ -33,9 +33,9 @@ public class Login extends Application {
 			scenetitle.setFill(Color.RED);
 			grid.add(scenetitle, 0, 0, 2, 1);
 
-			Label userName = new Label("Brugernavn:");
-			userName.setTextFill(Color.RED);
-			grid.add(userName, 0, 1);
+			Label brugernavn = new Label("Brugernavn:");
+			brugernavn.setTextFill(Color.RED);
+			grid.add(brugernavn, 0, 1);
 
 			TextField userTextField = new TextField();
 			grid.add(userTextField, 1, 1);
@@ -63,7 +63,7 @@ public class Login extends Application {
 
 				@Override
 				public void handle(ActionEvent e) {
-					Menu menuStage = new Menu();
+					MenuGUI menuStage = new MenuGUI();
 					menuStage.start(new Stage());
 					primaryStage.hide();
 				}

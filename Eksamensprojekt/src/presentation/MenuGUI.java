@@ -13,7 +13,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class Menu {
+public class MenuGUI {
 	public void start(Stage menuStage) {
 		try {
 			menuStage.setTitle("Ferrari forhandler");
@@ -35,6 +35,9 @@ public class Menu {
 			btnOpretKunde.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent e) {
+					KundeGUI kundeStage = new KundeGUI();
+					kundeStage.start(new Stage());
+					menuStage.hide();
 				}
 			});
 
