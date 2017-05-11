@@ -69,7 +69,7 @@ public class MenuGUI {
 			});
 			
 			// Opret bil
-						Button btnBil = new Button("Bil");
+						Button btnBil = new Button("Opret Bil");
 						HBox hbBtnBil = new HBox(10);
 						hbBtnBil.setAlignment(Pos.TOP_CENTER);
 						hbBtnBil.getChildren().add(btnBil);
