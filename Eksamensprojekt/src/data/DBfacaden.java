@@ -2,14 +2,16 @@ package data;
 
 import data.OpretKundeDB;
 import domain.Billmpl;
+import domain.Kunde;
 import domain.Kundelmpl;
 import domain.Sælgerlmpl;
+import exceptions.MangledeInformationOmKundenException;
 
 public class DBfacaden {
 
 	private OpretKundeDB opretKundeInfo = new OpretKundeDB();
 
-	public void opretKundeInfo(Kundelmpl kunde) throws Exception { 
+	public void opretKundeInfo(Kunde kunde) throws MangledeInformationOmKundenException { 
 		opretKundeInfo.opretKunde(kunde);
 	}
 	

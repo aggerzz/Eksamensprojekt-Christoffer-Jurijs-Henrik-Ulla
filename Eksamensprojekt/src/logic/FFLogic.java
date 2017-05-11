@@ -2,15 +2,17 @@ package logic;
 
 import data.DBfacaden;
 import domain.Billmpl;
+import domain.Kunde;
 import domain.Kundelmpl;
 import domain.Sælgerlmpl;
+import exceptions.MangledeInformationOmKundenException;
 
 public class FFLogic {
 
 	// Opret Kunde
 	private DBfacaden opretKundeInfo = new DBfacaden();
 
-	public void opretKunde(Kundelmpl kunde) throws Exception {
+	public void opretKunde(Kunde kunde) throws MangledeInformationOmKundenException {
 		opretKundeInfo.opretKundeInfo(kunde);
 	}
 	// Opret Sælger
