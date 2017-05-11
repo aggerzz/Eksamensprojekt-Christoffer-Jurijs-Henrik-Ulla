@@ -9,7 +9,7 @@ public class DBfacaden {
 
 	private OpretKundeDB opretKundeInfo = new OpretKundeDB();
 
-	public void opretKundeInfo(Kundelmpl kunde) { 
+	public void opretKundeInfo(Kundelmpl kunde) throws Exception { 
 		opretKundeInfo.opretKunde(kunde);
 	}
 	

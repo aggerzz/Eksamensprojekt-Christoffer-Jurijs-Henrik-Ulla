@@ -128,7 +128,11 @@ public class KundeGUI extends Application {
 						fejl.setTextFill(Color.web("#fc1919"));
 						grid.add(fejl, 3, 2);
 					} else {
-						logic.opretKunde(nyKunde);
+						try {
+							logic.opretKunde(nyKunde);
+						} catch (Exception e1) {
+							e1.printStackTrace();
+						}
 					}
 
 				}

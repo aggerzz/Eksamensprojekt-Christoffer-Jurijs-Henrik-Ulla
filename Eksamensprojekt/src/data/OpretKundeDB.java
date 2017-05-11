@@ -5,9 +5,10 @@ import java.sql.SQLException;
 
 import data.DataAccess;
 import domain.Kundelmpl;
+import exceptions.MangledeInformationOmKundenException;
 
 public class OpretKundeDB {
-	public void opretKunde(Kundelmpl kunde) {
+	public void opretKunde(Kundelmpl kunde) throws Exception {
 		try (DataAccess access = new DataAccess()) {
 			try {
 				opretKunde(access, kunde);
@@ -19,7 +20,7 @@ public class OpretKundeDB {
 		}
 	}
 
-	private void opretKunde(DataAccess access, Kundelmpl kunde) {
+	private void opretKunde(DataAccess access, Kundelmpl kunde) throws MangledeInformationOmKundenException {
 		try (PreparedStatement statement = access.getConnection()
 				.prepareStatement("INSERT INTO KUNDE (FORNAVN, EFTERNAVN, ADRESSE, POSTNUMMER, BYEN, FODSELSDATO, TELEFONNUMMER, EMAIL ) VALUES ( ?, ?, ?,? , ?, ?, ?, ?)");) {
 			statement.setString(1, kunde.getForNavn());
