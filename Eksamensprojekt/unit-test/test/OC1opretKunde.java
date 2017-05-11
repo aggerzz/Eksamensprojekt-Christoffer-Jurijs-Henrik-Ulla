@@ -1,10 +1,12 @@
-package Test;
+package test;
 
 import static org.junit.Assert.*;
 
-public class Test {
+import org.junit.Test;
 
-	@org.junit.Test
+public class OC1opretKunde {
+
+	@Test
 	public void test() {
 		fail("Not yet implemented");
 	}
