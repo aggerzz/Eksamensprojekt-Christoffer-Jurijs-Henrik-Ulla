@@ -123,17 +123,12 @@ public class KundeGUI extends Application {
 					nyKunde.setTelefonNummer(telefonNummerTextField.getText());
 					nyKunde.setEmail(emailTextField.getText());
 
-					if (forNavn.getText().trim().isEmpty()) {
-						Label fejl = new Label("Insert a name");
-						fejl.setTextFill(Color.web("#fc1919"));
-						grid.add(fejl, 3, 2);
-					} else {
 						try {
-							logic.opretKunde(nyKunde);
-						} catch (Exception e1) {
-							e1.printStackTrace();
-						}
-					}
+								logic.opretKunde(nyKunde);
+							} catch (Exception e1) {
+								e1.printStackTrace();
+							}
+
 
 				}
 			});
