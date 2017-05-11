@@ -4,10 +4,10 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import data.DataAccess;
-import domain.Sælger;
+import domain.Sælgerlmpl;
 
 public class OpretSælgerDB {
-	public void opretSælger(Sælger sælger) {
+	public void opretSælger(Sælgerlmpl sælger) {
 		try (DataAccess access = new DataAccess()) {
 			try {
 				opretSælger(access, sælger);
@@ -19,7 +19,7 @@ public class OpretSælgerDB {
 		}
 	}
 
-	private void opretSælger(DataAccess access, Sælger sælger) {
+	private void opretSælger(DataAccess access, Sælgerlmpl sælger) {
 		try (PreparedStatement statement = access.getConnection()
 				.prepareStatement("INSERT INTO SÆLGER (LOGIN, ADGANGSKODE, FORNAVN, EFTERNAVN, TELEFONNUMMER, EMAIL) VALUES ( ?, ?, ?,? , ?, ?)");) {
 			statement.setString(1, sælger.getLogin());

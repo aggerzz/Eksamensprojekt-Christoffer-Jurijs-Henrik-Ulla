@@ -1,6 +1,6 @@
 package presentation;
 
-import domain.Sælger;
+import domain.Sælgerlmpl;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -100,7 +100,7 @@ public class SælgerGUI extends Application {
 				@Override
 				public void handle(ActionEvent e) {
 					FFLogic logic = new FFLogic();
-					Sælger nySælger = new Sælger();
+					Sælgerlmpl nySælger = new Sælgerlmpl();
 					nySælger.setLogin(loginTextField.getText());
 					nySælger.setAdgangskode(adgangskodeTextField.getText());
 					nySælger.setForNavn(forNavnTextField.getText());

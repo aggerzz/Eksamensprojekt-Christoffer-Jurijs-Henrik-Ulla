@@ -4,10 +4,10 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import data.DataAccess;
-import domain.Bil;
+import domain.Billmpl;
 
 public class OpretBilDB {
-	public void opretBil(Bil bil) {
+	public void opretBil(Billmpl bil) {
 		try (DataAccess access = new DataAccess()) {
 			try {
 				opretBil(access, bil);
@@ -19,7 +19,7 @@ public class OpretBilDB {
 		}
 	}
 
-	private void opretBil(DataAccess access, Bil bil) {
+	private void opretBil(DataAccess access, Billmpl bil) {
 		try (PreparedStatement statement = access.getConnection()
 				.prepareStatement("INSERT INTO BIL (MODEL, STELNUMMER, ÅRGANG) VALUES ( ?, ?, ?)");) {
 			statement.setString(1, bil.getModel());

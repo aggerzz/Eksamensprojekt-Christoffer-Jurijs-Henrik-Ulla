@@ -1,6 +1,6 @@
 package presentation;
 
-import domain.Kunde;
+import domain.Kundelmpl;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -113,7 +113,7 @@ public class KundeGUI extends Application {
 				@Override
 				public void handle(ActionEvent e) {
 					FFLogic logic = new FFLogic();
-					Kunde nyKunde = new Kunde();
+					Kundelmpl nyKunde = new Kundelmpl();
 					nyKunde.setForNavn(forNavnTextField.getText());
 					nyKunde.setEfterNavn(efterNavnTextField.getText());
 					nyKunde.setAdresse(adresseTextField.getText());
