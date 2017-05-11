@@ -1,6 +1,8 @@
 package presentation;
 
+import domain.Kunde;
 import domain.Kundelmpl;
+import exceptions.MangledeInformationOmKundenException;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -113,7 +115,7 @@ public class KundeGUI extends Application {
 				@Override
 				public void handle(ActionEvent e) {
 					FFLogic logic = new FFLogic();
-					Kundelmpl nyKunde = new Kundelmpl();
+					Kunde nyKunde = new Kundelmpl();
 					nyKunde.setForNavn(forNavnTextField.getText());
 					nyKunde.setEfterNavn(efterNavnTextField.getText());
 					nyKunde.setAdresse(adresseTextField.getText());
@@ -125,7 +127,7 @@ public class KundeGUI extends Application {
 
 						try {
 								logic.opretKunde(nyKunde);
-							} catch (Exception e1) {
+							} catch (MangledeInformationOmKundenException e1) {
 								e1.printStackTrace();
 							}
 

@@ -4,11 +4,12 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import data.DataAccess;
+import domain.Bil;
 import domain.Billmpl;
 import exceptions.MangledeInformationOmBilenException;
 
 public class OpretBilDB {
-	public void opretBil(Billmpl bil) throws Exception {
+	public void opretBil(Bil bil) throws MangledeInformationOmBilenException {
 		try (DataAccess access = new DataAccess()) {
 			try {
 				opretBil(access, bil);
@@ -20,7 +21,7 @@ public class OpretBilDB {
 		}
 	}
 
-	private void opretBil(DataAccess access, Billmpl bil) throws MangledeInformationOmBilenException {
+	private void opretBil(DataAccess access, Bil bil) throws MangledeInformationOmBilenException {
 		try (PreparedStatement statement = access.getConnection()
 				.prepareStatement("INSERT INTO BIL (MODEL, STELNUMMER, ÅRGANG) VALUES ( ?, ?, ?)");) {
 			statement.setString(1, bil.getModel());

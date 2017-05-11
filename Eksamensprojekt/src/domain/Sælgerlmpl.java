@@ -2,7 +2,7 @@ package domain;
 
 import exceptions.MangledeInformationOmSælgerException;;
 
-public class Sælgerlmpl {
+public class Sælgerlmpl implements Sælger {
 
 	private String login;
 	private String adgangskode;

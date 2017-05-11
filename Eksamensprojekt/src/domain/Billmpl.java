@@ -2,7 +2,7 @@ package domain;
 
 import exceptions.MangledeInformationOmBilenException;;
 
-public class Billmpl {
+public class Billmpl implements Bil {
 
 	private String model;
 	private String stelNummer;

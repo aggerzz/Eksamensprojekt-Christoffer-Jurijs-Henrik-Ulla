@@ -1,11 +1,15 @@
 package logic;
 
 import data.DBfacaden;
+import domain.Bil;
 import domain.Billmpl;
 import domain.Kunde;
 import domain.Kundelmpl;
+import domain.Sælger;
 import domain.Sælgerlmpl;
+import exceptions.MangledeInformationOmBilenException;
 import exceptions.MangledeInformationOmKundenException;
+import exceptions.MangledeInformationOmSælgerException;
 
 public class FFLogic {
 
@@ -18,13 +22,13 @@ public class FFLogic {
 	// Opret Sælger
 	private DBfacaden opretSælgerInfo = new DBfacaden();
 
-	public void opretSælger(Sælgerlmpl sælger) throws Exception {
+	public void opretSælger(Sælger sælger) throws MangledeInformationOmSælgerException {
 		opretSælgerInfo.opretSælgerInfo(sælger);
 	}
 	// Opret Bil
 	private DBfacaden opretBilInfo = new DBfacaden();
 
-	public void opretBil(Billmpl bil) throws Exception {
+	public void opretBil(Bil bil) throws MangledeInformationOmBilenException {
 		opretBilInfo.opretBilInfo(bil);
 	}
 }

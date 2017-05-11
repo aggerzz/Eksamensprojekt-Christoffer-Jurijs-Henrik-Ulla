@@ -1,5 +1,6 @@
 package presentation;
 
+import domain.Bil;
 import domain.Billmpl;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -81,7 +82,7 @@ public class BilGUI extends Application {
 				@Override
 				public void handle(ActionEvent e) {
 					FFLogic logic = new FFLogic();
-					Billmpl nyBil = new Billmpl();
+					Bil nyBil = new Billmpl();
 					nyBil.setModel(modelTextField.getText());
 					nyBil.setStelNummer(stelNummerTextField.getText());
 					nyBil.setÅrgang(årgangTextField.getText());
