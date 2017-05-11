@@ -16,6 +16,6 @@ public interface Sælger {
 	public void setLogin(String login);
 	public String getAdgangskode() throws MangledeInformationOmSælgerException;
 	public void setAdgangskode(String adgangskode);
-	public int getId()
+	public int getId();
 	public void setId(int id);
 }

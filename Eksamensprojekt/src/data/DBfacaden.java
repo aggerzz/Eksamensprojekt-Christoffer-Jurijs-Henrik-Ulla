@@ -15,13 +15,13 @@ public class DBfacaden {
 	
 	private OpretSælgerDB opretSælgerInfo = new OpretSælgerDB();
 
-	public void opretSælgerInfo(Sælgerlmpl sælger) { 
+	public void opretSælgerInfo(Sælgerlmpl sælger) throws Exception { 
 		opretSælgerInfo.opretSælger(sælger);
 	}
 	
 	private OpretBilDB opretBilInfo = new OpretBilDB();
 
-	public void opretBilInfo(Billmpl bil) { 
+	public void opretBilInfo(Billmpl bil) throws Exception { 
 		opretBilInfo.opretBil(bil);
 	}
 

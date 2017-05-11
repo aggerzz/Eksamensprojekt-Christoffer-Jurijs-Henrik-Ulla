@@ -85,7 +85,12 @@ public class BilGUI extends Application {
 					nyBil.setModel(modelTextField.getText());
 					nyBil.setStelNummer(stelNummerTextField.getText());
 					nyBil.setÅrgang(årgangTextField.getText());
-					logic.opretBil(nyBil);
+					
+					try {
+						logic.opretBil(nyBil);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
 				}
 			});
 			Scene scene = new Scene(grid, 640, 450);

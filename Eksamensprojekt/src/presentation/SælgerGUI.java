@@ -108,7 +108,11 @@ public class SælgerGUI extends Application {
 					nySælger.setTelefonNummer(telefonNummerTextField.getText());
 					nySælger.setEmail(emailTextField.getText());
 					
-					logic.opretSælger(nySælger);
+					try {
+						logic.opretSælger(nySælger);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
 
 				}
 			});

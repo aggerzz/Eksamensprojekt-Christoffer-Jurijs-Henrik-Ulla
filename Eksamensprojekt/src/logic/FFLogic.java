@@ -16,13 +16,13 @@ public class FFLogic {
 	// Opret Sælger
 	private DBfacaden opretSælgerInfo = new DBfacaden();
 
-	public void opretSælger(Sælgerlmpl sælger) {
+	public void opretSælger(Sælgerlmpl sælger) throws Exception {
 		opretSælgerInfo.opretSælgerInfo(sælger);
 	}
 	// Opret Bil
 	private DBfacaden opretBilInfo = new DBfacaden();
 
-	public void opretBil(Billmpl bil) {
+	public void opretBil(Billmpl bil) throws Exception {
 		opretBilInfo.opretBilInfo(bil);
 	}
 }
