@@ -61,7 +61,7 @@ public class MenuGUI {
 			HBox hbBtnLån = new HBox(10);
 			hbBtnLån.setAlignment(Pos.TOP_CENTER);
 			hbBtnLån.getChildren().add(btnLån);
-			grid.add(hbBtnLån, 1, 3);
+			grid.add(hbBtnLån, 1, 4);
 			btnLån.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent e) {
@@ -73,7 +73,7 @@ public class MenuGUI {
 						HBox hbBtnBil = new HBox(10);
 						hbBtnBil.setAlignment(Pos.TOP_CENTER);
 						hbBtnBil.getChildren().add(btnBil);
-						grid.add(hbBtnBil, 1, 4);
+						grid.add(hbBtnBil, 1, 3);
 						btnBil.setOnAction(new EventHandler<ActionEvent>() {
 							@Override
 							public void handle(ActionEvent e) {
