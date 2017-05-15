@@ -5,11 +5,13 @@ import java.sql.SQLException;
 
 import data.DataAccess;
 import domain.Bil;
-import domain.Billmpl;
-import exceptions.MangledeInformationOmBilenException;
+import exceptions.ModelIkkeOplystException;
+import exceptions.StelnummerIkkeOplystException;
+import exceptions.ÅrgangIkkeOplystException;
 
 public class OpretBilDB {
-	public void opretBil(Bil bil) throws MangledeInformationOmBilenException {
+	public void opretBil(Bil bil)
+			throws ModelIkkeOplystException, StelnummerIkkeOplystException, ÅrgangIkkeOplystException {
 		try (DataAccess access = new DataAccess()) {
 			try {
 				opretBil(access, bil);
@@ -21,13 +23,13 @@ public class OpretBilDB {
 		}
 	}
 
-	private void opretBil(DataAccess access, Bil bil) throws MangledeInformationOmBilenException {
+	private void opretBil(DataAccess access, Bil bil)
+			throws ModelIkkeOplystException, StelnummerIkkeOplystException, ÅrgangIkkeOplystException {
 		try (PreparedStatement statement = access.getConnection()
 				.prepareStatement("INSERT INTO BIL (MODEL, STELNUMMER, ÅRGANG) VALUES ( ?, ?, ?)");) {
 			statement.setString(1, bil.getModel());
 			statement.setString(2, bil.getStelNummer());
 			statement.setString(3, bil.getÅrgang());
-
 
 			int antal = statement.executeUpdate();
 			System.out.println("Antal rækker berørt : " + antal);

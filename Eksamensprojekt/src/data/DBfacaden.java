@@ -2,14 +2,13 @@ package data;
 
 import data.OpretKundeDB;
 import domain.Bil;
-import domain.Billmpl;
 import domain.Kunde;
-import domain.Kundelmpl;
 import domain.Sælger;
-import domain.Sælgerlmpl;
-import exceptions.MangledeInformationOmBilenException;
 import exceptions.MangledeInformationOmKundenException;
 import exceptions.MangledeInformationOmSælgerException;
+import exceptions.ModelIkkeOplystException;
+import exceptions.StelnummerIkkeOplystException;
+import exceptions.ÅrgangIkkeOplystException;
 
 public class DBfacaden {
 
@@ -27,7 +26,7 @@ public class DBfacaden {
 	
 	private OpretBilDB opretBilInfo = new OpretBilDB();
 
-	public void opretBilInfo(Bil bil) throws MangledeInformationOmBilenException { 
+	public void opretBilInfo(Bil bil) throws ModelIkkeOplystException, StelnummerIkkeOplystException, ÅrgangIkkeOplystException { 
 		opretBilInfo.opretBil(bil);
 	}
 
