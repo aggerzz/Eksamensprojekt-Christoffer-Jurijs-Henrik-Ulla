@@ -82,7 +82,7 @@ public class MenuGUI {
 								menuStage.hide();
 							}
 						});
-						// Søg kunde
+						// Søg Kunde
 						Button btnSøgKunde = new Button("Søg Kunde");
 						HBox hbBtnSøgKunde = new HBox(10);
 						hbBtnSøgKunde.setAlignment(Pos.TOP_CENTER);
