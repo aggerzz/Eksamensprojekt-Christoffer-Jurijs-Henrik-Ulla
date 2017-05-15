@@ -65,6 +65,9 @@ public class MenuGUI {
 			btnLån.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent e) {
+					LåneanmodningGUI LåneanmodningStage = new LåneanmodningGUI();
+					LåneanmodningStage.start(new Stage());
+					menuStage.hide();
 				}
 			});
 			
