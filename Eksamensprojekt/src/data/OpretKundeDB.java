@@ -5,11 +5,19 @@ import java.sql.SQLException;
 
 import data.DataAccess;
 import domain.Kunde;
-import domain.Kundelmpl;
-import exceptions.MangledeInformationOmKundenException;
+import exceptions.AdresseIkkeOplystException;
+import exceptions.ByIkkeOplystException;
+import exceptions.EfternavnIkkeOplystException;
+import exceptions.EmailIkkeOplystException;
+import exceptions.FodselsdagIkkeOplystException;
+import exceptions.FornavnIkkeOplystException;
+import exceptions.PostnummerIkkeOplystException;
+import exceptions.TelefonnummerIkkeOplystException;
 
 public class OpretKundeDB {
-	public void opretKunde(Kunde kunde) throws MangledeInformationOmKundenException {
+	public void opretKunde(Kunde kunde) throws AdresseIkkeOplystException, ByIkkeOplystException,
+			EfternavnIkkeOplystException, EmailIkkeOplystException, FodselsdagIkkeOplystException,
+			FornavnIkkeOplystException, PostnummerIkkeOplystException, TelefonnummerIkkeOplystException {
 		try (DataAccess access = new DataAccess()) {
 			try {
 				opretKunde(access, kunde);
@@ -21,9 +29,11 @@ public class OpretKundeDB {
 		}
 	}
 
-	private void opretKunde(DataAccess access, Kunde kunde) throws MangledeInformationOmKundenException {
-		try (PreparedStatement statement = access.getConnection()
-				.prepareStatement("INSERT INTO KUNDE (FORNAVN, EFTERNAVN, ADRESSE, POSTNUMMER, BYEN, FODSELSDATO, TELEFONNUMMER, EMAIL ) VALUES ( ?, ?, ?,? , ?, ?, ?, ?)");) {
+	private void opretKunde(DataAccess access, Kunde kunde) throws AdresseIkkeOplystException, ByIkkeOplystException,
+			EfternavnIkkeOplystException, EmailIkkeOplystException, FodselsdagIkkeOplystException,
+			FornavnIkkeOplystException, PostnummerIkkeOplystException, TelefonnummerIkkeOplystException {
+		try (PreparedStatement statement = access.getConnection().prepareStatement(
+				"INSERT INTO KUNDE (FORNAVN, EFTERNAVN, ADRESSE, POSTNUMMER, BYEN, FODSELSDATO, TELEFONNUMMER, EMAIL ) VALUES ( ?, ?, ?,? , ?, ?, ?, ?)");) {
 			statement.setString(1, kunde.getForNavn());
 			statement.setString(2, kunde.getEfterNavn());
 			statement.setString(3, kunde.getAdresse());

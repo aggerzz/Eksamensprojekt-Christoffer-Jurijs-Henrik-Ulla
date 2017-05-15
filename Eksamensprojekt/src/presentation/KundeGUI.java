@@ -125,11 +125,11 @@ public class KundeGUI extends Application {
 					nyKunde.setTelefonNummer(telefonNummerTextField.getText());
 					nyKunde.setEmail(emailTextField.getText());
 
-						try {
-								logic.opretKunde(nyKunde);
-							} catch (MangledeInformationOmKundenException e1) {
-								e1.printStackTrace();
-							}
+					try {
+						logic.opretKunde(nyKunde);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
 
 
 				}
