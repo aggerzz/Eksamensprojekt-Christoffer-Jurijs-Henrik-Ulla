@@ -97,7 +97,7 @@ public class MenuGUI {
 							}
 						});
 
-			Scene scene = new Scene(grid, 300, 275);
+			Scene scene = new Scene(grid, 640, 450);
 			menuStage.setScene(scene);
 			scene.getStylesheets().addAll(this.getClass().getResource("/application/application.css").toExternalForm());
 
