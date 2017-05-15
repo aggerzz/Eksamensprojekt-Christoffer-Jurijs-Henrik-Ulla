@@ -57,7 +57,7 @@ public class MenuGUI {
 			});
 
 			// Lån
-			Button btnLån = new Button("Lån");
+			Button btnLån = new Button("Opret Låneanmodning");
 			HBox hbBtnLån = new HBox(10);
 			hbBtnLån.setAlignment(Pos.TOP_CENTER);
 			hbBtnLån.getChildren().add(btnLån);
@@ -79,6 +79,20 @@ public class MenuGUI {
 							public void handle(ActionEvent e) {
 								BilGUI bilStage = new BilGUI();
 								bilStage.start(new Stage());
+								menuStage.hide();
+							}
+						});
+						// Søg kunde
+						Button btnSøgKunde = new Button("Søg Kunde");
+						HBox hbBtnSøgKunde = new HBox(10);
+						hbBtnSøgKunde.setAlignment(Pos.TOP_CENTER);
+						hbBtnSøgKunde.getChildren().add(btnSøgKunde);
+						grid.add(hbBtnSøgKunde, 1, 5);
+						btnSøgKunde.setOnAction(new EventHandler<ActionEvent>() {
+							@Override
+							public void handle(ActionEvent e) {
+								SøgKundeGUI søgKundeStage = new SøgKundeGUI();
+								søgKundeStage.start(new Stage());
 								menuStage.hide();
 							}
 						});
