@@ -7,6 +7,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -54,8 +55,13 @@ public class LåneanmodningGUI extends Application {
 			Label kreditværdighed = new Label("Kreditværdighed:");
 			kreditværdighed.setTextFill(Color.RED);
 			grid.add(kreditværdighed, 0, 2);
-			TextField kreditværdighedTextField = new TextField();
-			grid.add(kreditværdighedTextField, 1, 2);
+	        final ComboBox<String> kreditværdighedComboBox = new ComboBox<String>();
+	        kreditværdighedComboBox.getItems().addAll(
+	            "A",
+	            "B",
+	            "C"
+	        );
+	        grid.add(kreditværdighedComboBox, 1, 2);
 			
 			// Rentesats
 			Label rentesats = new Label("Rentesats:");
