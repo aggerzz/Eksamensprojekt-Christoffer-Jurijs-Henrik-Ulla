@@ -30,6 +30,11 @@ public class LåneanmodningGUI extends Application {
 			scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
 			scenetitle.setFill(Color.RED);
 			grid.add(scenetitle, 0, 0, 2, 1);
+			
+			Text findKreditværdighed = new Text("Find kreditværdighed");
+			findKreditværdighed.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+			findKreditværdighed.setFill(Color.RED);
+			grid.add(findKreditværdighed, 0, 8, 5, 1);
 
 			// Telefonnummer
 			Label Telefonnummer = new Label("Telefonnummer:");
@@ -41,37 +46,37 @@ public class LåneanmodningGUI extends Application {
 			// Personnummer
 			Label personNummer = new Label("Personnummer:");
 			personNummer.setTextFill(Color.RED);
-			grid.add(personNummer, 0, 2);
+			grid.add(personNummer, 0, 9);
 			TextField personNummerTextField = new TextField();
-			grid.add(personNummerTextField, 1, 2);
+			grid.add(personNummerTextField, 1, 9);
 			
 			// kreditværdighed
 			Label kreditværdighed = new Label("Kreditværdighed:");
 			kreditværdighed.setTextFill(Color.RED);
-			grid.add(kreditværdighed, 0, 3);
+			grid.add(kreditværdighed, 0, 2);
 			TextField kreditværdighedTextField = new TextField();
-			grid.add(kreditværdighedTextField, 1, 3);
+			grid.add(kreditværdighedTextField, 1, 2);
 			
 			// Rentesats
 			Label rentesats = new Label("Rentesats:");
 			rentesats.setTextFill(Color.RED);
-			grid.add(rentesats, 0, 4);
+			grid.add(rentesats, 0, 3);
 			TextField rentesatsTextField = new TextField();
-			grid.add(rentesatsTextField, 1, 4);
+			grid.add(rentesatsTextField, 1, 3);
 			
 			// Bil
 			Label stelNummer = new Label("Stelnummer:");
 			stelNummer.setTextFill(Color.RED);
-			grid.add(stelNummer, 0, 5);
+			grid.add(stelNummer, 0, 4);
 			TextField stelNummerTextField = new TextField();
-			grid.add(stelNummerTextField, 1, 5);
+			grid.add(stelNummerTextField, 1, 4);
 			
 			// Løbetid
 			Label løbetid = new Label("Løbetid:");
 			løbetid.setTextFill(Color.RED);
-			grid.add(løbetid, 0, 6);
+			grid.add(løbetid, 0, 5);
 			TextField løbetidTextField = new TextField();
-			grid.add(løbetidTextField, 1, 6);
+			grid.add(løbetidTextField, 1, 5);
 			
 			Button btnTilbage = new Button("Tilbage");
 			HBox hbBtnTilbage = new HBox(7);
@@ -86,14 +91,32 @@ public class LåneanmodningGUI extends Application {
 					LåneanmodningStage.hide();
 				}
 			});
+			
+			Button btnlåneanmodning1 = new Button("Opret");
+			HBox hbBtnlåneanmodning1 = new HBox(10);
+			hbBtnlåneanmodning1.setAlignment(Pos.TOP_LEFT);
+			hbBtnlåneanmodning1.getChildren().add(btnlåneanmodning1);
+			grid.add(hbBtnlåneanmodning1, 15, 15);
+			btnlåneanmodning1.setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent e) {
+					
+					try {
+						
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+
+				}
+			});
 
 
-			Button btnOpretKunde1 = new Button("Opret");
-			HBox hbBtnOpretkunde1 = new HBox(10);
-			hbBtnOpretkunde1.setAlignment(Pos.TOP_LEFT);
-			hbBtnOpretkunde1.getChildren().add(btnOpretKunde1);
-			grid.add(hbBtnOpretkunde1, 15, 15);
-			btnOpretKunde1.setOnAction(new EventHandler<ActionEvent>() {
+			Button btnFindKreditværdighed = new Button("Find kreditværdihed");
+			HBox hbBtnFindKreditværdighed = new HBox(10);
+			hbBtnFindKreditværdighed.setAlignment(Pos.TOP_LEFT);
+			hbBtnFindKreditværdighed.getChildren().add(btnFindKreditværdighed);
+			grid.add(hbBtnFindKreditværdighed, 0, 15);
+			btnFindKreditværdighed.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent e) {
 					

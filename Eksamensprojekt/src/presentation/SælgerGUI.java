@@ -91,12 +91,12 @@ public class SælgerGUI extends Application {
 			});
 
 
-			Button btnOpretKunde1 = new Button("Opret sælger");
-			HBox hbBtnOpretkunde1 = new HBox(10);
-			hbBtnOpretkunde1.setAlignment(Pos.TOP_LEFT);
-			hbBtnOpretkunde1.getChildren().add(btnOpretKunde1);
-			grid.add(hbBtnOpretkunde1, 15, 15);
-			btnOpretKunde1.setOnAction(new EventHandler<ActionEvent>() {
+			Button btnOpretSælger = new Button("Opret sælger");
+			HBox hbBtnOpretSælger = new HBox(10);
+			hbBtnOpretSælger.setAlignment(Pos.TOP_LEFT);
+			hbBtnOpretSælger.getChildren().add(btnOpretSælger);
+			grid.add(hbBtnOpretSælger, 15, 15);
+			btnOpretSælger.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent e) {
 					FFLogic logic = new FFLogic();

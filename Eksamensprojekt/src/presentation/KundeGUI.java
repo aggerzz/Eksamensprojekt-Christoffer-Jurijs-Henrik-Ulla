@@ -106,12 +106,12 @@ public class KundeGUI extends Application {
 			});
 
 
-			Button btnOpretKunde1 = new Button("Opret kunde");
-			HBox hbBtnOpretkunde1 = new HBox(10);
-			hbBtnOpretkunde1.setAlignment(Pos.TOP_LEFT);
-			hbBtnOpretkunde1.getChildren().add(btnOpretKunde1);
-			grid.add(hbBtnOpretkunde1, 15, 15);
-			btnOpretKunde1.setOnAction(new EventHandler<ActionEvent>() {
+			Button btnOpretKunde = new Button("Opret kunde");
+			HBox hbBtnOpretkunde = new HBox(10);
+			hbBtnOpretkunde.setAlignment(Pos.TOP_LEFT);
+			hbBtnOpretkunde.getChildren().add(btnOpretKunde);
+			grid.add(hbBtnOpretkunde, 15, 15);
+			btnOpretKunde.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent e) {
 					FFLogic logic = new FFLogic();

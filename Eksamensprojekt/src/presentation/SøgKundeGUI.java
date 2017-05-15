@@ -52,12 +52,12 @@ public class SøgKundeGUI extends Application {
 				}
 			});
 
-			Button btnOpretKunde1 = new Button("Søg");
-			HBox hbBtnOpretkunde1 = new HBox(10);
-			hbBtnOpretkunde1.setAlignment(Pos.TOP_LEFT);
-			hbBtnOpretkunde1.getChildren().add(btnOpretKunde1);
-			grid.add(hbBtnOpretkunde1, 15, 15);
-			btnOpretKunde1.setOnAction(new EventHandler<ActionEvent>() {
+			Button btnSøgKunde = new Button("Søg");
+			HBox hbBtnSøgKunde = new HBox(10);
+			hbBtnSøgKunde.setAlignment(Pos.TOP_LEFT);
+			hbBtnSøgKunde.getChildren().add(btnSøgKunde);
+			grid.add(hbBtnSøgKunde, 15, 15);
+			btnSøgKunde.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent e) {
 					
