@@ -30,60 +30,56 @@ public class LåneanmodningGUI extends Application {
 			Text scenetitle = new Text("Opret Låneanmodning");
 			scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
 			scenetitle.setFill(Color.RED);
-			grid.add(scenetitle, 0, 0, 2, 1);
-			
+			grid.add(scenetitle, 0, 6, 5, 1);
+
 			Text findKreditværdighed = new Text("Find kreditværdighed");
 			findKreditværdighed.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
 			findKreditværdighed.setFill(Color.RED);
-			grid.add(findKreditværdighed, 0, 8, 5, 1);
+			grid.add(findKreditværdighed, 0, 0, 2, 1);
 
 			// Telefonnummer
 			Label Telefonnummer = new Label("Telefonnummer:");
 			Telefonnummer.setTextFill(Color.RED);
-			grid.add(Telefonnummer, 0, 1);
+			grid.add(Telefonnummer, 0, 7);
 			TextField TelefonnummerTextField = new TextField();
-			grid.add(TelefonnummerTextField, 1, 1);
-			
+			grid.add(TelefonnummerTextField, 1, 7);
+
 			// Personnummer
 			Label personNummer = new Label("Personnummer:");
 			personNummer.setTextFill(Color.RED);
-			grid.add(personNummer, 0, 9);
+			grid.add(personNummer, 0, 1);
 			TextField personNummerTextField = new TextField();
-			grid.add(personNummerTextField, 1, 9);
-			
+			grid.add(personNummerTextField, 1, 1);
+
 			// kreditværdighed
 			Label kreditværdighed = new Label("Kreditværdighed:");
 			kreditværdighed.setTextFill(Color.RED);
-			grid.add(kreditværdighed, 0, 2);
-	        final ComboBox<String> kreditværdighedComboBox = new ComboBox<String>();
-	        kreditværdighedComboBox.getItems().addAll(
-	            "A",
-	            "B",
-	            "C"
-	        );
-	        grid.add(kreditværdighedComboBox, 1, 2);
-			
+			grid.add(kreditværdighed, 0, 9);
+			final ComboBox<String> kreditværdighedComboBox = new ComboBox<String>();
+			kreditværdighedComboBox.getItems().addAll("A", "B", "C");
+			grid.add(kreditværdighedComboBox, 1, 9);
+
 			// Rentesats
 			Label rentesats = new Label("Rentesats:");
 			rentesats.setTextFill(Color.RED);
-			grid.add(rentesats, 0, 3);
+			grid.add(rentesats, 0, 11);
 			TextField rentesatsTextField = new TextField();
-			grid.add(rentesatsTextField, 1, 3);
-			
+			grid.add(rentesatsTextField, 1, 11);
+
 			// Bil
 			Label stelNummer = new Label("Stelnummer:");
 			stelNummer.setTextFill(Color.RED);
-			grid.add(stelNummer, 0, 4);
+			grid.add(stelNummer, 0, 13);
 			TextField stelNummerTextField = new TextField();
-			grid.add(stelNummerTextField, 1, 4);
-			
+			grid.add(stelNummerTextField, 1, 13);
+
 			// Løbetid
 			Label løbetid = new Label("Løbetid:");
 			løbetid.setTextFill(Color.RED);
-			grid.add(løbetid, 0, 5);
+			grid.add(løbetid, 0, 15);
 			TextField løbetidTextField = new TextField();
-			grid.add(løbetidTextField, 1, 5);
-			
+			grid.add(løbetidTextField, 1, 15);
+
 			Button btnTilbage = new Button("Tilbage");
 			HBox hbBtnTilbage = new HBox(7);
 			hbBtnTilbage.setAlignment(Pos.TOP_LEFT);
@@ -97,7 +93,7 @@ public class LåneanmodningGUI extends Application {
 					LåneanmodningStage.hide();
 				}
 			});
-			
+
 			Button btnlåneanmodning1 = new Button("Opret");
 			HBox hbBtnlåneanmodning1 = new HBox(10);
 			hbBtnlåneanmodning1.setAlignment(Pos.TOP_LEFT);
@@ -106,9 +102,9 @@ public class LåneanmodningGUI extends Application {
 			btnlåneanmodning1.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent e) {
-					
+
 					try {
-						
+
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
@@ -116,18 +112,17 @@ public class LåneanmodningGUI extends Application {
 				}
 			});
 
-
 			Button btnFindKreditværdighed = new Button("Find kreditværdihed");
 			HBox hbBtnFindKreditværdighed = new HBox(10);
 			hbBtnFindKreditværdighed.setAlignment(Pos.TOP_LEFT);
 			hbBtnFindKreditværdighed.getChildren().add(btnFindKreditværdighed);
-			grid.add(hbBtnFindKreditværdighed, 0, 15);
+			grid.add(hbBtnFindKreditværdighed, 0, 4);
 			btnFindKreditværdighed.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent e) {
-					
+
 					try {
-						
+
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
