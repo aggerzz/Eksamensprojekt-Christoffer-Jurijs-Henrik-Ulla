@@ -4,8 +4,9 @@ import data.OpretKundeDB;
 import domain.Bil;
 import domain.Kunde;
 import domain.Sælger;
-import exceptions.MangledeInformationOmSælgerException;
+import exceptions.AdgangskodeIkkeOplystException;
 import exceptions.AdresseIkkeOplystException;
+import exceptions.BrugernavnIkkeOplystException;
 import exceptions.ByIkkeOplystException;
 import exceptions.EfternavnIkkeOplystException;
 import exceptions.EmailIkkeOplystException;
@@ -29,7 +30,9 @@ public class DBfacaden {
 
 	private OpretSælgerDB opretSælgerInfo = new OpretSælgerDB();
 
-	public void opretSælgerInfo(Sælger sælger) throws MangledeInformationOmSælgerException {
+	public void opretSælgerInfo(Sælger sælger)
+			throws FornavnIkkeOplystException, EfternavnIkkeOplystException, TelefonnummerIkkeOplystException,
+			EmailIkkeOplystException, BrugernavnIkkeOplystException, AdgangskodeIkkeOplystException {
 		opretSælgerInfo.opretSælger(sælger);
 	}
 

@@ -2,7 +2,6 @@ package presentation;
 
 import domain.Kunde;
 import domain.Kundelmpl;
-import exceptions.MangledeInformationOmKundenException;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

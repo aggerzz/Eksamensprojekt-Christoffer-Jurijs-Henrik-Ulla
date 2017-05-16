@@ -4,8 +4,9 @@ import data.DBfacaden;
 import domain.Bil;
 import domain.Kunde;
 import domain.Sælger;
-import exceptions.MangledeInformationOmSælgerException;
+import exceptions.AdgangskodeIkkeOplystException;
 import exceptions.AdresseIkkeOplystException;
+import exceptions.BrugernavnIkkeOplystException;
 import exceptions.ByIkkeOplystException;
 import exceptions.EfternavnIkkeOplystException;
 import exceptions.EmailIkkeOplystException;
@@ -31,7 +32,8 @@ public class FFLogic {
 	// Opret Sælger
 	private DBfacaden opretSælgerInfo = new DBfacaden();
 
-	public void opretSælger(Sælger sælger) throws MangledeInformationOmSælgerException {
+	public void opretSælger(Sælger sælger) throws FornavnIkkeOplystException, EfternavnIkkeOplystException, TelefonnummerIkkeOplystException,
+	EmailIkkeOplystException, BrugernavnIkkeOplystException, AdgangskodeIkkeOplystException {
 		opretSælgerInfo.opretSælgerInfo(sælger);
 	}
 

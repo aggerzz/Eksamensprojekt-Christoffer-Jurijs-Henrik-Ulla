@@ -5,11 +5,16 @@ import java.sql.SQLException;
 
 import data.DataAccess;
 import domain.Sælger;
-import domain.Sælgerlmpl;
-import exceptions.MangledeInformationOmSælgerException;
+import exceptions.AdgangskodeIkkeOplystException;
+import exceptions.BrugernavnIkkeOplystException;
+import exceptions.EfternavnIkkeOplystException;
+import exceptions.EmailIkkeOplystException;
+import exceptions.FornavnIkkeOplystException;
+import exceptions.TelefonnummerIkkeOplystException;
 
 public class OpretSælgerDB {
-	public void opretSælger(Sælger sælger) throws MangledeInformationOmSælgerException {
+	public void opretSælger(Sælger sælger) throws FornavnIkkeOplystException, EfternavnIkkeOplystException, TelefonnummerIkkeOplystException,
+	EmailIkkeOplystException, BrugernavnIkkeOplystException, AdgangskodeIkkeOplystException {
 		try (DataAccess access = new DataAccess()) {
 			try {
 				opretSælger(access, sælger);
@@ -21,7 +26,8 @@ public class OpretSælgerDB {
 		}
 	}
 
-	private void opretSælger(DataAccess access, Sælger sælger) throws MangledeInformationOmSælgerException {
+	private void opretSælger(DataAccess access, Sælger sælger) throws FornavnIkkeOplystException, EfternavnIkkeOplystException, TelefonnummerIkkeOplystException,
+	EmailIkkeOplystException, BrugernavnIkkeOplystException, AdgangskodeIkkeOplystException {
 		try (PreparedStatement statement = access.getConnection()
 				.prepareStatement("INSERT INTO SÆLGER (LOGIN, ADGANGSKODE, FORNAVN, EFTERNAVN, TELEFONNUMMER, EMAIL) VALUES ( ?, ?, ?,? , ?, ?)");) {
 			statement.setString(1, sælger.getLogin());
