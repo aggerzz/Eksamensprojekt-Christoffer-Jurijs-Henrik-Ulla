@@ -1,5 +1,7 @@
 package presentation;
 
+import javax.swing.JOptionPane;
+
 import domain.Sælgerlmpl;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -110,8 +112,10 @@ public class SælgerGUI extends Application {
 					
 					try {
 						logic.opretSælger(nySælger);
+						JOptionPane.showMessageDialog(null, "Sælger er nu oprettet", "Godkendt", JOptionPane.INFORMATION_MESSAGE, null);
 					} catch (Exception e1) {
 						e1.printStackTrace();
+						JOptionPane.showMessageDialog(null, e1, "Fejl", JOptionPane.ERROR_MESSAGE, null);
 					}
 
 				}
