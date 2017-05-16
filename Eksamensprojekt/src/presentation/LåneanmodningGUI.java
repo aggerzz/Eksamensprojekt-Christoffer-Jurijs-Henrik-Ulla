@@ -64,6 +64,7 @@ public class LåneanmodningGUI extends Application {
 			rentesats.setTextFill(Color.RED);
 			grid.add(rentesats, 0, 11);
 			TextField rentesatsTextField = new TextField();
+			rentesatsTextField.setEditable(false);
 			grid.add(rentesatsTextField, 1, 11);
 
 			// Bil
