@@ -1,5 +1,7 @@
 package presentation;
 
+import javax.swing.JOptionPane;
+
 import domain.Kunde;
 import domain.Kundelmpl;
 import javafx.application.Application;
@@ -126,11 +128,11 @@ public class KundeGUI extends Application {
 
 					try {
 						logic.opretKunde(nyKunde);
+						JOptionPane.showMessageDialog(null, "Kunde er nu oprettet", "Godkendt", JOptionPane.INFORMATION_MESSAGE, null);
 					} catch (Exception e1) {
 						e1.printStackTrace();
+						JOptionPane.showMessageDialog(null, e1, "Fejl", JOptionPane.ERROR_MESSAGE, null);
 					}
-
-
 				}
 			});
 			Scene scene = new Scene(grid, 640, 450);
