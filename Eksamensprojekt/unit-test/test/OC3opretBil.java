@@ -5,6 +5,7 @@ import org.junit.Test;
 import domain.Bil;
 import domain.Billmpl;
 import exceptions.ModelIkkeOplystException;
+import exceptions.PrisIkkeOplystException;
 import exceptions.StelnummerIkkeOplystException;
 import exceptions.ÅrgangIkkeOplystException;
 import logic.FFLogic;
@@ -12,7 +13,7 @@ import logic.FFLogic;
 public class OC3opretBil {
 
 	@Test
-	public void testOprettelseAfNyBil() throws ModelIkkeOplystException, StelnummerIkkeOplystException, ÅrgangIkkeOplystException{
+	public void testOprettelseAfNyBil() throws ModelIkkeOplystException, StelnummerIkkeOplystException, ÅrgangIkkeOplystException, PrisIkkeOplystException{
 		Bil nybil = new Billmpl();
 		FFLogic logic = new FFLogic();
 		
@@ -25,7 +26,7 @@ public class OC3opretBil {
 
 	@Test(expected = ModelIkkeOplystException.class)
 	public void testModelIkkkeOplyst()
-			throws ModelIkkeOplystException, StelnummerIkkeOplystException, ÅrgangIkkeOplystException {
+			throws ModelIkkeOplystException, StelnummerIkkeOplystException, ÅrgangIkkeOplystException, PrisIkkeOplystException {
 		Bil nybil = new Billmpl();
 		FFLogic logic = new FFLogic();
 		
@@ -41,7 +42,7 @@ public class OC3opretBil {
 	
 	@Test(expected = StelnummerIkkeOplystException.class)
 	public void testStelnummerIkkkeOplyst()
-			throws ModelIkkeOplystException, StelnummerIkkeOplystException, ÅrgangIkkeOplystException {
+			throws ModelIkkeOplystException, StelnummerIkkeOplystException, ÅrgangIkkeOplystException, PrisIkkeOplystException {
 		Bil nybil = new Billmpl();
 		FFLogic logic = new FFLogic();
 		
@@ -57,7 +58,7 @@ public class OC3opretBil {
 	
 	@Test(expected = ÅrgangIkkeOplystException.class)
 	public void testÅrgangIkkkeOplyst()
-			throws ModelIkkeOplystException, StelnummerIkkeOplystException, ÅrgangIkkeOplystException {
+			throws ModelIkkeOplystException, StelnummerIkkeOplystException, ÅrgangIkkeOplystException, PrisIkkeOplystException {
 		Bil nybil = new Billmpl();
 		FFLogic logic = new FFLogic();
 		
