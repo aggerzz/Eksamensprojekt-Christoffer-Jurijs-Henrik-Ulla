@@ -8,77 +8,70 @@ import exceptions.StelnummerIkkeOplystException;
 import exceptions.TelefonnummerIkkeOplystException;
 
 public class Låneanmodninglmpl implements Låneanmodning {
+	private String personNummer;
+	private String telefonNummer;
+	private String kreditværdighed;
+	private String rentesats;
+	private String stelNummer;
+	private String løbetid;
 
-	@Override
 	public String getPersonNummer() throws PersonnummerIkkeUdfyldtException {
-		// TODO Auto-generated method stub
-		return null;
+		if (personNummer.isEmpty())
+			throw new PersonnummerIkkeUdfyldtException();
+		return personNummer;
 	}
 
-	@Override
 	public void setPersonNummer(String personNummer) {
-		// TODO Auto-generated method stub
-		
+		this.personNummer = personNummer;
 	}
 
-	@Override
 	public String getTelefonNummer() throws TelefonnummerIkkeOplystException {
-		// TODO Auto-generated method stub
-		return null;
+		if (telefonNummer.isEmpty())
+			throw new TelefonnummerIkkeOplystException();
+		return telefonNummer;
 	}
 
-	@Override
 	public void setTelefonNummer(String telefonNummer) {
-		// TODO Auto-generated method stub
-		
+		this.telefonNummer = telefonNummer;
 	}
 
-	@Override
 	public String getKreditværdihed() throws KreditværdighedIkkeUdfyldtException {
-		// TODO Auto-generated method stub
-		return null;
+		if (kreditværdighed.isEmpty())
+			throw new KreditværdighedIkkeUdfyldtException();
+		return kreditværdighed;
 	}
 
-	@Override
 	public void setKreditværdighed(String kreditværdighed) {
-		// TODO Auto-generated method stub
-		
+		this.kreditværdighed = kreditværdighed;
 	}
 
-	@Override
 	public String getRentesats() throws RentesatsIkkeUdfyldtException {
-		// TODO Auto-generated method stub
-		return null;
+		if (rentesats.isEmpty())
+			throw new RentesatsIkkeUdfyldtException();
+		return rentesats;
 	}
 
-	@Override
 	public void setRentesats(String rentesats) {
-		// TODO Auto-generated method stub
-		
+		this.rentesats = rentesats;
 	}
 
-	@Override
 	public String getStelNummer() throws StelnummerIkkeOplystException {
-		// TODO Auto-generated method stub
-		return null;
+		if (stelNummer.isEmpty())
+			throw new StelnummerIkkeOplystException();
+		return stelNummer;
 	}
 
-	@Override
 	public void setStelNummer(String stelNummer) {
-		// TODO Auto-generated method stub
-		
+		this.stelNummer = stelNummer;
 	}
 
-	@Override
 	public String getLøbetid() throws LøbetidIkkeUdfyldtException {
-		// TODO Auto-generated method stub
-		return null;
+		if (løbetid.isEmpty())
+			throw new LøbetidIkkeUdfyldtException();
+		return løbetid;
 	}
 
-	@Override
 	public void setLøbetid(String løbetid) {
-		// TODO Auto-generated method stub
-		
+		this.løbetid = løbetid;
 	}
-	
 }
