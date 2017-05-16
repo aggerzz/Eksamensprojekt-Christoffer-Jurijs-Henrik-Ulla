@@ -1,5 +1,5 @@
 package logic;
 
-public class BeregnRente {
+public class BeregnRente extends Thread{
 
 }
