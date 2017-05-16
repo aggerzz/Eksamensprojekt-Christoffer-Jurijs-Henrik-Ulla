@@ -13,6 +13,7 @@ import exceptions.EmailIkkeOplystException;
 import exceptions.FodselsdagIkkeOplystException;
 import exceptions.FornavnIkkeOplystException;
 import exceptions.PostnummerIkkeOplystException;
+import exceptions.PrisIkkeOplystException;
 import exceptions.TelefonnummerIkkeOplystException;
 import exceptions.ModelIkkeOplystException;
 import exceptions.StelnummerIkkeOplystException;
@@ -41,7 +42,7 @@ public class FFLogic {
 	private DBfacaden opretBilInfo = new DBfacaden();
 
 	public void opretBil(Bil bil)
-			throws ModelIkkeOplystException, StelnummerIkkeOplystException, ÅrgangIkkeOplystException {
+			throws ModelIkkeOplystException, StelnummerIkkeOplystException, ÅrgangIkkeOplystException, PrisIkkeOplystException {
 		opretBilInfo.opretBilInfo(bil);
 	}
 }

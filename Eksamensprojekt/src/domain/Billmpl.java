@@ -11,6 +11,7 @@ public class Billmpl implements Bil {
 	private String stelNummer;
 	private String årgang;
 	private int bilID;
+	private String pris;
 	
 	public String getModel() throws ModelIkkeOplystException {
 		if(model.isEmpty())
@@ -43,5 +44,11 @@ public class Billmpl implements Bil {
 	}
 	public void setBilID(int bilID) {
 		this.bilID = bilID;
+	}
+	public String getPris() {
+		return pris;
+	}
+	public void setPris(String pris) {
+		this.pris = pris;
 	}
 }

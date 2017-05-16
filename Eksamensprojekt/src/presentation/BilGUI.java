@@ -94,7 +94,9 @@ public class BilGUI extends Application {
 					Bil nyBil = new Billmpl();
 					nyBil.setModel(modelTextField.getText());
 					nyBil.setStelNummer(stelNummerTextField.getText());
-					nyBil.setÅrgang(prisTextField.getText());
+					nyBil.setÅrgang(årgangTextField.getText());
+					nyBil.setPris(prisTextField.getText());
+
 					
 					try {
 						logic.opretBil(nyBil);
