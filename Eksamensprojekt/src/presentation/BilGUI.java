@@ -1,5 +1,7 @@
 package presentation;
 
+import javax.swing.JOptionPane;
+
 import domain.Bil;
 import domain.Billmpl;
 import javafx.application.Application;
@@ -89,8 +91,10 @@ public class BilGUI extends Application {
 					
 					try {
 						logic.opretBil(nyBil);
+						JOptionPane.showMessageDialog(null, "Bilen er nu oprettet", "Godkendt", JOptionPane.INFORMATION_MESSAGE, null);
 					} catch (Exception e1) {
 						e1.printStackTrace();
+						JOptionPane.showMessageDialog(null, e1, "Fejl", JOptionPane.ERROR_MESSAGE, null);
 					}
 				}
 			});
