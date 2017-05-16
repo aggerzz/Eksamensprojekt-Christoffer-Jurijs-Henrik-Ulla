@@ -13,7 +13,7 @@ public class Låneanmodninglmpl implements Låneanmodning {
 	private String kreditværdighed;
 	private String rentesats;
 	private String stelNummer;
-	private String løbetid;
+	private int løbetid;
 
 	public String getPersonNummer() throws PersonnummerIkkeUdfyldtException {
 		if (personNummer.isEmpty())
@@ -65,13 +65,13 @@ public class Låneanmodninglmpl implements Låneanmodning {
 		this.stelNummer = stelNummer;
 	}
 
-	public String getLøbetid() throws LøbetidIkkeUdfyldtException {
-		if (løbetid.isEmpty())
+	public int getLøbetid() throws LøbetidIkkeUdfyldtException {
+		if (løbetid == 0)
 			throw new LøbetidIkkeUdfyldtException();
 		return løbetid;
 	}
 
-	public void setLøbetid(String løbetid) {
+	public void setLøbetid(int løbetid) {
 		this.løbetid = løbetid;
 	}
 }

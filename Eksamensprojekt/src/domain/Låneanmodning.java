@@ -28,7 +28,7 @@ public interface Låneanmodning {
 
 	public void setStelNummer(String stelNummer);
 
-	public String getLøbetid() throws LøbetidIkkeUdfyldtException;
+	public int getLøbetid() throws LøbetidIkkeUdfyldtException;
 
-	public void setLøbetid(String løbetid);
+	public void setLøbetid(int løbetid);
 }
