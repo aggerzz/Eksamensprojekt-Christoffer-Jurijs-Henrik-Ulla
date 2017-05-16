@@ -57,6 +57,13 @@ public class BilGUI extends Application {
 			grid.add(årgang, 0, 3);
 			TextField årgangTextField = new TextField();
 			grid.add(årgangTextField, 1, 3);
+			
+			// Pris
+			Label pris = new Label("Pris:");
+			pris.setTextFill(Color.RED);
+			grid.add(pris, 0, 4);
+			TextField prisTextField = new TextField();
+			grid.add(prisTextField, 1, 4);
 
 			
 			
@@ -87,7 +94,7 @@ public class BilGUI extends Application {
 					Bil nyBil = new Billmpl();
 					nyBil.setModel(modelTextField.getText());
 					nyBil.setStelNummer(stelNummerTextField.getText());
-					nyBil.setÅrgang(årgangTextField.getText());
+					nyBil.setÅrgang(prisTextField.getText());
 					
 					try {
 						logic.opretBil(nyBil);
