@@ -1,6 +1,7 @@
 package domain;
 
 import exceptions.ModelIkkeOplystException;
+import exceptions.PrisIkkeOplystException;
 import exceptions.StelnummerIkkeOplystException;
 import exceptions.ÅrgangIkkeOplystException;
 import exceptions.BilFindesIkkeException;
@@ -45,7 +46,9 @@ public class Billmpl implements Bil {
 	public void setBilID(int bilID) {
 		this.bilID = bilID;
 	}
-	public String getPris() {
+	public String getPris() throws PrisIkkeOplystException {
+		if(pris.isEmpty())
+			throw new PrisIkkeOplystException();
 		return pris;
 	}
 	public void setPris(String pris) {

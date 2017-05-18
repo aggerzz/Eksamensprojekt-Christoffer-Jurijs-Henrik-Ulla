@@ -20,6 +20,7 @@ public class OC3opretBil {
 		nybil.setModel("GTC4Lusso");
 		nybil.setStelNummer("CC3483J");
 		nybil.setÅrgang("2017");
+		nybil.setPris("2.000.000");
 		
 		logic.opretBil(nybil);
 	}
@@ -33,6 +34,7 @@ public class OC3opretBil {
 		nybil.setModel("");
 		nybil.setStelNummer("CC3483J");
 		nybil.setÅrgang("2017");
+		nybil.setPris("2.000.000");
 		
 		logic.opretBil(nybil);
 
@@ -49,6 +51,7 @@ public class OC3opretBil {
 		nybil.setModel("GTC4Lusso");
 		nybil.setStelNummer("");
 		nybil.setÅrgang("2017");
+		nybil.setPris("2.000.000");
 		
 		logic.opretBil(nybil);
 
@@ -65,6 +68,24 @@ public class OC3opretBil {
 		nybil.setModel("GTC4Lusso");
 		nybil.setStelNummer("CC3483J");
 		nybil.setÅrgang("");
+		nybil.setPris("2.000.000");
+		
+		logic.opretBil(nybil);
+
+		
+		fail("MangledeInformationOmBilen ej indtruffet");
+	}
+	
+	@Test(expected = PrisIkkeOplystException.class)
+	public void testPrisIkkkeOplyst()
+			throws ModelIkkeOplystException, StelnummerIkkeOplystException, ÅrgangIkkeOplystException, PrisIkkeOplystException {
+		Bil nybil = new Billmpl();
+		FFLogic logic = new FFLogic();
+		
+		nybil.setModel("GTC4Lusso");
+		nybil.setStelNummer("CC3483J");
+		nybil.setÅrgang("2017");
+		nybil.setPris("");
 		
 		logic.opretBil(nybil);
 
