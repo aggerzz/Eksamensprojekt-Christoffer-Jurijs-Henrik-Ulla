@@ -10,7 +10,7 @@ import exceptions.TelefonnummerIkkeOplystException;
 public class Låneanmodninglmpl implements Låneanmodning {
 	private String personNummer;
 	private String telefonNummer;
-	private String kreditværdighed;
+	public char kreditværdighed;
 	private String rentesats;
 	private String stelNummer;
 	private int løbetid;
@@ -35,13 +35,13 @@ public class Låneanmodninglmpl implements Låneanmodning {
 		this.telefonNummer = telefonNummer;
 	}
 
-	public String getKreditværdihed() throws KreditværdighedIkkeUdfyldtException {
-		if (kreditværdighed.isEmpty())
+	public char getKreditværdihed() throws KreditværdighedIkkeUdfyldtException {
+		if (kreditværdighed == ' ')
 			throw new KreditværdighedIkkeUdfyldtException();
 		return kreditværdighed;
 	}
 
-	public void setKreditværdighed(String kreditværdighed) {
+	public void setKreditværdighed(char kreditværdighed) {
 		this.kreditværdighed = kreditværdighed;
 	}
 
