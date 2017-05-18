@@ -1,5 +1,6 @@
 package presentation;
 
+import data.BankAcces;
 import domain.Låneanmodning;
 import domain.Låneanmodninglmpl;
 import javafx.application.Application;
@@ -20,6 +21,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import logic.BeregnRente;
 
 public class LåneanmodningGUI extends Application {
 	public void start(Stage LåneanmodningStage) {
@@ -67,6 +69,8 @@ public class LåneanmodningGUI extends Application {
 			rentesats.setTextFill(Color.RED);
 			grid.add(rentesats, 0, 11);
 			TextField rentesatsTextField = new TextField();
+			BeregnRente rente = new BeregnRente();
+			rentesatsTextField.setText(String.valueOf(rente.todaysRate));
 			rentesatsTextField.setEditable(false);
 			grid.add(rentesatsTextField, 1, 11);
 
