@@ -18,7 +18,7 @@ public interface Låneanmodning {
 
 	public char getKreditværdihed() throws KreditværdighedIkkeUdfyldtException;
 
-	public void setKreditværdighed(String kreditværdighed);
+	public void setKreditværdighed(char kreditværdighed);
 
 	public String getRentesats() throws RentesatsIkkeUdfyldtException;
 

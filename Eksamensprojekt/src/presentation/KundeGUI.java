@@ -130,7 +130,7 @@ public class KundeGUI extends Application {
 						logic.opretKunde(nyKunde);
 						JOptionPane.showMessageDialog(null, "Kunde er nu oprettet", "Godkendt", JOptionPane.INFORMATION_MESSAGE, null);
 					} catch (Exception e1) {
-						JOptionPane.showMessageDialog(null, e1, "Fejl", JOptionPane.ERROR_MESSAGE, null);
+						JOptionPane.showMessageDialog(null, e1, "Noget gik galt", JOptionPane.ERROR_MESSAGE, null);
 					}
 				}
 			});
