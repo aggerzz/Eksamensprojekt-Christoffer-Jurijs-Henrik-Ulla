@@ -1,6 +1,6 @@
 package presentation;
 
-import data.BankAcces;
+import javax.swing.JOptionPane;
 import domain.Låneanmodning;
 import domain.Låneanmodninglmpl;
 import javafx.application.Application;
@@ -22,6 +22,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import logic.BeregnRente;
+import logic.FFLogic;
 
 public class LåneanmodningGUI extends Application {
 	public void start(Stage LåneanmodningStage) {
@@ -112,9 +113,12 @@ public class LåneanmodningGUI extends Application {
 				public void handle(ActionEvent e) {
 
 					try {
-
+						FFLogic logic = new FFLogic();
+						Låneanmodning nylåneanmodning = new Låneanmodninglmpl();
+						//logic.opretLåneanmodning(låneanmodning);
+						JOptionPane.showMessageDialog(null, "Låneanmodning er blevet oprettet", "Godkendt", JOptionPane.INFORMATION_MESSAGE, null);
 					} catch (Exception e1) {
-						e1.printStackTrace();
+						JOptionPane.showMessageDialog(null, e1, "Noget gik galt", JOptionPane.ERROR_MESSAGE, null);
 					}
 
 				}
