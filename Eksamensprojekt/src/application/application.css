@@ -1,6 +1,5 @@
-/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
 .root{
-    -fx-background-image: url("http://images.forwallpaper.com/files/images/3/3321/33211d37/1033657/the-prancing-horse.jpg");
+    -fx-background-image: url("background.jpg");
     -fx-background-repeat: no-repeat;   
     -fx-background-position: center;
     -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0); 
