@@ -3,7 +3,6 @@ package presentation;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,8 +12,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import presentation.MenuGUI;
@@ -25,27 +22,22 @@ public class LoginGUI extends Application {
 			primaryStage.setTitle("Ferrari forhandler");
 			GridPane grid = new GridPane();
 			grid.setAlignment(Pos.CENTER);
-			grid.setHgap(10);
-			grid.setVgap(10);
-			grid.setPadding(new Insets(25, 25, 25, 25));
-			Text scenetitle = new Text("Ferrari forhandler");
-			scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
-			scenetitle.setFill(Color.RED);
-			grid.add(scenetitle, 0, 0, 2, 1);
+			grid.setHgap(5);
+			grid.setVgap(5);
 
 			Label brugernavn = new Label("Brugernavn:");
 			brugernavn.setTextFill(Color.RED);
-			grid.add(brugernavn, 0, 1);
+			grid.add(brugernavn, 0, 2);
 
 			TextField userTextField = new TextField();
-			grid.add(userTextField, 1, 1);
+			grid.add(userTextField, 1, 2);
 
 			Label pw = new Label("Adgangskode:");
 			pw.setTextFill(Color.RED);
-			grid.add(pw, 0, 2);
+			grid.add(pw, 0, 3);
 
 			PasswordField pwBox = new PasswordField();
-			grid.add(pwBox, 1, 2);
+			grid.add(pwBox, 1, 3);
 
 			Button btn = new Button("Log ind");
 			HBox hbBtn = new HBox(10);
@@ -69,7 +61,7 @@ public class LoginGUI extends Application {
 				}
 			});
 
-			Scene scene = new Scene(grid, 400, 375);
+			Scene scene = new Scene(grid, 300, 375);
 			primaryStage.setScene(scene);
 			scene.getStylesheets().addAll(this.getClass().getResource("/application/application.css").toExternalForm());
 

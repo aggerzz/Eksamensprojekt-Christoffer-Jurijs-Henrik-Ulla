@@ -8,9 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class MenuGUI {
@@ -22,10 +19,7 @@ public class MenuGUI {
 			grid.setHgap(10);
 			grid.setVgap(10);
 			grid.setPadding(new Insets(25, 25, 25, 25));
-
-			Text scenetitle = new Text("Ferrari forhandler");
-			scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
-			grid.add(scenetitle, 0, 0, 2, 1);
+			
 			// Opret kunde
 			Button btnOpretKunde = new Button("Opret kunde");
 			HBox hbBtnOpretkunde = new HBox(10);

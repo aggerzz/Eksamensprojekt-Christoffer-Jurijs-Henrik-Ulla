@@ -102,7 +102,6 @@ public class BilGUI extends Application {
 						logic.opretBil(nyBil);
 						JOptionPane.showMessageDialog(null, "Bilen er nu oprettet", "Godkendt", JOptionPane.INFORMATION_MESSAGE, null);
 					} catch (Exception e1) {
-						e1.printStackTrace();
 						JOptionPane.showMessageDialog(null, e1, "Fejl", JOptionPane.ERROR_MESSAGE, null);
 					}
 				}

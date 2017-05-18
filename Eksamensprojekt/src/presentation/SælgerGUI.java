@@ -114,7 +114,6 @@ public class SælgerGUI extends Application {
 						logic.opretSælger(nySælger);
 						JOptionPane.showMessageDialog(null, "Sælger er nu oprettet", "Godkendt", JOptionPane.INFORMATION_MESSAGE, null);
 					} catch (Exception e1) {
-						e1.printStackTrace();
 						JOptionPane.showMessageDialog(null, e1, "Fejl", JOptionPane.ERROR_MESSAGE, null);
 					}
 
