@@ -1,6 +1,9 @@
 package presentation;
 
+import domain.Låneanmodning;
+import domain.Låneanmodninglmpl;
 import javafx.application.Application;
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -118,12 +121,20 @@ public class LåneanmodningGUI extends Application {
 			hbBtnFindKreditværdighed.setAlignment(Pos.TOP_LEFT);
 			hbBtnFindKreditværdighed.getChildren().add(btnFindKreditværdighed);
 			grid.add(hbBtnFindKreditværdighed, 0, 4);
+			
+			btnFindKreditværdighed.disableProperty().bind(
+				    Bindings.isEmpty(personNummerTextField.textProperty())
+				    .or(personNummerTextField.lengthProperty().isNotEqualTo(10))
+				);
+			
+			
 			btnFindKreditværdighed.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent e) {
 
 					try {
-
+						Låneanmodning låneanmodning = new Låneanmodninglmpl();
+						kreditværdighedComboBox.getSelectionModel().select(låneanmodning.getKreditværdihed());
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
