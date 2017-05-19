@@ -19,7 +19,7 @@ public class RKIAccess extends Thread {
 		// TODO Auto-generated method stub
 		
 	}
-	
+	//
 	public void getKreditværdighed(){
 		System.out.println("Personnummer: " + PersonNummer);
 		CreditRator creditRator = CreditRator.i();

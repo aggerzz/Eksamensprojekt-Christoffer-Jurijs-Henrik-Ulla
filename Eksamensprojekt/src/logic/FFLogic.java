@@ -47,6 +47,7 @@ public class FFLogic {
 			throws ModelIkkeOplystException, StelnummerIkkeOplystException, ÅrgangIkkeOplystException, PrisIkkeOplystException {
 		opretBilInfo.opretBilInfo(bil);
 	}
+	//
 	public void getKreditværdighed(String personNummer,Låneanmodninglmpl låneanmodning) {
 		Runnable rkiAccess = new RKIAccess(låneanmodning, personNummer);
 		Thread getKreditværdighedThread = new Thread(rkiAccess, personNummer);

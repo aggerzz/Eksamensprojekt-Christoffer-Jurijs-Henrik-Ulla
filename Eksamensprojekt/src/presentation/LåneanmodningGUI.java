@@ -137,7 +137,7 @@ public class LåneanmodningGUI extends Application {
 				@Override
 				public void handle(ActionEvent e) {
 					System.out.println("nummer 1");
-
+//
 					try {
 						Låneanmodninglmpl låneanmodning = new Låneanmodninglmpl();
 						String personNummer = cprNummerTextField.getText();
