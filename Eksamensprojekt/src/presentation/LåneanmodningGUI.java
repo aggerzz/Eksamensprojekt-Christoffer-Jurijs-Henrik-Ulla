@@ -1,10 +1,7 @@
 package presentation;
 
-import data.BankAcces;
 import data.RKIAccess;
-import domain.Låneanmodning;
 import domain.Låneanmodninglmpl;
-import domain.Sælgerlmpl;
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
@@ -13,7 +10,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -24,7 +20,6 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import logic.BeregnRente;
-import logic.FFLogic;
 public class LåneanmodningGUI extends Application {
 	public void start(Stage LåneanmodningStage) {
 		try {
@@ -63,6 +58,7 @@ public class LåneanmodningGUI extends Application {
 			kreditværdighed.setTextFill(Color.RED);
 			grid.add(kreditværdighed, 0, 9);
 			TextField kreditværdighedTextField = new TextField();
+			kreditværdighedTextField.setEditable(false);
 			grid.add(kreditværdighedTextField, 1, 9);
 
 			// Rentesats
