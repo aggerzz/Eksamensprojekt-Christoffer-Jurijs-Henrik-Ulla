@@ -84,6 +84,13 @@ public class LåneanmodningGUI extends Application {
 			grid.add(løbetid, 0, 15);
 			TextField løbetidTextField = new TextField();
 			grid.add(løbetidTextField, 1, 15);
+			
+			// Udbetaling
+						Label udbetaling = new Label("Udbetaling:");
+						udbetaling.setTextFill(Color.RED);
+						grid.add(udbetaling, 0, 17);
+						TextField udbetalingTextField = new TextField();
+						grid.add(udbetalingTextField, 1, 17);
 
 			Button btnTilbage = new Button("Tilbage");
 			HBox hbBtnTilbage = new HBox(7);
