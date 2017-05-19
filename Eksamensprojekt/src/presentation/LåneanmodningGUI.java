@@ -1,8 +1,10 @@
 package presentation;
 
 import data.BankAcces;
+import data.RKIAccess;
 import domain.Låneanmodning;
 import domain.Låneanmodninglmpl;
+import domain.Sælgerlmpl;
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
@@ -22,7 +24,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import logic.BeregnRente;
-
+import logic.FFLogic;
 public class LåneanmodningGUI extends Application {
 	public void start(Stage LåneanmodningStage) {
 		try {
@@ -50,19 +52,18 @@ public class LåneanmodningGUI extends Application {
 			grid.add(TelefonnummerTextField, 1, 7);
 
 			// Personnummer
-			Label personNummer = new Label("Personnummer:");
-			personNummer.setTextFill(Color.RED);
-			grid.add(personNummer, 0, 1);
-			TextField personNummerTextField = new TextField();
-			grid.add(personNummerTextField, 1, 1);
+			Label cprNummer = new Label("Personnummer:");
+			cprNummer.setTextFill(Color.RED);
+			grid.add(cprNummer, 0, 1);
+			TextField cprNummerTextField = new TextField();
+			grid.add(cprNummerTextField, 1, 1);
 
 			// kreditværdighed
 			Label kreditværdighed = new Label("Kreditværdighed:");
 			kreditværdighed.setTextFill(Color.RED);
 			grid.add(kreditværdighed, 0, 9);
-			final ComboBox<String> kreditværdighedComboBox = new ComboBox<String>();
-			kreditværdighedComboBox.getItems().addAll("A", "B", "C");
-			grid.add(kreditværdighedComboBox, 1, 9);
+			TextField kreditværdighedTextField = new TextField();
+			grid.add(kreditværdighedTextField, 1, 9);
 
 			// Rentesats
 			Label rentesats = new Label("Rentesats:");
@@ -127,18 +128,24 @@ public class LåneanmodningGUI extends Application {
 			grid.add(hbBtnFindKreditværdighed, 0, 4);
 			
 			btnFindKreditværdighed.disableProperty().bind(
-				    Bindings.isEmpty(personNummerTextField.textProperty())
-				    .or(personNummerTextField.lengthProperty().isNotEqualTo(10))
+				    Bindings.isEmpty(cprNummerTextField.textProperty())
+				    .or(cprNummerTextField.lengthProperty().isNotEqualTo(10))
 				);
 			
 			
 			btnFindKreditværdighed.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent e) {
+					System.out.println("nummer 1");
 
 					try {
-						Låneanmodning låneanmodning = new Låneanmodninglmpl();
-						kreditværdighedComboBox.getSelectionModel().select(låneanmodning.getKreditværdihed());
+						Låneanmodninglmpl låneanmodning = new Låneanmodninglmpl();
+						String personNummer = cprNummerTextField.getText();
+						Runnable rkiAccess = new RKIAccess(låneanmodning, personNummer);
+						((RKIAccess) rkiAccess).getKreditværdighed();
+						kreditværdighedTextField.setText(String.valueOf(låneanmodning.getKreditværdighed()));
+
+
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}

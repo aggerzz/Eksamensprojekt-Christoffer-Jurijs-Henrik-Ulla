@@ -1,8 +1,10 @@
 package logic;
 
 import data.DBfacaden;
+import data.RKIAccess;
 import domain.Bil;
 import domain.Kunde;
+import domain.Låneanmodninglmpl;
 import domain.Sælger;
 import exceptions.AdgangskodeIkkeOplystException;
 import exceptions.AdresseIkkeOplystException;
@@ -44,5 +46,10 @@ public class FFLogic {
 	public void opretBil(Bil bil)
 			throws ModelIkkeOplystException, StelnummerIkkeOplystException, ÅrgangIkkeOplystException, PrisIkkeOplystException {
 		opretBilInfo.opretBilInfo(bil);
+	}
+	public void getKreditværdighed(String personNummer,Låneanmodninglmpl låneanmodning) {
+		Runnable rkiAccess = new RKIAccess(låneanmodning, personNummer);
+		Thread getKreditværdighedThread = new Thread(rkiAccess, personNummer);
+		getKreditværdighedThread.start();		
 	}
 }

@@ -16,7 +16,7 @@ public interface Låneanmodning {
 
 	public void setTelefonNummer(String telefonNummer);
 
-	public char getKreditværdihed() throws KreditværdighedIkkeUdfyldtException;
+	public char getKreditværdighed() throws KreditværdighedIkkeUdfyldtException;
 
 	public void setKreditværdighed(char kreditværdighed);
 
@@ -31,4 +31,5 @@ public interface Låneanmodning {
 	public int getLøbetid() throws LøbetidIkkeUdfyldtException;
 
 	public void setLøbetid(int løbetid);
+
 }

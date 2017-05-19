@@ -35,7 +35,7 @@ public class Låneanmodninglmpl implements Låneanmodning {
 		this.telefonNummer = telefonNummer;
 	}
 
-	public char getKreditværdihed() throws KreditværdighedIkkeUdfyldtException {
+	public char getKreditværdighed() throws KreditværdighedIkkeUdfyldtException {
 		if (kreditværdighed == ' ')
 			throw new KreditværdighedIkkeUdfyldtException();
 		return kreditværdighed;
