@@ -1,5 +1,9 @@
 package presentation;
 
+import domain.Sælger;
+import domain.Sælgerlmpl;
+import exceptions.AdgangskodeIkkeOplystException;
+import exceptions.BrugernavnIkkeOplystException;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -14,9 +18,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import presentation.MenuGUI;
+import logic.LoginController;
 
 public class LoginGUI extends Application {
+
+	PasswordField pwBox = new PasswordField();
+	TextField userTextField = new TextField();
+	LoginController loginController = new LoginController();
+
 	public void start(Stage primaryStage) {
 		try {
 			primaryStage.setTitle("Ferrari forhandler");
@@ -29,14 +38,12 @@ public class LoginGUI extends Application {
 			brugernavn.setTextFill(Color.RED);
 			grid.add(brugernavn, 0, 2);
 
-			TextField userTextField = new TextField();
 			grid.add(userTextField, 1, 2);
 
 			Label pw = new Label("Adgangskode:");
 			pw.setTextFill(Color.RED);
 			grid.add(pw, 0, 3);
 
-			PasswordField pwBox = new PasswordField();
 			grid.add(pwBox, 1, 3);
 
 			Button btn = new Button("Log ind");
@@ -55,9 +62,20 @@ public class LoginGUI extends Application {
 
 				@Override
 				public void handle(ActionEvent e) {
-					MenuGUI menuStage = new MenuGUI();
-					menuStage.start(new Stage());
-					primaryStage.hide();
+
+					try {
+						visData();
+						if(loginController.fåetadgang == true) {
+							primaryStage.hide();
+						}
+
+					} catch (BrugernavnIkkeOplystException | AdgangskodeIkkeOplystException e1) {
+						e1.printStackTrace();
+					}
+
+					// MenuGUI menuStage = new MenuGUI();
+					// menuStage.start(new Stage());
+					// primaryStage.hide();
 				}
 			});
 
@@ -69,5 +87,14 @@ public class LoginGUI extends Application {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
+	}
+
+	public void visData() throws BrugernavnIkkeOplystException, AdgangskodeIkkeOplystException {
+		loginController.login = userTextField.getText();
+		loginController.adgangskode = pwBox.getText();
+		System.out.println(loginController.login + "\n" + loginController.adgangskode);
+
+		loginController.CheckLoginInforamtion();
 	}
 }
