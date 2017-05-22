@@ -1,4 +1,4 @@
-package data;
+package access;
 import logic.BeregnRente;
 import com.ferrari.finances.dk.bank.InterestRate;
 

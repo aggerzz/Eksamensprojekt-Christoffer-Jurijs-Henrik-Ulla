@@ -1,7 +1,7 @@
 package logic;
 
+import access.RKIAccess;
 import data.DBfacaden;
-import data.RKIAccess;
 import domain.Bil;
 import domain.Kunde;
 import domain.Låneanmodninglmpl;

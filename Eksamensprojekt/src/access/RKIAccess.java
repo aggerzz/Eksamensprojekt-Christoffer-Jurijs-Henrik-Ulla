@@ -1,4 +1,4 @@
-package data;
+package access;
 import com.ferrari.finances.dk.rki.CreditRator;
 
 import domain.Låneanmodning;

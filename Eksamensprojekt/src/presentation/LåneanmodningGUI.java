@@ -1,6 +1,6 @@
 package presentation;
 
-import data.RKIAccess;
+import access.RKIAccess;
 import domain.Låneanmodninglmpl;
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
