@@ -1,7 +1,6 @@
 package presentation;
 
-import domain.Sælger;
-import domain.Sælgerlmpl;
+import data.LoginDB;
 import exceptions.AdgangskodeIkkeOplystException;
 import exceptions.BrugernavnIkkeOplystException;
 import javafx.application.Application;
@@ -18,13 +17,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import logic.LoginController;
 
 public class LoginGUI extends Application {
 
 	PasswordField pwBox = new PasswordField();
 	TextField userTextField = new TextField();
-	LoginController loginController = new LoginController();
+	LoginDB loginController = new LoginDB();
 
 	public void start(Stage primaryStage) {
 		try {
@@ -66,6 +64,7 @@ public class LoginGUI extends Application {
 					try {
 						visData();
 						if(loginController.fåetadgang == true) {
+							loginController.CheckID();
 							primaryStage.hide();
 						}
 

@@ -1,4 +1,4 @@
-package logic;
+package data;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -6,24 +6,22 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
-import data.DataAccess;
 import exceptions.AdgangskodeIkkeOplystException;
 import exceptions.BrugernavnIkkeOplystException;
 import javafx.stage.Stage;
 import presentation.MenuGUI;
 
-public class LoginController {
-	public String login, adgangskode;
+public class LoginDB {
+	public String login, adgangskode, id;
 	public boolean fåetadgang = false;
 
 	public void CheckLoginInforamtion() throws BrugernavnIkkeOplystException, AdgangskodeIkkeOplystException {
 
 		DataAccess access = new DataAccess();
 		try (PreparedStatement statement = access.getConnection()
-				.prepareStatement("select fornavn from sælger where login=? and adgangskode=?");) {
+				.prepareStatement("select id from sælger where login=? and adgangskode=?");) {
 
 			System.out.println("Controller: " + login);
-
 			System.out.println("Controller: " + adgangskode);
 
 			statement.setString(1, login);
@@ -36,11 +34,24 @@ public class LoginController {
 				fåetadgang = true;
 				MenuGUI menuStage = new MenuGUI();
 				menuStage.start(new Stage());
-				
+
 			} else {
-				JOptionPane.showMessageDialog(null, "Forkert brugernavn eller adgangskode, prøv igen");
+				JOptionPane.showMessageDialog(null, "Forkert brugernavn eller adgangskode");
 			}
 
+		} catch (SQLException e) {
+			throw new RuntimeException("Fejl", e);
+		}
+	}
+
+	public void CheckID() {
+		DataAccess access = new DataAccess();
+		try (PreparedStatement statement = access.getConnection()
+				.prepareStatement("select id from sælger where login=? and adgangskode=?");) {
+			System.out.println("Checker id på sælger");
+			statement.setString(2, id);
+			System.out.println(id);
+			
 		} catch (SQLException e) {
 			throw new RuntimeException("Fejl", e);
 		}
