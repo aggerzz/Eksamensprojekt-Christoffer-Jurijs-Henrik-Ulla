@@ -2,11 +2,11 @@ package access;
 import logic.BeregnRente;
 import com.ferrari.finances.dk.bank.InterestRate;
 
-public class BankAcces implements Runnable{
+public class BankAccess implements Runnable{
 	
 private BeregnRente beregnRente;
 
-public BankAcces( BeregnRente beregnRente) {
+public BankAccess( BeregnRente beregnRente) {
 	this.beregnRente = beregnRente;
 }
 

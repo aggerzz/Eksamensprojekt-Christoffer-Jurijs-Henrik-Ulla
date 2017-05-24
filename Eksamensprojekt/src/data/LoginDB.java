@@ -12,7 +12,8 @@ import javafx.stage.Stage;
 import presentation.MenuGUI;
 
 public class LoginDB {
-	public String login, adgangskode, id;
+	public String login, adgangskode;
+	public int id;
 	public boolean fåetadgang = false;
 
 	public void CheckLoginInforamtion() throws BrugernavnIkkeOplystException, AdgangskodeIkkeOplystException {
@@ -49,7 +50,11 @@ public class LoginDB {
 		try (PreparedStatement statement = access.getConnection()
 				.prepareStatement("select id from sælger where login=? and adgangskode=?");) {
 			System.out.println("Checker id på sælger");
-			statement.setString(2, id);
+			statement.setString(1, login);
+			statement.setString(2, adgangskode);
+			ResultSet rs = statement.executeQuery();
+			if(rs.next())
+			id = rs.getInt("id");
 			System.out.println(id);
 			
 		} catch (SQLException e) {
