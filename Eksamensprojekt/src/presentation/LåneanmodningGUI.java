@@ -107,12 +107,21 @@ public class LåneanmodningGUI extends Application {
 				}
 			});
 
-			Button btnlåneanmodning1 = new Button("Opret");
-			HBox hbBtnlåneanmodning1 = new HBox(10);
-			hbBtnlåneanmodning1.setAlignment(Pos.TOP_LEFT);
-			hbBtnlåneanmodning1.getChildren().add(btnlåneanmodning1);
-			grid.add(hbBtnlåneanmodning1, 15, 15);
-			btnlåneanmodning1.setOnAction(new EventHandler<ActionEvent>() {
+			Button btnlåneanmodning = new Button("Opret");
+			HBox hbBtnlåneanmodning = new HBox(10);
+			hbBtnlåneanmodning.setAlignment(Pos.TOP_LEFT);
+			hbBtnlåneanmodning.getChildren().add(btnlåneanmodning);
+			grid.add(hbBtnlåneanmodning, 15, 15);
+			
+			btnlåneanmodning.disableProperty().bind(
+				    Bindings.isEmpty(TelefonnummerTextField.textProperty())
+				    .or(TelefonnummerTextField.lengthProperty().isNotEqualTo(8))
+				    .or(stelNummerTextField.textProperty().isEmpty())
+				    .or(løbetidTextField.textProperty().isEmpty())
+				    .or(udbetalingTextField.textProperty().isEmpty())
+				);
+			
+			btnlåneanmodning.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent e) {
 
