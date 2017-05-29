@@ -26,7 +26,7 @@ public class SøgBilGUI extends Application {
 			grid.setVgap(10);
 			grid.setPadding(new Insets(25, 25, 25, 25));
 
-			Text scenetitle = new Text("Søg kunde");
+			Text scenetitle = new Text("Søg Bil");
 			scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
 			scenetitle.setFill(Color.RED);
 			grid.add(scenetitle, 0, 0, 2, 1);
