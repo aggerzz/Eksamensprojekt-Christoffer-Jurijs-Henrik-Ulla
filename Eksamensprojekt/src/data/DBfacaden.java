@@ -3,6 +3,7 @@ package data;
 import data.OpretKundeDB;
 import domain.Bil;
 import domain.Kunde;
+import domain.Låneanmodning;
 import domain.Sælger;
 import exceptions.AdgangskodeIkkeOplystException;
 import exceptions.AdresseIkkeOplystException;
@@ -42,6 +43,11 @@ public class DBfacaden {
 	public void opretBilInfo(Bil bil)
 			throws ModelIkkeOplystException, StelnummerIkkeOplystException, ÅrgangIkkeOplystException,PrisIkkeOplystException {
 		opretBilInfo.opretBil(bil);
+	}
+	private OpretLåneanmodningDB opretLåneanmodningInfo = new OpretLåneanmodningDB();
+
+	public void opretLåneanmodningInfo(Låneanmodning låneanmodning) throws Exception{
+		opretLåneanmodningInfo.opretLåneanmodning(låneanmodning);
 	}
 
 }

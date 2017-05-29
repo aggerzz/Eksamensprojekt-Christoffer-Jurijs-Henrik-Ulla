@@ -14,6 +14,15 @@ public class Låneanmodninglmpl implements Låneanmodning {
 	private double rentesats;
 	private String stelNummer;
 	private int løbetid;
+	private double udbetaling;
+
+	public double getUdbetaling() {
+		return udbetaling;
+	}
+
+	public void setUdbetaling(double udbetaling) {
+		this.udbetaling = udbetaling;
+	}
 
 	public String getPersonNummer() throws PersonnummerIkkeUdfyldtException {
 		if (personNummer.isEmpty())
