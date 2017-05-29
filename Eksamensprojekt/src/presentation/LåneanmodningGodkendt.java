@@ -7,6 +7,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
@@ -26,8 +27,23 @@ public class LåneanmodningGodkendt extends Application {
 			Text scenetitle = new Text("Låneanmodning Oversigt");
 			scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
 			scenetitle.setFill(Color.RED);
-			grid.add(scenetitle, 0, 6, 5, 1);
+			grid.add(scenetitle, 0, 1, 5, 1);
 
+			Label kunde = new Label("Kundeoplysninger:");
+			kunde.setTextFill(Color.RED);
+			grid.add(kunde, 0, 2);
+			
+			Label bil = new Label("Biloplysninger:");
+			bil.setTextFill(Color.RED);
+			grid.add(bil, 0, 5);
+			
+			Label sælger = new Label("Sælgeroplysninger:");
+			sælger.setTextFill(Color.RED);
+			grid.add(sælger, 0, 8);
+			
+			Label aftale = new Label("Aftaleoplysninger:");
+			aftale.setTextFill(Color.RED);
+			grid.add(aftale, 0, 11);
 			
 
 			Button btnTilbage = new Button("Tilbage");
