@@ -32,7 +32,7 @@ public class SøgBilGUI extends Application {
 			grid.add(scenetitle, 0, 0, 2, 1);
 
 			// Telefonnummer Bil
-			Label forNavn = new Label("Telefonnummer:");
+			Label forNavn = new Label("Stelnummer:");
 			forNavn.setTextFill(Color.RED);
 			grid.add(forNavn, 0, 1);
 			TextField forNavnTextField = new TextField();
