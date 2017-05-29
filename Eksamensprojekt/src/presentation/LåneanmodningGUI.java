@@ -117,6 +117,9 @@ public class LåneanmodningGUI extends Application {
 				public void handle(ActionEvent e) {
 
 					try {
+					LåneanmodningGodkendt LånGodkendt = new LåneanmodningGodkendt();
+					LånGodkendt.start(new Stage());
+					LåneanmodningStage.hide();
 
 					} catch (Exception e1) {
 						e1.printStackTrace();
