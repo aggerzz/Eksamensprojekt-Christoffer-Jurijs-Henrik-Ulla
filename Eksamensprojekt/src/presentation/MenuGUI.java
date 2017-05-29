@@ -93,6 +93,20 @@ public class MenuGUI {
 								menuStage.hide();
 							}
 						});
+						// Søg Bil
+						Button btnSøgBil = new Button("Søg Bil");
+						HBox hbBtnSøgBil = new HBox(10);
+						hbBtnSøgBil.setAlignment(Pos.TOP_CENTER);
+						hbBtnSøgBil.getChildren().add(btnSøgBil);
+						grid.add(hbBtnSøgBil, 1, 7);
+						btnSøgBil.setOnAction(new EventHandler<ActionEvent>() {
+							@Override
+							public void handle(ActionEvent e) {
+								SøgBilGUI søgBilStage = new SøgBilGUI();
+								søgBilStage.start(new Stage());
+								menuStage.hide();
+							}
+						});
 
 			Scene scene = new Scene(grid, 640, 450);
 			menuStage.setScene(scene);
