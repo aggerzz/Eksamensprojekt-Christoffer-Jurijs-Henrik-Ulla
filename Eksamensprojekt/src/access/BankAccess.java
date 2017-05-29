@@ -2,24 +2,33 @@ package access;
 import logic.BeregnRente;
 import com.ferrari.finances.dk.bank.InterestRate;
 
+import domain.Låneanmodning;
+import domain.Låneanmodninglmpl;
+
 public class BankAccess implements Runnable{
 	
-private BeregnRente beregnRente;
+private Låneanmodning låneanmodning;
 
-public BankAccess( BeregnRente beregnRente) {
-	this.beregnRente = beregnRente;
+public BankAccess(Låneanmodning låneanmodning) {
+	this.låneanmodning = låneanmodning;
 }
 
 @Override
 public void run() {
-
-	beregnRente.todaysRate = getTodaysRate();
+	HentRenteVurdering();
+	låneanmodning.setRentesats(HentRenteVurdering());
 
 }
 
-public double getTodaysRate() {
+public double HentRenteVurdering() {
 	InterestRate interestRate = InterestRate.i();
+	double rentesats = interestRate.todaysRate();
 
-	return interestRate.todaysRate();
+	return rentesats;
 }
+
+public Låneanmodning getLaaneAnmodning() {
+	return låneanmodning;
+}
+
 }

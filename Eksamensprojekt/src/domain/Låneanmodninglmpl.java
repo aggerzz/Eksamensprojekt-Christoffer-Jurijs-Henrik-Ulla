@@ -11,7 +11,7 @@ public class Låneanmodninglmpl implements Låneanmodning {
 	private String personNummer;
 	private String telefonNummer;
 	public char kreditværdighed;
-	private String rentesats;
+	private double rentesats;
 	private String stelNummer;
 	private int løbetid;
 
@@ -45,13 +45,13 @@ public class Låneanmodninglmpl implements Låneanmodning {
 		this.kreditværdighed = kreditværdighed;
 	}
 
-	public String getRentesats() throws RentesatsIkkeUdfyldtException {
-		if (rentesats.isEmpty())
+	public double getRentesats() throws RentesatsIkkeUdfyldtException {
+		if (rentesats == 0)
 			throw new RentesatsIkkeUdfyldtException();
 		return rentesats;
 	}
 
-	public void setRentesats(String rentesats) {
+	public void setRentesats(double rentesats) {
 		this.rentesats = rentesats;
 	}
 

@@ -1,5 +1,6 @@
 package presentation;
 
+import access.BankAccess;
 import access.RKIAccess;
 import domain.Låneanmodninglmpl;
 import javafx.application.Application;
@@ -67,7 +68,7 @@ public class LåneanmodningGUI extends Application {
 			grid.add(rentesats, 0, 11);
 			TextField rentesatsTextField = new TextField();
 			BeregnRente rente = new BeregnRente();
-			rentesatsTextField.setText(String.valueOf(rente.todaysRate));
+			rentesatsTextField.setText(String.valueOf(rente.rente));
 			rentesatsTextField.setEditable(false);
 			grid.add(rentesatsTextField, 1, 11);
 
@@ -147,6 +148,10 @@ public class LåneanmodningGUI extends Application {
 						Runnable rkiAccess = new RKIAccess(låneanmodning, personNummer);
 						((RKIAccess) rkiAccess).getKreditværdighed();
 						kreditværdighedTextField.setText(String.valueOf(låneanmodning.getKreditværdighed()));
+						BankAccess bank = new BankAccess(låneanmodning);
+						((BankAccess) bank).run();
+						double renteAfrunding = (double) Math.round(låneanmodning.getRentesats() * 100.0) / 100.0;
+						rentesatsTextField.setText((Double.toString(renteAfrunding)));
 
 
 					} catch (Exception e1) {
@@ -154,7 +159,8 @@ public class LåneanmodningGUI extends Application {
 					}
 
 				}
-			});
+			});			
+
 			Scene scene = new Scene(grid, 640, 450);
 			LåneanmodningStage.setScene(scene);
 			scene.getStylesheets().addAll(this.getClass().getResource("/application/application.css").toExternalForm());

@@ -20,9 +20,9 @@ public interface Låneanmodning {
 
 	public void setKreditværdighed(char kreditværdighed);
 
-	public String getRentesats() throws RentesatsIkkeUdfyldtException;
+	public double getRentesats() throws RentesatsIkkeUdfyldtException;
 
-	public void setRentesats(String rentesats);
+	public void setRentesats(double rentesats);
 
 	public String getStelNummer() throws StelnummerIkkeOplystException;
 
