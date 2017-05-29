@@ -116,6 +116,8 @@ public class LåneanmodningGUI extends Application {
 			btnlåneanmodning.disableProperty().bind(
 				    Bindings.isEmpty(TelefonnummerTextField.textProperty())
 				    .or(TelefonnummerTextField.lengthProperty().isNotEqualTo(8))
+				    .or(kreditværdighedTextField.textProperty().isEmpty())
+				    .or(rentesatsTextField.textProperty().isEmpty())
 				    .or(stelNummerTextField.textProperty().isEmpty())
 				    .or(løbetidTextField.textProperty().isEmpty())
 				    .or(udbetalingTextField.textProperty().isEmpty())
