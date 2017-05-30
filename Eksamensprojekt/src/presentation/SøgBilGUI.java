@@ -1,5 +1,6 @@
 package presentation;
 
+import domain.Bil;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -32,11 +33,11 @@ public class SøgBilGUI extends Application {
 			grid.add(scenetitle, 0, 0, 2, 1);
 
 			// Telefonnummer Bil
-			Label forNavn = new Label("Stelnummer:");
-			forNavn.setTextFill(Color.RED);
-			grid.add(forNavn, 0, 1);
-			TextField forNavnTextField = new TextField();
-			grid.add(forNavnTextField, 1, 1);
+			Label stelnummerLabel = new Label("Stelnummer:");
+			stelnummerLabel.setTextFill(Color.RED);
+			grid.add(stelnummerLabel, 0, 1);
+			TextField stelnummerField = new TextField();
+			grid.add(stelnummerField, 1, 1);
 
 			Button btnTilbage = new Button("Tilbage");
 			HBox hbBtnTilbage = new HBox(7);
@@ -59,10 +60,10 @@ public class SøgBilGUI extends Application {
 			grid.add(hbBtnSøgKunde, 15, 15);
 			btnSøgKunde.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
-				public void handle(ActionEvent e) {
-					
+				public void handle(ActionEvent e) {					
 					try {
-						
+						//TODO vi skal hente bil fra DB udfra stelnummer:
+					stelnummerField.getText();
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
