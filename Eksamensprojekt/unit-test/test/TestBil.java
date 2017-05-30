@@ -99,12 +99,4 @@ public class TestBil {
 
 		assertEquals("GTC4Lusso", nybil.getModel());
 	}
-
-	@Test
-	public void testsomething() throws ModelIkkeOplystException, StelnummerIkkeOplystException,
-			ÅrgangIkkeOplystException, PrisIkkeOplystException {
-		Bil nybil = new Billmpl();
-
-		assertEquals(null, nybil.getModel());
-	}
 }
