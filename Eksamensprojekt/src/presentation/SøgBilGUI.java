@@ -72,13 +72,8 @@ public class SøgBilGUI extends Application {
 					FFLogic logic = new FFLogic();
 					Bil findBil = new Billmpl();
 					findBil.setStelNummer(stelnummerTextField.getText());
-					System.out.println("Bil?");
 					try {						
 						logic.findBil(findBil);
-						
-						System.out.println(findBil.getPris());
-//						LoginDB login = new LoginDB();
-//						System.out.println(login.id);
 						JOptionPane.showMessageDialog(null,"bilens pris er: " + findBil.getPris(), "Godkendt", JOptionPane.INFORMATION_MESSAGE, null);
 					} catch (Exception e1) {
 						JOptionPane.showMessageDialog(null, e1, "Noget gik galt", JOptionPane.ERROR_MESSAGE, null);
