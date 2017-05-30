@@ -56,5 +56,11 @@ public class DBfacaden {
 			TelefonnummerIkkeOplystException, RentesatsIkkeUdfyldtException, LøbetidIkkeUdfyldtException {
 		opretLåneanmodningInfo.opretLåneanmodning(låneanmodning);
 	}
+	private GetBilDB findBilInfo = new GetBilDB();
+
+	public void findBilInfo(Bil bil) throws ModelIkkeOplystException, StelnummerIkkeOplystException,
+			ÅrgangIkkeOplystException, PrisIkkeOplystException {
+		findBilInfo.findBil(bil);
+	}
 
 }

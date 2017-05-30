@@ -53,7 +53,12 @@ public class FFLogic {
 			ÅrgangIkkeOplystException, PrisIkkeOplystException {
 		opretBilInfo.opretBilInfo(bil);
 	}
-
+	// Find Bil
+	private DBfacaden findBilInfo = new DBfacaden();
+	
+	public void findBil(Bil bil) throws ModelIkkeOplystException, StelnummerIkkeOplystException,
+			ÅrgangIkkeOplystException, PrisIkkeOplystException {
+		findBilInfo.findBilInfo(bil);}
 	// Opret Låneanmodning
 	private DBfacaden opretLåneanmodningInfo = new DBfacaden();
 
