@@ -1,6 +1,5 @@
 package presentation;
 
-import domain.Bil;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
