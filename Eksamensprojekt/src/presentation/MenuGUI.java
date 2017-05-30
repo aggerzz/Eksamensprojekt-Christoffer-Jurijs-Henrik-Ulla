@@ -94,7 +94,7 @@ public class MenuGUI {
 							}
 						});
 						// Søg BIL
-						Button btnSøgBil = new Button("Søg Bil");
+						Button btnSøgBil = new Button("Søg Bilens Pris");
 						HBox hbBtnSøgBil = new HBox(10);
 						hbBtnSøgBil.setAlignment(Pos.TOP_CENTER);
 						hbBtnSøgBil.getChildren().add(btnSøgBil);
