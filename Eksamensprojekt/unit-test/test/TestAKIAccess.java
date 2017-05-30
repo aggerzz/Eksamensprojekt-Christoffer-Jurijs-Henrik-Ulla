@@ -8,7 +8,7 @@ import access.RKIAccess;
 import domain.Låneanmodninglmpl;
 import exceptions.KreditværdighedIkkeUdfyldtException;
 
-public class TestKreditværdighed {
+public class TestAKIAccess {
 
 	@Test
 	public void testGetKreditværdighedA() throws KreditværdighedIkkeUdfyldtException {
