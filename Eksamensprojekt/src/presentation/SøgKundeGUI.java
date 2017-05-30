@@ -1,6 +1,14 @@
 package presentation;
 
+import javax.swing.JOptionPane;
+
+import domain.Bil;
+import domain.Billmpl;
+import domain.Kunde;
+import domain.Kundelmpl;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -8,7 +16,10 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
@@ -16,6 +27,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import logic.FFLogic;
 
 public class SøgKundeGUI extends Application {
 	public void start(Stage SøgKundeStage) {
@@ -32,11 +44,11 @@ public class SøgKundeGUI extends Application {
 			grid.add(scenetitle, 0, 0, 2, 1);
 
 			// Telefonnummer
-			Label forNavn = new Label("Telefonnummer:");
-			forNavn.setTextFill(Color.RED);
-			grid.add(forNavn, 0, 1);
-			TextField forNavnTextField = new TextField();
-			grid.add(forNavnTextField, 1, 1);
+			Label telefonNummer = new Label("Telefonnummer:");
+			telefonNummer.setTextFill(Color.RED);
+			grid.add(telefonNummer, 0, 1);
+			TextField telefonNummerTextField = new TextField();
+			grid.add(telefonNummerTextField, 1, 1);
 
 			Button btnTilbage = new Button("Tilbage");
 			HBox hbBtnTilbage = new HBox(7);
@@ -59,16 +71,56 @@ public class SøgKundeGUI extends Application {
 			grid.add(hbBtnSøgKunde, 15, 15);
 			btnSøgKunde.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
-				public void handle(ActionEvent e) {
-					
-					try {
+				public void handle(ActionEvent e) {					
+					//Kunde findKunde = new Kundelmpl();
+					//findKunde.setTelefonNummer(telefonNummerTextField.getText());
+					try {						
+						// TableView matches
+						TableView<Kunde> kundeTable = new TableView<Kunde>();
+						kundeTable.setEditable(true);
+						ObservableList<Kunde> kundeliste;
+
+						kundeliste = FXCollections.observableArrayList(FFLogic.getKunde());
+
+						TableColumn<Kunde, Integer> navn = new TableColumn<Kunde, Integer>("Fornavn");
+						navn.setCellValueFactory(new PropertyValueFactory<Kunde, Integer>("ForNavn"));
+						navn.setMinWidth(150);
 						
-					} catch (Exception e1) {
-						e1.printStackTrace();
+						TableColumn<Kunde, Integer> efterNavn = new TableColumn<Kunde, Integer>("Efternavn");
+						efterNavn.setCellValueFactory(new PropertyValueFactory<Kunde, Integer>("EfterNavn"));
+						efterNavn.setMinWidth(150);
+						
+						TableColumn<Kunde, Integer> adresse = new TableColumn<Kunde, Integer>("Adresse");
+						adresse.setCellValueFactory(new PropertyValueFactory<Kunde, Integer>("Adresse"));
+						adresse.setMinWidth(150);
+						
+						TableColumn<Kunde, Integer> postnummer = new TableColumn<Kunde, Integer>("Postnummer");
+						postnummer.setCellValueFactory(new PropertyValueFactory<Kunde, Integer>("PostNummer"));
+						postnummer.setMinWidth(150);
+						
+						TableColumn<Kunde, Integer> by = new TableColumn<Kunde, Integer>("By");
+						by.setCellValueFactory(new PropertyValueFactory<Kunde, Integer>("By"));
+						by.setMinWidth(150);
+						
+						TableColumn<Kunde, Integer> tlfNummer = new TableColumn<Kunde, Integer>("Telefonnummer");
+						tlfNummer.setCellValueFactory(new PropertyValueFactory<Kunde, Integer>("TelefonNummer"));
+						tlfNummer.setMinWidth(150);
+						
+						TableColumn<Kunde, Integer> email = new TableColumn<Kunde, Integer>("Email");
+						email.setCellValueFactory(new PropertyValueFactory<Kunde, Integer>("Email"));
+						email.setMinWidth(150);
+						 
+						kundeTable.setItems(kundeliste);
+						kundeTable.getColumns().addAll(navn, efterNavn, adresse, postnummer, by, tlfNummer, email);
+						kundeTable.setMinSize(500, 200);
+						grid.add(kundeTable, 1, 0);					
+						} 
+					catch (Exception e1) {
 					}
 
 				}
 			});
+
 			Scene scene = new Scene(grid, 640, 450);
 			SøgKundeStage.setScene(scene);
 			scene.getStylesheets().addAll(this.getClass().getResource("/application/application.css").toExternalForm());

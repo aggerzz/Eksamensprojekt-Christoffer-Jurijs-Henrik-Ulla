@@ -1,5 +1,7 @@
 package logic;
 
+import java.util.List;
+
 import access.RKIAccess;
 import data.DBfacaden;
 import domain.Bil;
@@ -67,7 +69,12 @@ public class FFLogic {
 			TelefonnummerIkkeOplystException, RentesatsIkkeUdfyldtException, LøbetidIkkeUdfyldtException {
 		opretLåneanmodningInfo.opretLåneanmodningInfo(låneanmodning);
 	}
+	// Select Matches
+	private static DBfacaden kundeAccess = new DBfacaden();
 
+	public static List<Kunde> getKunde() throws Exception {
+		return kundeAccess.findKunder();
+	}
 	//
 	public void getKreditværdighed(String personNummer, Låneanmodninglmpl låneanmodning) throws KreditværdighedIkkeUdfyldtException {
 		Runnable rkiAccess = new RKIAccess(låneanmodning, personNummer);

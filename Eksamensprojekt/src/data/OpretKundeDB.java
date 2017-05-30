@@ -33,7 +33,7 @@ public class OpretKundeDB {
 			EfternavnIkkeOplystException, EmailIkkeOplystException, FodselsdagIkkeOplystException,
 			FornavnIkkeOplystException, PostnummerIkkeOplystException, TelefonnummerIkkeOplystException {
 		try (PreparedStatement statement = access.getConnection().prepareStatement(
-				"INSERT INTO KUNDE (FORNAVN, EFTERNAVN, ADRESSE, POSTNUMMER, BYEN, FODSELSDATO, TELEFONNUMMER, EMAIL ) VALUES ( ?, ?, ?,? , ?, ?, ?, ?)");) {
+				"INSERT INTO KUNDE (FORNAVN, EFTERNAVN, ADRESSE, BYEN, POSTNUMMER, FODSELSDATO, TELEFONNUMMER, EMAIL ) VALUES ( ?, ?, ?,? , ?, ?, ?, ?)");) {
 			statement.setString(1, kunde.getForNavn());
 			statement.setString(2, kunde.getEfterNavn());
 			statement.setString(3, kunde.getAdresse());

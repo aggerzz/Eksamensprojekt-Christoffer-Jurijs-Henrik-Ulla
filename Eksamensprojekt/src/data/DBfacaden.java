@@ -1,5 +1,7 @@
 package data;
 
+import java.util.List;
+
 import data.OpretKundeDB;
 import domain.Bil;
 import domain.Kunde;
@@ -61,6 +63,12 @@ public class DBfacaden {
 	public void findBilInfo(Bil bil) throws ModelIkkeOplystException, StelnummerIkkeOplystException,
 			ÅrgangIkkeOplystException, PrisIkkeOplystException {
 		findBilInfo.findBil(bil);
+	}
+	// Find Kunde
+	private GetKundeDB findKunder = new GetKundeDB();
+
+	public List<Kunde> findKunder() throws Exception {
+		return findKunder.findKunde();
 	}
 
 }
