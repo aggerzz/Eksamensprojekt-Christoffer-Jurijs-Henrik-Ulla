@@ -15,10 +15,14 @@ import exceptions.EfternavnIkkeOplystException;
 import exceptions.EmailIkkeOplystException;
 import exceptions.FodselsdagIkkeOplystException;
 import exceptions.FornavnIkkeOplystException;
+import exceptions.KreditværdighedIkkeUdfyldtException;
+import exceptions.LøbetidIkkeUdfyldtException;
 import exceptions.PostnummerIkkeOplystException;
 import exceptions.PrisIkkeOplystException;
+import exceptions.RentesatsIkkeUdfyldtException;
 import exceptions.TelefonnummerIkkeOplystException;
 import exceptions.ModelIkkeOplystException;
+import exceptions.PersonnummerIkkeUdfyldtException;
 import exceptions.StelnummerIkkeOplystException;
 import exceptions.ÅrgangIkkeOplystException;
 
@@ -36,29 +40,33 @@ public class FFLogic {
 	// Opret Sælger
 	private DBfacaden opretSælgerInfo = new DBfacaden();
 
-	public void opretSælger(Sælger sælger) throws FornavnIkkeOplystException, EfternavnIkkeOplystException, TelefonnummerIkkeOplystException,
-	EmailIkkeOplystException, BrugernavnIkkeOplystException, AdgangskodeIkkeOplystException {
+	public void opretSælger(Sælger sælger)
+			throws FornavnIkkeOplystException, EfternavnIkkeOplystException, TelefonnummerIkkeOplystException,
+			EmailIkkeOplystException, BrugernavnIkkeOplystException, AdgangskodeIkkeOplystException {
 		opretSælgerInfo.opretSælgerInfo(sælger);
 	}
 
 	// Opret Bil
 	private DBfacaden opretBilInfo = new DBfacaden();
 
-	public void opretBil(Bil bil)
-			throws ModelIkkeOplystException, StelnummerIkkeOplystException, ÅrgangIkkeOplystException, PrisIkkeOplystException {
+	public void opretBil(Bil bil) throws ModelIkkeOplystException, StelnummerIkkeOplystException,
+			ÅrgangIkkeOplystException, PrisIkkeOplystException {
 		opretBilInfo.opretBilInfo(bil);
 	}
+
 	// Opret Låneanmodning
 	private DBfacaden opretLåneanmodningInfo = new DBfacaden();
 
 	public void opretLåneanmodning(Låneanmodning låneanmodning)
-			throws Exception {
+			throws StelnummerIkkeOplystException, KreditværdighedIkkeUdfyldtException, PersonnummerIkkeUdfyldtException,
+			TelefonnummerIkkeOplystException, RentesatsIkkeUdfyldtException, LøbetidIkkeUdfyldtException {
 		opretLåneanmodningInfo.opretLåneanmodningInfo(låneanmodning);
 	}
+
 	//
-	public void getKreditværdighed(String personNummer,Låneanmodninglmpl låneanmodning) {
+	public void getKreditværdighed(String personNummer, Låneanmodninglmpl låneanmodning) throws KreditværdighedIkkeUdfyldtException {
 		Runnable rkiAccess = new RKIAccess(låneanmodning, personNummer);
 		Thread getKreditværdighedThread = new Thread(rkiAccess, personNummer);
-		getKreditværdighedThread.start();		
+		getKreditværdighedThread.start();
 	}
 }

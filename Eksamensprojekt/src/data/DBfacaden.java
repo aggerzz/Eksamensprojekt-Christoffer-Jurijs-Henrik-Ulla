@@ -13,10 +13,14 @@ import exceptions.EfternavnIkkeOplystException;
 import exceptions.EmailIkkeOplystException;
 import exceptions.FodselsdagIkkeOplystException;
 import exceptions.FornavnIkkeOplystException;
+import exceptions.KreditværdighedIkkeUdfyldtException;
+import exceptions.LøbetidIkkeUdfyldtException;
 import exceptions.PostnummerIkkeOplystException;
 import exceptions.PrisIkkeOplystException;
+import exceptions.RentesatsIkkeUdfyldtException;
 import exceptions.TelefonnummerIkkeOplystException;
 import exceptions.ModelIkkeOplystException;
+import exceptions.PersonnummerIkkeUdfyldtException;
 import exceptions.StelnummerIkkeOplystException;
 import exceptions.ÅrgangIkkeOplystException;
 
@@ -40,13 +44,16 @@ public class DBfacaden {
 
 	private OpretBilDB opretBilInfo = new OpretBilDB();
 
-	public void opretBilInfo(Bil bil)
-			throws ModelIkkeOplystException, StelnummerIkkeOplystException, ÅrgangIkkeOplystException,PrisIkkeOplystException {
+	public void opretBilInfo(Bil bil) throws ModelIkkeOplystException, StelnummerIkkeOplystException,
+			ÅrgangIkkeOplystException, PrisIkkeOplystException {
 		opretBilInfo.opretBil(bil);
 	}
+
 	private OpretLåneanmodningDB opretLåneanmodningInfo = new OpretLåneanmodningDB();
 
-	public void opretLåneanmodningInfo(Låneanmodning låneanmodning) throws Exception{
+	public void opretLåneanmodningInfo(Låneanmodning låneanmodning)
+			throws StelnummerIkkeOplystException, KreditværdighedIkkeUdfyldtException, PersonnummerIkkeUdfyldtException,
+			TelefonnummerIkkeOplystException, RentesatsIkkeUdfyldtException, LøbetidIkkeUdfyldtException {
 		opretLåneanmodningInfo.opretLåneanmodning(låneanmodning);
 	}
 
