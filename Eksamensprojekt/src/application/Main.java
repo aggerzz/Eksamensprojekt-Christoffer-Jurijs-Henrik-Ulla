@@ -10,8 +10,6 @@ public class Main extends Application {
 
 		LoginGUI login = new LoginGUI();
 		login.start(primaryStage);
-		
-	
 	}
 
 	public static void main(String[] args) {

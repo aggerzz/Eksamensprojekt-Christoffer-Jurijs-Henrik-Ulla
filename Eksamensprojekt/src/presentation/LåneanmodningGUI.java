@@ -142,21 +142,13 @@ public class LåneanmodningGUI extends Application {
 					
 					try {
 						logic.opretLåneanmodning(nylåneanmodning);
-						JOptionPane.showMessageDialog(null, "Sælger er nu oprettet", "Godkendt", JOptionPane.INFORMATION_MESSAGE, null);
+						JOptionPane.showMessageDialog(null, "Låneanmodning er blevet oprettet", "Godkendt", JOptionPane.INFORMATION_MESSAGE, null);
+						LåneanmodningGodkendt LånGodkendt = new LåneanmodningGodkendt();
+						LånGodkendt.start(new Stage());
+						LåneanmodningStage.hide();
 					} catch (Exception e1) {
 						JOptionPane.showMessageDialog(null, e1, "Noget gik galt", JOptionPane.ERROR_MESSAGE, null);
 					}
-
-				
-					try {
-					LåneanmodningGodkendt LånGodkendt = new LåneanmodningGodkendt();
-					LånGodkendt.start(new Stage());
-					LåneanmodningStage.hide();
-
-					} catch (Exception e1) {
-						e1.printStackTrace();
-					}
-
 				}
 			});
 
@@ -175,8 +167,7 @@ public class LåneanmodningGUI extends Application {
 			btnFindKreditværdighed.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent e) {
-					System.out.println("nummer 1");
-//
+
 					try {
 						Låneanmodninglmpl låneanmodning = new Låneanmodninglmpl();
 						String personNummer = cprNummerTextField.getText();
@@ -204,7 +195,5 @@ public class LåneanmodningGUI extends Application {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
-
 }

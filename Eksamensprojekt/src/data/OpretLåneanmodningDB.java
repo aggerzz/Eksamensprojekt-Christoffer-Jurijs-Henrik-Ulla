@@ -7,16 +7,15 @@ import data.DataAccess;
 import domain.Låneanmodning;
 import exceptions.KreditværdighedIkkeUdfyldtException;
 import exceptions.LøbetidIkkeUdfyldtException;
-import exceptions.ModelIkkeOplystException;
 import exceptions.PersonnummerIkkeUdfyldtException;
-import exceptions.PrisIkkeOplystException;
 import exceptions.RentesatsIkkeUdfyldtException;
 import exceptions.StelnummerIkkeOplystException;
 import exceptions.TelefonnummerIkkeOplystException;
-import exceptions.ÅrgangIkkeOplystException;
 
 public class OpretLåneanmodningDB {
-	public void opretLåneanmodning(Låneanmodning låneanmodning) throws Exception {
+	public void opretLåneanmodning(Låneanmodning låneanmodning)
+			throws StelnummerIkkeOplystException, KreditværdighedIkkeUdfyldtException, PersonnummerIkkeUdfyldtException,
+			TelefonnummerIkkeOplystException, RentesatsIkkeUdfyldtException, LøbetidIkkeUdfyldtException {
 		try (DataAccess access = new DataAccess()) {
 			try {
 				opretLåneanmodning(access, låneanmodning);
@@ -28,10 +27,11 @@ public class OpretLåneanmodningDB {
 		}
 	}
 
-	private void opretLåneanmodning(DataAccess access, Låneanmodning låneanmodning) throws ModelIkkeOplystException, StelnummerIkkeOplystException,
-			ÅrgangIkkeOplystException, PrisIkkeOplystException, KreditværdighedIkkeUdfyldtException, PersonnummerIkkeUdfyldtException, TelefonnummerIkkeOplystException, RentesatsIkkeUdfyldtException, LøbetidIkkeUdfyldtException {
-		try (PreparedStatement statement = access.getConnection()
-				.prepareStatement("INSERT INTO LÅNEANMODNING (PERSONNUMMER, TELEFONNUMMER, KREDITVÆRDIGHED, RENTESATS, STELNUMMER, LØBETID, UDBETALING) VALUES ( ?, ?, ?,?,?,?,?)");) {
+	private void opretLåneanmodning(DataAccess access, Låneanmodning låneanmodning)
+			throws StelnummerIkkeOplystException, KreditværdighedIkkeUdfyldtException, PersonnummerIkkeUdfyldtException,
+			TelefonnummerIkkeOplystException, RentesatsIkkeUdfyldtException, LøbetidIkkeUdfyldtException {
+		try (PreparedStatement statement = access.getConnection().prepareStatement(
+				"INSERT INTO LÅNEANMODNING (PERSONNUMMER, TELEFONNUMMER, KREDITVÆRDIGHED, RENTESATS, STELNUMMER, LØBETID, UDBETALING) VALUES ( ?, ?, ?,?,?,?,?)");) {
 			statement.setString(1, låneanmodning.getPersonNummer());
 			statement.setString(2, låneanmodning.getTelefonNummer());
 			statement.setString(3, String.valueOf(låneanmodning.getKreditværdighed()));
