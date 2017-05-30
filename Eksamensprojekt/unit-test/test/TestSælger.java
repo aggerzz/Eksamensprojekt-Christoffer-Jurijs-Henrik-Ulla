@@ -14,7 +14,7 @@ import exceptions.FornavnIkkeOplystException;
 import exceptions.TelefonnummerIkkeOplystException;
 import logic.FFLogic;
 
-public class OC2opretSælger {
+public class TestSælger {
 
 	@Test
 	public void testOprettelseAfNySælger()
@@ -51,7 +51,7 @@ public class OC2opretSælger {
 
 		fail("MangledeInformationOmSælger ej indtruffet");
 	}
-	
+
 	@Test(expected = EfternavnIkkeOplystException.class)
 	public void testEfternavnIkkeOplystException()
 			throws FornavnIkkeOplystException, EfternavnIkkeOplystException, TelefonnummerIkkeOplystException,
@@ -70,7 +70,7 @@ public class OC2opretSælger {
 
 		fail("MangledeInformationOmSælger ej indtruffet");
 	}
-	
+
 	@Test(expected = TelefonnummerIkkeOplystException.class)
 	public void testTelefonnummerIkkeOplystException()
 			throws FornavnIkkeOplystException, EfternavnIkkeOplystException, TelefonnummerIkkeOplystException,
@@ -89,7 +89,7 @@ public class OC2opretSælger {
 
 		fail("MangledeInformationOmSælger ej indtruffet");
 	}
-	
+
 	@Test(expected = EmailIkkeOplystException.class)
 	public void testEmailIkkeOplystException()
 			throws FornavnIkkeOplystException, EfternavnIkkeOplystException, TelefonnummerIkkeOplystException,
@@ -108,7 +108,7 @@ public class OC2opretSælger {
 
 		fail("MangledeInformationOmSælger ej indtruffet");
 	}
-	
+
 	@Test(expected = BrugernavnIkkeOplystException.class)
 	public void testBrugernavnIkkeOplystException()
 			throws FornavnIkkeOplystException, EfternavnIkkeOplystException, TelefonnummerIkkeOplystException,
@@ -127,7 +127,7 @@ public class OC2opretSælger {
 
 		fail("MangledeInformationOmSælger ej indtruffet");
 	}
-	
+
 	@Test(expected = AdgangskodeIkkeOplystException.class)
 	public void testAdgangskodeIkkeOplystException()
 			throws FornavnIkkeOplystException, EfternavnIkkeOplystException, TelefonnummerIkkeOplystException,
@@ -145,5 +145,16 @@ public class OC2opretSælger {
 		logic.opretSælger(nysælger);
 
 		fail("MangledeInformationOmSælger ej indtruffet");
+	}
+
+	@Test
+	public void testGetSælgerEmail()
+			throws FornavnIkkeOplystException, EfternavnIkkeOplystException, TelefonnummerIkkeOplystException,
+			EmailIkkeOplystException, BrugernavnIkkeOplystException, AdgangskodeIkkeOplystException {
+		Sælger nysælger = new Sælgerlmpl();
+
+		nysælger.setEmail("Peterjensen@live.dk");
+
+		assertEquals("Peterjensen@live.dk", nysælger.getEmail());
 	}
 }

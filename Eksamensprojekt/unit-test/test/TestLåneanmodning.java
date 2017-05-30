@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class OC8opretLåneanmodning {
+public class TestLåneanmodning {
 
 	@Test
 	public void test() {

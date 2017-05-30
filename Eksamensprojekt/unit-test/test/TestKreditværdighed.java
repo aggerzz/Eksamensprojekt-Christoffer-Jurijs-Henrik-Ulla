@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class OC4getKunde {
+public class TestKreditværdighed {
 
 	@Test
 	public void test() {

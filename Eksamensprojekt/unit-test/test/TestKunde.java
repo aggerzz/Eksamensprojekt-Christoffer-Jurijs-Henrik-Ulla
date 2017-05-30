@@ -16,7 +16,7 @@ import exceptions.PostnummerIkkeOplystException;
 import exceptions.TelefonnummerIkkeOplystException;
 import logic.FFLogic;
 
-public class OC1opretKunde {
+public class TestKunde {
 
 	@Test
 	public void testOprettelseAfNyKunde() throws AdresseIkkeOplystException, ByIkkeOplystException,
@@ -57,7 +57,7 @@ public class OC1opretKunde {
 
 		fail("MangledeInformationOmkunden ej indtruffet");
 	}
-	
+
 	@Test(expected = EfternavnIkkeOplystException.class)
 	public void testEfternavnIkkeOplystException() throws AdresseIkkeOplystException, ByIkkeOplystException,
 			EfternavnIkkeOplystException, EmailIkkeOplystException, FodselsdagIkkeOplystException,
@@ -78,7 +78,7 @@ public class OC1opretKunde {
 
 		fail("MangledeInformationOmkunden ej indtruffet");
 	}
-	
+
 	@Test(expected = AdresseIkkeOplystException.class)
 	public void testAdresseIkkeOplystException() throws AdresseIkkeOplystException, ByIkkeOplystException,
 			EfternavnIkkeOplystException, EmailIkkeOplystException, FodselsdagIkkeOplystException,
@@ -99,7 +99,7 @@ public class OC1opretKunde {
 
 		fail("MangledeInformationOmkunden ej indtruffet");
 	}
-	
+
 	@Test(expected = ByIkkeOplystException.class)
 	public void testByIkkeOplystException() throws AdresseIkkeOplystException, ByIkkeOplystException,
 			EfternavnIkkeOplystException, EmailIkkeOplystException, FodselsdagIkkeOplystException,
@@ -120,7 +120,7 @@ public class OC1opretKunde {
 
 		fail("MangledeInformationOmkunden ej indtruffet");
 	}
-	
+
 	@Test(expected = PostnummerIkkeOplystException.class)
 	public void testPostnummerIkkeOplystException() throws AdresseIkkeOplystException, ByIkkeOplystException,
 			EfternavnIkkeOplystException, EmailIkkeOplystException, FodselsdagIkkeOplystException,
@@ -141,7 +141,7 @@ public class OC1opretKunde {
 
 		fail("MangledeInformationOmkunden ej indtruffet");
 	}
-	
+
 	@Test(expected = FodselsdagIkkeOplystException.class)
 	public void testFodselsdagIkkeOplystException() throws AdresseIkkeOplystException, ByIkkeOplystException,
 			EfternavnIkkeOplystException, EmailIkkeOplystException, FodselsdagIkkeOplystException,
@@ -162,7 +162,7 @@ public class OC1opretKunde {
 
 		fail("MangledeInformationOmkunden ej indtruffet");
 	}
-	
+
 	@Test(expected = TelefonnummerIkkeOplystException.class)
 	public void testTelefonnummerIkkeOplystException() throws AdresseIkkeOplystException, ByIkkeOplystException,
 			EfternavnIkkeOplystException, EmailIkkeOplystException, FodselsdagIkkeOplystException,
@@ -183,7 +183,7 @@ public class OC1opretKunde {
 
 		fail("MangledeInformationOmkunden ej indtruffet");
 	}
-	
+
 	@Test(expected = EmailIkkeOplystException.class)
 	public void testEmailIkkeOplystException() throws AdresseIkkeOplystException, ByIkkeOplystException,
 			EfternavnIkkeOplystException, EmailIkkeOplystException, FodselsdagIkkeOplystException,
@@ -203,5 +203,18 @@ public class OC1opretKunde {
 		logic.opretKunde(nykunde);
 
 		fail("MangledeInformationOmkunden ej indtruffet");
+	}
+
+	@Test
+	public void testgetFornavn() throws AdresseIkkeOplystException, ByIkkeOplystException,
+			EfternavnIkkeOplystException, EmailIkkeOplystException, FodselsdagIkkeOplystException,
+			FornavnIkkeOplystException, PostnummerIkkeOplystException, TelefonnummerIkkeOplystException {
+		Kunde nykunde = new Kundelmpl();
+		
+		nykunde.setForNavn("peter");
+		
+		assertEquals("peter", nykunde.getForNavn());
+
+
 	}
 }
