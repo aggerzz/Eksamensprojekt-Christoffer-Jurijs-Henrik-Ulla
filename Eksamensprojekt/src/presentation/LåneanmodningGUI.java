@@ -1,7 +1,10 @@
 package presentation;
 
+import javax.swing.JOptionPane;
+
 import access.BankAccess;
 import access.RKIAccess;
+import domain.Låneanmodning;
 import domain.Låneanmodninglmpl;
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
@@ -21,6 +24,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import logic.BeregnRente;
+import logic.FFLogic;
 public class LåneanmodningGUI extends Application {
 	public void start(Stage LåneanmodningStage) {
 		try {
@@ -126,7 +130,24 @@ public class LåneanmodningGUI extends Application {
 			btnlåneanmodning.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent e) {
+					FFLogic logic = new FFLogic();
+					Låneanmodning nylåneanmodning = new Låneanmodninglmpl();
+					nylåneanmodning.setPersonNummer(cprNummerTextField.getText());
+					nylåneanmodning.setTelefonNummer(TelefonnummerTextField.getText());
+					nylåneanmodning.setKreditværdighed((kreditværdighedTextField.getText().charAt(0)));
+					nylåneanmodning.setRentesats(Double.parseDouble(rentesatsTextField.getText()));
+					nylåneanmodning.setStelNummer(stelNummerTextField.getText());
+					nylåneanmodning.setLøbetid(Integer.parseInt(løbetidTextField.getText()));
+					nylåneanmodning.setUdbetaling(Double.parseDouble(udbetalingTextField.getText()));
+					
+					try {
+						logic.opretLåneanmodning(nylåneanmodning);
+						JOptionPane.showMessageDialog(null, "Sælger er nu oprettet", "Godkendt", JOptionPane.INFORMATION_MESSAGE, null);
+					} catch (Exception e1) {
+						JOptionPane.showMessageDialog(null, e1, "Noget gik galt", JOptionPane.ERROR_MESSAGE, null);
+					}
 
+				
 					try {
 					LåneanmodningGodkendt LånGodkendt = new LåneanmodningGodkendt();
 					LånGodkendt.start(new Stage());

@@ -31,5 +31,9 @@ public interface Låneanmodning {
 	public int getLøbetid() throws LøbetidIkkeUdfyldtException;
 
 	public void setLøbetid(int løbetid);
+	
+	public double getUdbetaling() throws LøbetidIkkeUdfyldtException;
+
+	public void setUdbetaling(double udbetaling);
 
 }

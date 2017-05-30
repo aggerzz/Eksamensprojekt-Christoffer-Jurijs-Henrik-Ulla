@@ -4,6 +4,7 @@ import access.RKIAccess;
 import data.DBfacaden;
 import domain.Bil;
 import domain.Kunde;
+import domain.Låneanmodning;
 import domain.Låneanmodninglmpl;
 import domain.Sælger;
 import exceptions.AdgangskodeIkkeOplystException;
@@ -46,6 +47,13 @@ public class FFLogic {
 	public void opretBil(Bil bil)
 			throws ModelIkkeOplystException, StelnummerIkkeOplystException, ÅrgangIkkeOplystException, PrisIkkeOplystException {
 		opretBilInfo.opretBilInfo(bil);
+	}
+	// Opret Låneanmodning
+	private DBfacaden opretLåneanmodningInfo = new DBfacaden();
+
+	public void opretLåneanmodning(Låneanmodning låneanmodning)
+			throws Exception {
+		opretLåneanmodningInfo.opretLåneanmodningInfo(låneanmodning);
 	}
 	//
 	public void getKreditværdighed(String personNummer,Låneanmodninglmpl låneanmodning) {
