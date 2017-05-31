@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
+import domain.Sælger;
 import exceptions.AdgangskodeIkkeOplystException;
 import exceptions.BrugernavnIkkeOplystException;
 import javafx.stage.Stage;
@@ -16,17 +17,17 @@ public class LoginDB {
 	public int id;
 	public boolean fåetadgang = false;
 
-	public void CheckLoginInforamtion() throws BrugernavnIkkeOplystException, AdgangskodeIkkeOplystException {
+	public void CheckLoginInforamtion(Sælger sælger) throws BrugernavnIkkeOplystException, AdgangskodeIkkeOplystException {
 
 		DataAccess access = new DataAccess();
 		try (PreparedStatement statement = access.getConnection()
 				.prepareStatement("select id from sælger where login=? and adgangskode=?");) {
 
-			System.out.println("Controller: " + login);
-			System.out.println("Controller: " + adgangskode);
+			System.out.println("Controller: " + sælger.getLogin());
+			System.out.println("Controller: " + sælger.getAdgangskode());
 
-			statement.setString(1, login);
-			statement.setString(2, adgangskode);
+			statement.setString(1, sælger.getLogin());
+			statement.setString(2, sælger.getAdgangskode());
 
 			ResultSet rs = statement.executeQuery();
 
@@ -45,20 +46,20 @@ public class LoginDB {
 		}
 	}
 
-	public void CheckID() {
-		DataAccess access = new DataAccess();
-		try (PreparedStatement statement = access.getConnection()
-				.prepareStatement("select id from sælger where login=? and adgangskode=?");) {
-			System.out.println("Checker id på sælger");
-			statement.setString(1, login);
-			statement.setString(2, adgangskode);
-			ResultSet rs = statement.executeQuery();
-			if(rs.next())
-			id = rs.getInt("id");
-			System.out.println(id);
-			
-		} catch (SQLException e) {
-			throw new RuntimeException("Fejl", e);
-		}
+//	public void CheckID() {
+//		DataAccess access = new DataAccess();
+//		try (
+//				PreparedStatement statement = access.getConnection()
+//				.prepareStatement("select id from sælger where login=? and adgangskode=?");) {
+//			System.out.println("Checker id på sælger");
+//			statement.setString(1, login);
+//			statement.setString(2, adgangskode);
+//			ResultSet rs = statement.executeQuery();
+//			if(rs.next())
+//			id = rs.getInt("id");
+//			System.out.println(id);
+//			
+//		} catch (SQLException e) {
+//			throw new RuntimeException("Fejl", e);
+//		}
 	}
-}

@@ -64,11 +64,21 @@ public class DBfacaden {
 			ÅrgangIkkeOplystException, PrisIkkeOplystException {
 		findBilInfo.findBil(bil);
 	}
+	private IdDB userInfo = new IdDB();
+
+	public void userInfo(Sælger sælger) throws Exception {
+		userInfo.CheckID(sælger);
+	}
 	// Find Kunde
 	private GetKundeDB findKunder = new GetKundeDB();
 
 	public List<Kunde> findKunder(Kunde kunde) throws Exception {
 		return findKunder.findKunde(kunde);
 	}
+	// Find Biler
+	private GetBilerDB findBiler = new GetBilerDB();
 
+	public List<Bil> findBiler(Bil bil) throws Exception {
+		return findBiler.findBiler(bil);
+	}
 }

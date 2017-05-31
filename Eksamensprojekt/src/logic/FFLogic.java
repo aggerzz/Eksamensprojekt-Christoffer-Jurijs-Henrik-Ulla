@@ -60,7 +60,14 @@ public class FFLogic {
 	
 	public void findBil(Bil bil) throws ModelIkkeOplystException, StelnummerIkkeOplystException,
 			ÅrgangIkkeOplystException, PrisIkkeOplystException {
-		findBilInfo.findBilInfo(bil);}
+		findBilInfo.findBilInfo(bil);
+		}
+	// Find Id
+	private DBfacaden userInfo = new DBfacaden();
+	
+	public void CheckID(Sælger sælger) throws Exception {
+		userInfo.userInfo(sælger);
+		}
 	// Opret Låneanmodning
 	private DBfacaden opretLåneanmodningInfo = new DBfacaden();
 
@@ -69,11 +76,17 @@ public class FFLogic {
 			TelefonnummerIkkeOplystException, RentesatsIkkeUdfyldtException, LøbetidIkkeUdfyldtException {
 		opretLåneanmodningInfo.opretLåneanmodningInfo(låneanmodning);
 	}
-	// Select Matches
+	// Find Kunder
 	private static DBfacaden kundeAccess = new DBfacaden();
 
 	public static List<Kunde> getKunde(Kunde findKunde) throws Exception {
 		return kundeAccess.findKunder(findKunde);
+	}
+	// Find Biler
+	private static DBfacaden bilAccess = new DBfacaden();
+
+	public static List<Bil> getBil(Bil findBiler) throws Exception {
+		return bilAccess.findBiler(findBiler);
 	}
 	//
 	public void getKreditværdighed(String personNummer, Låneanmodninglmpl låneanmodning) throws KreditværdighedIkkeUdfyldtException {

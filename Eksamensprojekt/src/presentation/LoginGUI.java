@@ -1,6 +1,9 @@
 package presentation;
 
+import data.IdDB;
 import data.LoginDB;
+import domain.Sælger;
+import domain.Sælgerlmpl;
 import exceptions.AdgangskodeIkkeOplystException;
 import exceptions.BrugernavnIkkeOplystException;
 import javafx.application.Application;
@@ -17,13 +20,16 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import logic.FFLogic;
 
 public class LoginGUI extends Application {
 
 	PasswordField pwBox = new PasswordField();
 	TextField userTextField = new TextField();
 	LoginDB loginController = new LoginDB();
-
+	Sælger findID = new Sælgerlmpl();
+	IdDB idc = new IdDB();
+	FFLogic logic = new FFLogic();
 	public void start(Stage primaryStage) {
 		try {
 			primaryStage.setTitle("Ferrari forhandler");
@@ -64,11 +70,14 @@ public class LoginGUI extends Application {
 					try {
 						visData();
 						if(loginController.fåetadgang == true) {
-							loginController.CheckID();
+							idc.CheckID(findID);
 							primaryStage.hide();
 						}
 
 					} catch (BrugernavnIkkeOplystException | AdgangskodeIkkeOplystException e1) {
+						e1.printStackTrace();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 
@@ -89,11 +98,12 @@ public class LoginGUI extends Application {
 
 	}
 
-	public void visData() throws BrugernavnIkkeOplystException, AdgangskodeIkkeOplystException {
-		loginController.login = userTextField.getText();
-		loginController.adgangskode = pwBox.getText();
-		System.out.println(loginController.login + "\n" + loginController.adgangskode);
-
-		loginController.CheckLoginInforamtion();
+	public void visData() throws Exception {
+		findID.setLogin(userTextField.getText());
+		findID.setAdgangskode(pwBox.getText());
+		logic.CheckID(findID);
+		System.out.println(findID.getLogin() + "\n" + findID.getAdgangskode());
+		System.out.println("CYKABLYAT " +  findID.getId());
+		loginController.CheckLoginInforamtion(findID);
 	}
 }
