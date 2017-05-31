@@ -72,15 +72,21 @@ public class SøgKundeGUI extends Application {
 			btnSøgKunde.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent e) {					
-					//Kunde findKunde = new Kundelmpl();
-					//findKunde.setTelefonNummer(telefonNummerTextField.getText());
+					Kunde findKunde = new Kundelmpl();
+					findKunde.setTelefonNummer(telefonNummerTextField.getText());
+					try {
+						FFLogic.getKunde(findKunde);
+					} catch (Exception e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
 					try {						
 						// TableView matches
 						TableView<Kunde> kundeTable = new TableView<Kunde>();
 						kundeTable.setEditable(true);
 						ObservableList<Kunde> kundeliste;
 
-						kundeliste = FXCollections.observableArrayList(FFLogic.getKunde());
+						kundeliste = FXCollections.observableArrayList(FFLogic.getKunde(findKunde));
 
 						TableColumn<Kunde, Integer> navn = new TableColumn<Kunde, Integer>("Fornavn");
 						navn.setCellValueFactory(new PropertyValueFactory<Kunde, Integer>("ForNavn"));

@@ -67,8 +67,8 @@ public class DBfacaden {
 	// Find Kunde
 	private GetKundeDB findKunder = new GetKundeDB();
 
-	public List<Kunde> findKunder() throws Exception {
-		return findKunder.findKunde();
+	public List<Kunde> findKunder(Kunde kunde) throws Exception {
+		return findKunder.findKunde(kunde);
 	}
 
 }

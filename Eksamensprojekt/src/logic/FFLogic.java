@@ -72,8 +72,8 @@ public class FFLogic {
 	// Select Matches
 	private static DBfacaden kundeAccess = new DBfacaden();
 
-	public static List<Kunde> getKunde() throws Exception {
-		return kundeAccess.findKunder();
+	public static List<Kunde> getKunde(Kunde findKunde) throws Exception {
+		return kundeAccess.findKunder(findKunde);
 	}
 	//
 	public void getKreditværdighed(String personNummer, Låneanmodninglmpl låneanmodning) throws KreditværdighedIkkeUdfyldtException {

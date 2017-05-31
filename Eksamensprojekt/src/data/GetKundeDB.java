@@ -12,13 +12,12 @@ import exceptions.TelefonnummerIkkeOplystException;
 
 public class GetKundeDB {
 
-	private Kunde kunde;
 
-	public List<Kunde> findKunde() throws Exception {
+	public List<Kunde> findKunde(Kunde kunde) throws Exception {
 		List<Kunde> kundeliste = new ArrayList<>();
 		try (DataAccess access = new DataAccess()) {
 			try {
-				findKunde(access, kundeliste);
+				findKunde(access, kundeliste, kunde);
 				access.commit();
 			} catch (Exception e) {
 				access.rollback();
@@ -28,11 +27,11 @@ public class GetKundeDB {
 		return kundeliste;
 	}
 
-	public void findKunde(DataAccess access, List<Kunde> kundeliste) throws TelefonnummerIkkeOplystException {
+	public void findKunde(DataAccess access, List<Kunde> kundeliste, Kunde kunde) throws TelefonnummerIkkeOplystException {
 		try (PreparedStatement statement = access.getConnection()
-				.prepareStatement("SELECT * FROM KUNDE;");) {
+				.prepareStatement("SELECT * FROM KUNDE where telefonnummer = ?;");) {
 
-			//statement.setString(1, kunde. getTelefonNummer());
+			statement.setString(1, kunde.getTelefonNummer());
 
 			ResultSet rs = statement.executeQuery();
 			while (rs.next()) {
