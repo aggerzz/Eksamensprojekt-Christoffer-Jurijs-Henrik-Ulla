@@ -48,7 +48,7 @@ public class SøgKundeGUI extends Application {
 			telefonNummer.setTextFill(Color.RED);
 			grid.add(telefonNummer, 0, 1);
 			TextField telefonNummerTextField = new TextField();
-			grid.add(telefonNummerTextField, 1, 1);
+			grid.add(telefonNummerTextField, 1, 3);
 
 			Button btnTilbage = new Button("Tilbage");
 			HBox hbBtnTilbage = new HBox(7);
@@ -90,36 +90,36 @@ public class SøgKundeGUI extends Application {
 
 						TableColumn<Kunde, Integer> navn = new TableColumn<Kunde, Integer>("Fornavn");
 						navn.setCellValueFactory(new PropertyValueFactory<Kunde, Integer>("ForNavn"));
-						navn.setMinWidth(150);
+						navn.setMinWidth(50);
 						
 						TableColumn<Kunde, Integer> efterNavn = new TableColumn<Kunde, Integer>("Efternavn");
 						efterNavn.setCellValueFactory(new PropertyValueFactory<Kunde, Integer>("EfterNavn"));
-						efterNavn.setMinWidth(150);
+						efterNavn.setMinWidth(50);
 						
 						TableColumn<Kunde, Integer> adresse = new TableColumn<Kunde, Integer>("Adresse");
 						adresse.setCellValueFactory(new PropertyValueFactory<Kunde, Integer>("Adresse"));
-						adresse.setMinWidth(150);
+						adresse.setMinWidth(50);
 						
 						TableColumn<Kunde, Integer> postnummer = new TableColumn<Kunde, Integer>("Postnummer");
 						postnummer.setCellValueFactory(new PropertyValueFactory<Kunde, Integer>("PostNummer"));
-						postnummer.setMinWidth(150);
+						postnummer.setMinWidth(10);
 						
 						TableColumn<Kunde, Integer> by = new TableColumn<Kunde, Integer>("By");
 						by.setCellValueFactory(new PropertyValueFactory<Kunde, Integer>("By"));
-						by.setMinWidth(150);
+						by.setMinWidth(50);
 						
 						TableColumn<Kunde, Integer> tlfNummer = new TableColumn<Kunde, Integer>("Telefonnummer");
 						tlfNummer.setCellValueFactory(new PropertyValueFactory<Kunde, Integer>("TelefonNummer"));
-						tlfNummer.setMinWidth(150);
+						tlfNummer.setMinWidth(50);
 						
 						TableColumn<Kunde, Integer> email = new TableColumn<Kunde, Integer>("Email");
 						email.setCellValueFactory(new PropertyValueFactory<Kunde, Integer>("Email"));
-						email.setMinWidth(150);
+						email.setMinWidth(50);
 						 
 						kundeTable.setItems(kundeliste);
 						kundeTable.getColumns().addAll(navn, efterNavn, adresse, postnummer, by, tlfNummer, email);
-						kundeTable.setMinSize(500, 200);
-						grid.add(kundeTable, 1, 0);					
+						kundeTable.setMinSize(700, 200);
+						grid.add(kundeTable, 0, 8, 5, 5);					
 						} 
 					catch (Exception e1) {
 					}
@@ -127,7 +127,7 @@ public class SøgKundeGUI extends Application {
 				}
 			});
 
-			Scene scene = new Scene(grid, 640, 450);
+			Scene scene = new Scene(grid, 680, 450);
 			SøgKundeStage.setScene(scene);
 			scene.getStylesheets().addAll(this.getClass().getResource("/application/application.css").toExternalForm());
 
