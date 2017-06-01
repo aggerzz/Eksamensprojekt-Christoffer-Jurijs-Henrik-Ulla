@@ -37,5 +37,16 @@ public interface Låneanmodning {
 	public double getUdbetaling() throws LøbetidIkkeUdfyldtException;
 
 	public void setUdbetaling(double udbetaling);
+	
+	public double getMånedligYdelse() throws LøbetidIkkeUdfyldtException;
 
+	public void setMånedligYdelse(double månedligYdelse);
+	
+	public double getPrisEfterRente() throws LøbetidIkkeUdfyldtException;
+
+	public void setPrisEfterRente(double prisEfterRente);
+	
+	public int getSælgerID() throws LøbetidIkkeUdfyldtException;
+
+	public void setSælgerID(int sælgerID);
 }

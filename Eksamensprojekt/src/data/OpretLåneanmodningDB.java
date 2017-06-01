@@ -14,8 +14,7 @@ import exceptions.TelefonnummerIkkeOplystException;
 
 public class OpretLåneanmodningDB {
 	public void opretLåneanmodning(Låneanmodning låneanmodning)
-			throws StelnummerIkkeOplystException, KreditværdighedIkkeUdfyldtException, PersonnummerIkkeUdfyldtException,
-			TelefonnummerIkkeOplystException, RentesatsIkkeUdfyldtException, LøbetidIkkeUdfyldtException {
+			throws Exception {
 		try (DataAccess access = new DataAccess()) {
 			try {
 				opretLåneanmodning(access, låneanmodning);
@@ -28,17 +27,20 @@ public class OpretLåneanmodningDB {
 	}
 
 	private void opretLåneanmodning(DataAccess access, Låneanmodning låneanmodning)
-			throws StelnummerIkkeOplystException, KreditværdighedIkkeUdfyldtException, PersonnummerIkkeUdfyldtException,
-			TelefonnummerIkkeOplystException, RentesatsIkkeUdfyldtException, LøbetidIkkeUdfyldtException {
+			throws Exception {
 		try (PreparedStatement statement = access.getConnection().prepareStatement(
-				"INSERT INTO LÅNEANMODNING (PERSONNUMMER, TELEFONNUMMER, KREDITVÆRDIGHED, RENTESATS, STELNUMMER, LØBETID, UDBETALING) VALUES ( ?, ?, ?,?,?,?,?)");) {
-			statement.setString(1, låneanmodning.getPersonNummer());
-			statement.setString(2, låneanmodning.getTelefonNummer());
-			statement.setString(3, String.valueOf(låneanmodning.getKreditværdighed()));
-			statement.setDouble(4, låneanmodning.getRentesats());
-			statement.setString(5, låneanmodning.getStelNummer());
-			statement.setInt(6, låneanmodning.getLøbetid());
-			statement.setDouble(7, låneanmodning.getUdbetaling());
+				"INSERT INTO LÅNEANMODNING (SÆLGERID, PERSONNUMMER, TELEFONNUMMER, KREDITVÆRDIGHED,RENTESATS, MÅNEDLIGYDELSE, PRISEFTERRENTE, STELNUMMER,PRIS, LØBETID, UDBETALING) VALUES ( ?, ?, ?,?,?,?,?,?,?,?,?)");) {
+			statement.setInt(1, låneanmodning.getSælgerID());
+			statement.setString(2, låneanmodning.getPersonNummer());
+			statement.setString(3, låneanmodning.getTelefonNummer());
+			statement.setString(4, String.valueOf(låneanmodning.getKreditværdighed()));
+			statement.setDouble(5, låneanmodning.getRentesats());
+			statement.setDouble(6, låneanmodning.getMånedligYdelse());
+			statement.setDouble(7, låneanmodning.getPrisEfterRente());
+			statement.setString(8, låneanmodning.getStelNummer());
+			statement.setDouble(9, låneanmodning.getPris());
+			statement.setInt(10, låneanmodning.getLøbetid());
+			statement.setDouble(11, låneanmodning.getUdbetaling());
 
 			int antal = statement.executeUpdate();
 			System.out.println("Antal rækker berørt : " + antal);

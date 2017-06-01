@@ -54,8 +54,7 @@ public class DBfacaden {
 	private OpretLåneanmodningDB opretLåneanmodningInfo = new OpretLåneanmodningDB();
 
 	public void opretLåneanmodningInfo(Låneanmodning låneanmodning)
-			throws StelnummerIkkeOplystException, KreditværdighedIkkeUdfyldtException, PersonnummerIkkeUdfyldtException,
-			TelefonnummerIkkeOplystException, RentesatsIkkeUdfyldtException, LøbetidIkkeUdfyldtException {
+			throws Exception {
 		opretLåneanmodningInfo.opretLåneanmodning(låneanmodning);
 	}
 	private GetBilDB findBilInfo = new GetBilDB();

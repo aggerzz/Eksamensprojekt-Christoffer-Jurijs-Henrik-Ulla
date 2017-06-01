@@ -8,9 +8,12 @@ import exceptions.StelnummerIkkeOplystException;
 import exceptions.TelefonnummerIkkeOplystException;
 
 public class Låneanmodninglmpl implements Låneanmodning {
+	private int sælgerID;
 	private String personNummer;
 	private String telefonNummer;
 	public char kreditværdighed;
+	private double månedligYdelse;
+	private double prisEfterRente;
 	private double rentesats;
 	private String stelNummer;
 	private int løbetid;
@@ -92,4 +95,29 @@ public class Låneanmodninglmpl implements Låneanmodning {
 	public void setPris(double pris) {
 		this.pris = pris;
 	}
+
+	public int getSælgerID() {
+		return sælgerID;
+	}
+
+	public void setSælgerID(int sælgerID) {
+		this.sælgerID = sælgerID;
+	}
+
+	public double getMånedligYdelse() {
+		return månedligYdelse;
+	}
+
+	public void setMånedligYdelse(double månedligYdelse) {
+		this.månedligYdelse = månedligYdelse;
+	}
+
+	public double getPrisEfterRente() {
+		return prisEfterRente;
+	}
+
+	public void setPrisEfterRente(double prisEfterRente) {
+		this.prisEfterRente = prisEfterRente;
+	}
+
 }

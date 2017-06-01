@@ -72,8 +72,7 @@ public class FFLogic {
 	private DBfacaden opretLåneanmodningInfo = new DBfacaden();
 
 	public void opretLåneanmodning(Låneanmodning låneanmodning)
-			throws StelnummerIkkeOplystException, KreditværdighedIkkeUdfyldtException, PersonnummerIkkeUdfyldtException,
-			TelefonnummerIkkeOplystException, RentesatsIkkeUdfyldtException, LøbetidIkkeUdfyldtException {
+			throws Exception {
 		opretLåneanmodningInfo.opretLåneanmodningInfo(låneanmodning);
 	}
 	// Find Kunder
@@ -82,6 +81,12 @@ public class FFLogic {
 	public static List<Kunde> getKunde(Kunde findKunde) throws Exception {
 		return kundeAccess.findKunder(findKunde);
 	}
+	// Find Lån
+		private static DBfacaden lånAccess = new DBfacaden();
+
+		public static List<Låneanmodning> getLån(Låneanmodning findLån) throws Exception {
+			return lånAccess.findLån(findLån);
+		}
 	// Find Sælger
 	private static DBfacaden sælgerAccess = new DBfacaden();
 
@@ -94,6 +99,7 @@ public class FFLogic {
 	public static List<Bil> getBil(Bil findBiler) throws Exception {
 		return bilAccess.findBiler(findBiler);
 	}
+	
 	//
 	public void getKreditværdighed(String personNummer, Låneanmodninglmpl låneanmodning) throws KreditværdighedIkkeUdfyldtException {
 		Runnable rkiAccess = new RKIAccess(låneanmodning, personNummer);

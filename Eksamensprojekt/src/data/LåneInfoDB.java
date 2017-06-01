@@ -37,10 +37,17 @@ public class LåneInfoDB {
 			ResultSet rs = statement.executeQuery();
 			while (rs.next()) {
 				Låneanmodning findlån = new Låneanmodninglmpl();
-				findlån.setLøbetid(rs.getInt("Løbetid"));
-				findlån.setRentesats(rs.getDouble("RENTESATS")); 
-				findlån.setUdbetaling(rs.getDouble("UDBETALING"));
+				findlån.setSælgerID(rs.getInt("SælgerID"));
+				findlån.setPersonNummer(rs.getString("PERSONNUMMER"));
+				findlån.setTelefonNummer(rs.getString("TELEFONNUMMER"));
+				findlån.setKreditværdighed(rs.getString("KREDITVÆRDIGHED").charAt(0));
+				findlån.setRentesats(rs.getDouble("RENTESATS"));
+				findlån.setMånedligYdelse(rs.getDouble("MÅNEDLIGYDELSE"));
+				findlån.setPrisEfterRente(rs.getDouble("PRISEFTERRENTE"));
+				findlån.setStelNummer(rs.getString("STELNUMMER"));
 				findlån.setPris(rs.getDouble("PRIS"));
+				findlån.setLøbetid(rs.getInt("LØBETID"));
+				findlån.setUdbetaling(rs.getDouble("UDBETALING"));
 
 
 				lånliste.add(findlån);

@@ -156,21 +156,28 @@ public class LåneanmodningGUI extends Application {
 				@Override
 				public void handle(ActionEvent e) {
 					FFLogic logic = new FFLogic();
-					Låneanmodning nylåneanmodning = new Låneanmodninglmpl();
-					nylåneanmodning.setPersonNummer(cprNummerTextField.getText());
-					nylåneanmodning.setTelefonNummer(TelefonnummerTextField.getText());
-					nylåneanmodning.setKreditværdighed((kreditværdighedTextField.getText().charAt(0)));
-					nylåneanmodning.setRentesats(Double.parseDouble(rentesatsTextField.getText()));
-					nylåneanmodning.setStelNummer(stelNummerTextField.getText());
-					nylåneanmodning.setLøbetid(Integer.parseInt(løbetidTextField.getText()));
-					nylåneanmodning.setUdbetaling(Double.parseDouble(udbetalingTextField.getText()));
-					
 					BeregnRente beregnrente = new BeregnRente();
 					Bil findBil = new Billmpl();
 					findBil.setStelNummer(stelNummerTextField.getText());
-					
 					try {
 						logic.findBil(findBil);
+					} catch (ModelIkkeOplystException e4) {
+						// TODO Auto-generated catch block
+						e4.printStackTrace();
+					} catch (StelnummerIkkeOplystException e4) {
+						// TODO Auto-generated catch block
+						e4.printStackTrace();
+					} catch (ÅrgangIkkeOplystException e4) {
+						// TODO Auto-generated catch block
+						e4.printStackTrace();
+					} catch (PrisIkkeOplystException e4) {
+						// TODO Auto-generated catch block
+						e4.printStackTrace();
+					}
+
+					
+					try {
+						
 						beregnrente.beregnRente(kreditværdighedTextField.getText().charAt(0), Double.parseDouble(rentesatsTextField.getText()),Double.parseDouble(findBil.getPris()), Double.parseDouble(udbetalingTextField.getText()),Integer.parseInt(løbetidTextField.getText()));
 					} catch (NumberFormatException e2) {
 						// TODO Auto-generated catch block
@@ -178,15 +185,6 @@ public class LåneanmodningGUI extends Application {
 					} catch (PrisIkkeOplystException e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
-					} catch (ModelIkkeOplystException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (StelnummerIkkeOplystException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (ÅrgangIkkeOplystException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
 					}
 					System.out.println(beregnrente.rente + "renten");
 					try {
@@ -201,13 +199,33 @@ public class LåneanmodningGUI extends Application {
 					System.out.println(BeregnRente.beregnPrisEfterRente);
 					beregnrente.beregnMånedligYdelse(BeregnRente.beregnPrisEfterRente, (Integer.parseInt(løbetidTextField.getText())));
 					System.out.println(BeregnRente.beregnMånedligYdelse);
+					Låneanmodning nylåneanmodning = new Låneanmodninglmpl();
+					nylåneanmodning.setSælgerID(Integer.parseInt(sælgerIDTextField.getText()));
+					nylåneanmodning.setPersonNummer(cprNummerTextField.getText());
+					nylåneanmodning.setTelefonNummer(TelefonnummerTextField.getText());
+					nylåneanmodning.setKreditværdighed((kreditværdighedTextField.getText().charAt(0)));
+					nylåneanmodning.setRentesats((beregnrente.rente));
+					nylåneanmodning.setMånedligYdelse((BeregnRente.beregnMånedligYdelse));
+					nylåneanmodning.setPrisEfterRente(BeregnRente.beregnPrisEfterRente);
+					nylåneanmodning.setStelNummer(stelNummerTextField.getText());
+					try {
+						nylåneanmodning.setPris(Double.parseDouble(findBil.getPris()));
+					} catch (NumberFormatException e3) {
+						// TODO Auto-generated catch block
+						e3.printStackTrace();
+					} catch (PrisIkkeOplystException e3) {
+						// TODO Auto-generated catch block
+						e3.printStackTrace();
+					}
+					nylåneanmodning.setLøbetid(Integer.parseInt(løbetidTextField.getText()));
+					nylåneanmodning.setUdbetaling(Double.parseDouble(udbetalingTextField.getText()));
+					
 					
 					try {
 						logic.opretLåneanmodning(nylåneanmodning);
 						JOptionPane.showMessageDialog(null, "Låneanmodning er blevet oprettet", "Godkendt", JOptionPane.INFORMATION_MESSAGE, null);
 						LåneanmodningGodkendt LånGodkendt = new LåneanmodningGodkendt();
-						LånGodkendt.start(new Stage());
-						LåneanmodningStage.hide();
+						
 					} catch (Exception e1) {
 						JOptionPane.showMessageDialog(null, e1, "Noget gik galt", JOptionPane.ERROR_MESSAGE, null);
 					}
@@ -264,6 +282,8 @@ public class LåneanmodningGUI extends Application {
 					findBiler.setStelNummer(stelNummerTextField.getText());
 					Sælger findSælger = new Sælgerlmpl();
 					findSælger.setId(Integer.parseInt(sælgerIDTextField.getText()));
+					Låneanmodning findLån = new Låneanmodninglmpl();
+					findLån.setTelefonNummer(TelefonnummerTextField.getText());
 					
 					try {
 						FFLogic.getKunde(findKunde);
@@ -272,6 +292,68 @@ public class LåneanmodningGUI extends Application {
 					} catch (Exception e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
+					}
+					try {						
+						// TableView matches låneoversigt
+						
+						TableView<Låneanmodning> lånTable = new TableView<Låneanmodning>();
+						lånTable.setEditable(true);
+						ObservableList<Låneanmodning> lånliste;
+
+						lånliste = FXCollections.observableArrayList(FFLogic.getLån(findLån));
+
+						TableColumn<Låneanmodning, Integer> sælgerID = new TableColumn<Låneanmodning, Integer>("Sælgerid");
+						sælgerID.setCellValueFactory(new PropertyValueFactory<Låneanmodning, Integer>("SælgerID"));
+						sælgerID.setMinWidth(50);
+						
+						TableColumn<Låneanmodning, Integer> personNummer = new TableColumn<Låneanmodning, Integer>("Personnummer");
+						personNummer.setCellValueFactory(new PropertyValueFactory<Låneanmodning, Integer>("PersonNummer"));
+						personNummer.setMinWidth(50);
+						
+						TableColumn<Låneanmodning, Integer> tlfNummer = new TableColumn<Låneanmodning, Integer>("Telefonnummer");
+						tlfNummer.setCellValueFactory(new PropertyValueFactory<Låneanmodning, Integer>("TelefonNummer"));
+						tlfNummer.setMinWidth(50);
+						
+						TableColumn<Låneanmodning, Integer> kreditværdighed = new TableColumn<Låneanmodning, Integer>("Kreditværdighed");
+						kreditværdighed.setCellValueFactory(new PropertyValueFactory<Låneanmodning, Integer>("Kreditværdighed"));
+						kreditværdighed.setMinWidth(50);
+						
+						TableColumn<Låneanmodning, Integer> rentesats = new TableColumn<Låneanmodning, Integer>("Rentesats");
+						rentesats.setCellValueFactory(new PropertyValueFactory<Låneanmodning, Integer>("Rentesats"));
+						rentesats.setMinWidth(10);
+						
+						TableColumn<Låneanmodning, Integer> månedligYdelse = new TableColumn<Låneanmodning, Integer>("Månedlig ydelse");
+						månedligYdelse.setCellValueFactory(new PropertyValueFactory<Låneanmodning, Integer>("MånedligYdelse"));
+						månedligYdelse.setMinWidth(50);
+						
+						
+						TableColumn<Låneanmodning, Integer> PrisEfterRente = new TableColumn<Låneanmodning, Integer>("Pris efter rente");
+						PrisEfterRente.setCellValueFactory(new PropertyValueFactory<Låneanmodning, Integer>("PrisEfterRente"));
+						PrisEfterRente.setMinWidth(50);
+						 
+						TableColumn<Låneanmodning, Integer> stelNummer = new TableColumn<Låneanmodning, Integer>("Stelnummer");
+						stelNummer.setCellValueFactory(new PropertyValueFactory<Låneanmodning, Integer>("StelNummer"));
+						stelNummer.setMinWidth(50);
+						
+						TableColumn<Låneanmodning, Integer> pris = new TableColumn<Låneanmodning, Integer>("Bilens pris");
+						pris.setCellValueFactory(new PropertyValueFactory<Låneanmodning, Integer>("Pris"));
+						pris.setMinWidth(50);
+						
+						TableColumn<Låneanmodning, Integer> løbeTid = new TableColumn<Låneanmodning, Integer>("Løbetid");
+						løbeTid.setCellValueFactory(new PropertyValueFactory<Låneanmodning, Integer>("Løbetid"));
+						løbeTid.setMinWidth(50);
+						
+						TableColumn<Låneanmodning, Integer> udbetaling = new TableColumn<Låneanmodning, Integer>("Udbetaling");
+						udbetaling.setCellValueFactory(new PropertyValueFactory<Låneanmodning, Integer>("Udbetaling"));
+						udbetaling.setMinWidth(50);
+						lånTable.setItems(lånliste);
+						lånTable.getColumns().addAll(sælgerID, personNummer, tlfNummer, kreditværdighed, rentesats, månedligYdelse, PrisEfterRente, stelNummer, pris, løbeTid, udbetaling);
+						lånTable.setMinSize(700, 0);
+						lånTable.setMaxSize(700, 80);
+						grid.add(lånTable, 10, 10, 10, 5);	
+						
+						} 
+					catch (Exception e1) {
 					}
 					try {						
 						// TableView matches kunde
@@ -387,7 +469,33 @@ public class LåneanmodningGUI extends Application {
 					}
 				}
 			});
-			Scene scene = new Scene(grid, 840, 650);
+			
+			// ---------------------------------------------- CSV -------------------------------------------
+			Button btnOpretCSV = new Button("Eksporter CSV");
+			HBox hbBtnOpretCSV = new HBox(7);
+			hbBtnOpretCSV.setAlignment(Pos.TOP_LEFT);
+			hbBtnOpretCSV.getChildren().add(btnOpretCSV);
+			grid.add(hbBtnOpretCSV, 15, 18);
+			btnOpretCSV.setOnAction(new EventHandler<ActionEvent>() {
+				
+				@Override
+				public void handle(ActionEvent e) {
+					btnOpretCSV.disableProperty().bind(
+						    Bindings.isEmpty(TelefonnummerTextField.textProperty())
+						    .or(TelefonnummerTextField.lengthProperty().isNotEqualTo(8))
+						    .or(kreditværdighedTextField.textProperty().isEmpty())
+						    .or(rentesatsTextField.textProperty().isEmpty())
+						    .or(stelNummerTextField.textProperty().isEmpty())
+						    .or(løbetidTextField.textProperty().isEmpty())
+						    .or(udbetalingTextField.textProperty().isEmpty())
+						    .or(sælgerIDTextField.textProperty().isEmpty())
+						);
+				}
+					//TODO CSV
+					// set disable
+				
+			});
+			Scene scene = new Scene(grid, 1240, 720);
 			LåneanmodningStage.setScene(scene);
 			scene.getStylesheets().addAll(this.getClass().getResource("/application/application.css").toExternalForm());
 
@@ -395,5 +503,8 @@ public class LåneanmodningGUI extends Application {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		
 	}
+	
 }
