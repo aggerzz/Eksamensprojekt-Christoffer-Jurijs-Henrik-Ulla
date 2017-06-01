@@ -31,7 +31,7 @@ public class SælgerInfoDB {
 
 	public void findSælger(DataAccess access, List<Sælger> sælgerinfo, Sælger sælger) throws TelefonnummerIkkeOplystException, StelnummerIkkeOplystException, BrugernavnIkkeOplystException {
 		try (PreparedStatement statement = access.getConnection()
-				.prepareStatement("SELECT * FROM BIL where stelnummer = ?;");) {
+				.prepareStatement("SELECT * FROM SÆLGER where login = ?;");) {
 
 			statement.setString(1, sælger.getLogin());
 

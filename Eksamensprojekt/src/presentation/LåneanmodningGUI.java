@@ -10,6 +10,8 @@ import domain.Kunde;
 import domain.Kundelmpl;
 import domain.Låneanmodning;
 import domain.Låneanmodninglmpl;
+import domain.Sælger;
+import domain.Sælgerlmpl;
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
@@ -141,7 +143,7 @@ public class LåneanmodningGUI extends Application {
 				    .or(rentesatsTextField.textProperty().isEmpty())
 				    .or(stelNummerTextField.textProperty().isEmpty())
 				    .or(løbetidTextField.textProperty().isEmpty())
-				    .or(loginTextField.textProperty().isEmpty())
+				    .or(udbetalingTextField.textProperty().isEmpty())
 				    .or(loginTextField.textProperty().isEmpty())
 				);
 			
@@ -156,8 +158,10 @@ public class LåneanmodningGUI extends Application {
 					nylåneanmodning.setRentesats(Double.parseDouble(rentesatsTextField.getText()));
 					nylåneanmodning.setStelNummer(stelNummerTextField.getText());
 					nylåneanmodning.setLøbetid(Integer.parseInt(løbetidTextField.getText()));
-					nylåneanmodning.setUdbetaling(Double.parseDouble(loginTextField.getText()));
-					
+					nylåneanmodning.setUdbetaling(Double.parseDouble(udbetalingTextField.getText()));
+					BeregnRente beregnrente = new BeregnRente();
+					beregnrente.beregnRente(kreditværdighedTextField.getText().charAt(0), Double.parseDouble(rentesatsTextField.getText()), 5000000.0, Double.parseDouble(udbetalingTextField.getText()),Integer.parseInt(løbetidTextField.getText()));
+					System.out.println(beregnrente.rente + "renten");
 					try {
 						logic.opretLåneanmodning(nylåneanmodning);
 						JOptionPane.showMessageDialog(null, "Låneanmodning er blevet oprettet", "Godkendt", JOptionPane.INFORMATION_MESSAGE, null);
@@ -218,9 +222,13 @@ public class LåneanmodningGUI extends Application {
 					findKunde.setTelefonNummer(TelefonnummerTextField.getText());
 					Bil findBiler = new Billmpl();
 					findBiler.setStelNummer(stelNummerTextField.getText());
+					Sælger findSælger = new Sælgerlmpl();
+					findSælger.setLogin(loginTextField.getText());
+					
 					try {
 						FFLogic.getKunde(findKunde);
 						FFLogic.getBil(findBiler);
+						FFLogic.getSælger(findSælger);
 					} catch (Exception e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
@@ -302,7 +310,41 @@ public class LåneanmodningGUI extends Application {
 						} 
 					catch (Exception e1) {
 					}
+					try {						
+						// TableView matches Sælger
+						TableView<Sælger> sælgerTable = new TableView<Sælger>();
+						sælgerTable.setEditable(true);
+						ObservableList<Sælger> sælgerliste;
 
+						sælgerliste = FXCollections.observableArrayList(FFLogic.getSælger(findSælger));
+
+						TableColumn<Sælger, Integer> navn = new TableColumn<Sælger, Integer>("Fornavn");
+						navn.setCellValueFactory(new PropertyValueFactory<Sælger, Integer>("ForNavn"));
+						navn.setMinWidth(50);
+						
+						TableColumn<Sælger, Integer> efterNavn = new TableColumn<Sælger, Integer>("Efternavn");
+						efterNavn.setCellValueFactory(new PropertyValueFactory<Sælger, Integer>("EfterNavn"));
+						efterNavn.setMinWidth(50);
+						
+						TableColumn<Sælger, Integer> telefonnummer = new TableColumn<Sælger, Integer>("Telefonnummer");
+						telefonnummer.setCellValueFactory(new PropertyValueFactory<Sælger, Integer>("TelefonNummer"));
+						telefonnummer.setMinWidth(50);
+						
+						TableColumn<Sælger, Integer> sælgerEmail = new TableColumn<Sælger, Integer>("Email");
+						sælgerEmail.setCellValueFactory(new PropertyValueFactory<Sælger, Integer>("Email"));
+						sælgerEmail.setMinWidth(10);
+						
+						
+						 
+						sælgerTable.setItems(sælgerliste);
+						sælgerTable.getColumns().addAll(navn, efterNavn, telefonnummer, sælgerEmail);
+						sælgerTable.setMinSize(700, 0);
+						sælgerTable.setMaxSize(700, 45);
+						grid.add(sælgerTable, 10, 6, 10, 5);	
+						
+						} 
+					catch (Exception e1) {
+					}
 				}
 			});
 			Scene scene = new Scene(grid, 840, 650);
