@@ -82,6 +82,12 @@ public class FFLogic {
 	public static List<Kunde> getKunde(Kunde findKunde) throws Exception {
 		return kundeAccess.findKunder(findKunde);
 	}
+	// Find Sælger
+	private static DBfacaden sælgerAccess = new DBfacaden();
+
+	public static List<Sælger> getSælger(Sælger findSælger) throws Exception {
+		return sælgerAccess.findSælger(findSælger);
+	}
 	// Find Biler
 	private static DBfacaden bilAccess = new DBfacaden();
 
