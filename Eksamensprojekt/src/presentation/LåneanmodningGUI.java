@@ -100,12 +100,20 @@ public class LåneanmodningGUI extends Application {
 			grid.add(løbetidTextField, 1, 15);
 			
 			// Udbetaling
-						Label udbetaling = new Label("Udbetaling:");
-						udbetaling.setTextFill(Color.RED);
-						grid.add(udbetaling, 0, 17);
-						TextField udbetalingTextField = new TextField();
-						grid.add(udbetalingTextField, 1, 17);
+			Label udbetaling = new Label("Udbetaling:");
+			udbetaling.setTextFill(Color.RED);
+			grid.add(udbetaling, 0, 17);
+			TextField udbetalingTextField = new TextField();
+			grid.add(udbetalingTextField, 1, 17);
 
+						
+			// Sælger Login
+			Label Login = new Label("Sælger login:");
+			Login.setTextFill(Color.RED);
+			grid.add(Login, 0, 19);
+			TextField loginTextField = new TextField();
+			grid.add(loginTextField, 1, 19);
+			
 			Button btnTilbage = new Button("Tilbage");
 			HBox hbBtnTilbage = new HBox(7);
 			hbBtnTilbage.setAlignment(Pos.TOP_LEFT);
@@ -133,7 +141,8 @@ public class LåneanmodningGUI extends Application {
 				    .or(rentesatsTextField.textProperty().isEmpty())
 				    .or(stelNummerTextField.textProperty().isEmpty())
 				    .or(løbetidTextField.textProperty().isEmpty())
-				    .or(udbetalingTextField.textProperty().isEmpty())
+				    .or(loginTextField.textProperty().isEmpty())
+				    .or(loginTextField.textProperty().isEmpty())
 				);
 			
 			btnlåneanmodning.setOnAction(new EventHandler<ActionEvent>() {
@@ -147,7 +156,7 @@ public class LåneanmodningGUI extends Application {
 					nylåneanmodning.setRentesats(Double.parseDouble(rentesatsTextField.getText()));
 					nylåneanmodning.setStelNummer(stelNummerTextField.getText());
 					nylåneanmodning.setLøbetid(Integer.parseInt(løbetidTextField.getText()));
-					nylåneanmodning.setUdbetaling(Double.parseDouble(udbetalingTextField.getText()));
+					nylåneanmodning.setUdbetaling(Double.parseDouble(loginTextField.getText()));
 					
 					try {
 						logic.opretLåneanmodning(nylåneanmodning);
