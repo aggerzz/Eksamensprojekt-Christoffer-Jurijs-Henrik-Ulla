@@ -4,6 +4,8 @@ import javax.swing.JOptionPane;
 
 import access.BankAccess;
 import access.RKIAccess;
+import domain.Bil;
+import domain.Billmpl;
 import domain.Kunde;
 import domain.Kundelmpl;
 import domain.Låneanmodning;
@@ -205,14 +207,17 @@ public class LåneanmodningGUI extends Application {
 				public void handle(ActionEvent e) {
 					Kunde findKunde = new Kundelmpl();
 					findKunde.setTelefonNummer(TelefonnummerTextField.getText());
+					Bil findBiler = new Billmpl();
+					findBiler.setStelNummer(stelNummerTextField.getText());
 					try {
 						FFLogic.getKunde(findKunde);
+						FFLogic.getBil(findBiler);
 					} catch (Exception e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
 					}
 					try {						
-						// TableView matches
+						// TableView matches kunde
 						TableView<Kunde> kundeTable = new TableView<Kunde>();
 						kundeTable.setEditable(true);
 						ObservableList<Kunde> kundeliste;
@@ -253,6 +258,38 @@ public class LåneanmodningGUI extends Application {
 						kundeTable.setMaxSize(700, 45);
 						grid.add(kundeTable, 10, 0, 10, 5);	
 						
+						} 
+					catch (Exception e1) {
+					}
+					try {						
+						// TableView matches bil
+						TableView<Bil> BilTable = new TableView<Bil>();
+						BilTable.setEditable(true);
+						ObservableList<Bil> billiste;
+
+						billiste = FXCollections.observableArrayList(FFLogic.getBil(findBiler));
+
+						TableColumn<Bil, Integer> model = new TableColumn<Bil, Integer>("Model");
+						model.setCellValueFactory(new PropertyValueFactory<Bil, Integer>("Model"));
+						model.setMinWidth(100);
+						
+						TableColumn<Bil, Integer> stelnummer = new TableColumn<Bil, Integer>("Stelnummer");
+						stelnummer.setCellValueFactory(new PropertyValueFactory<Bil, Integer>("StelNummer"));
+						stelnummer.setMinWidth(100);
+						
+						TableColumn<Bil, Integer> årgang = new TableColumn<Bil, Integer>("Årgang");
+						årgang.setCellValueFactory(new PropertyValueFactory<Bil, Integer>("Årgang"));
+						årgang.setMinWidth(100);
+						
+						TableColumn<Bil, Integer> pris = new TableColumn<Bil, Integer>("Pris");
+						pris.setCellValueFactory(new PropertyValueFactory<Bil, Integer>("Pris"));
+						pris.setMinWidth(100);
+						 
+						BilTable.setItems(billiste);
+						BilTable.getColumns().addAll(model, stelnummer, årgang, pris);
+						BilTable.setMinSize(500, 0);
+						BilTable.setMaxSize(500, 45);
+						grid.add(BilTable, 10, 2,5,5);					
 						} 
 					catch (Exception e1) {
 					}
