@@ -12,6 +12,10 @@ import domain.Låneanmodning;
 import domain.Låneanmodninglmpl;
 import domain.Sælger;
 import domain.Sælgerlmpl;
+import exceptions.ModelIkkeOplystException;
+import exceptions.PrisIkkeOplystException;
+import exceptions.StelnummerIkkeOplystException;
+import exceptions.ÅrgangIkkeOplystException;
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
@@ -160,10 +164,40 @@ public class LåneanmodningGUI extends Application {
 					nylåneanmodning.setStelNummer(stelNummerTextField.getText());
 					nylåneanmodning.setLøbetid(Integer.parseInt(løbetidTextField.getText()));
 					nylåneanmodning.setUdbetaling(Double.parseDouble(udbetalingTextField.getText()));
+					
 					BeregnRente beregnrente = new BeregnRente();
-					beregnrente.beregnRente(kreditværdighedTextField.getText().charAt(0), Double.parseDouble(rentesatsTextField.getText()), 5000000.0, Double.parseDouble(udbetalingTextField.getText()),Integer.parseInt(løbetidTextField.getText()));
+					Bil findBil = new Billmpl();
+					findBil.setStelNummer(stelNummerTextField.getText());
+					
+					try {
+						logic.findBil(findBil);
+						beregnrente.beregnRente(kreditværdighedTextField.getText().charAt(0), Double.parseDouble(rentesatsTextField.getText()),Double.parseDouble(findBil.getPris()), Double.parseDouble(udbetalingTextField.getText()),Integer.parseInt(løbetidTextField.getText()));
+					} catch (NumberFormatException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					} catch (PrisIkkeOplystException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					} catch (ModelIkkeOplystException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (StelnummerIkkeOplystException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (ÅrgangIkkeOplystException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					System.out.println(beregnrente.rente + "renten");
-					beregnrente.beregnPrisEfterRente(beregnrente.rente, 5000000.0, Double.parseDouble(udbetalingTextField.getText()));
+					try {
+						beregnrente.beregnPrisEfterRente(beregnrente.rente, Double.parseDouble(findBil.getPris()), Double.parseDouble(udbetalingTextField.getText()));
+					} catch (NumberFormatException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					} catch (PrisIkkeOplystException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
 					System.out.println(BeregnRente.beregnPrisEfterRente);
 					beregnrente.beregnMånedligYdelse(BeregnRente.beregnPrisEfterRente, (Integer.parseInt(løbetidTextField.getText())));
 					System.out.println(BeregnRente.beregnMånedligYdelse);
