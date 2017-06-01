@@ -15,10 +15,16 @@ public class BeregnRente {
 		return rente;
 
 	}
-public static double beregnPrisEfterRente ;
-public double beregnPrisEfterRente(double beregnRente, double bilensPris, double udbetaling){
-	return beregnPrisEfterRente = ((bilensPris-udbetaling)*Math.pow(rente, 1));
+public static double beregnPrisEfterRente;
+public double beregnPrisEfterRente(double rente, double bilensPris, double udbetaling){
+	return beregnPrisEfterRente = ((bilensPris) - (udbetaling))*(1+rente/100);
 }
+public static double beregnMånedligYdelse;
+public double beregnMånedligYdelse(double beregnPrisEfterRente, int løbetid){
+	return beregnMånedligYdelse = (beregnPrisEfterRente/løbetid);
+}
+
+
 	private void kreditværdighed(char kreditværdighed) {
 		switch (kreditværdighed) {
 		case 'A':

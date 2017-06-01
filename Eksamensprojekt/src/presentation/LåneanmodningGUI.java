@@ -165,6 +165,9 @@ public class LåneanmodningGUI extends Application {
 					System.out.println(beregnrente.rente + "renten");
 					beregnrente.beregnPrisEfterRente(beregnrente.rente, 5000000.0, Double.parseDouble(udbetalingTextField.getText()));
 					System.out.println(BeregnRente.beregnPrisEfterRente);
+					beregnrente.beregnMånedligYdelse(BeregnRente.beregnPrisEfterRente, (Integer.parseInt(løbetidTextField.getText())));
+					System.out.println(BeregnRente.beregnMånedligYdelse);
+					
 					try {
 						logic.opretLåneanmodning(nylåneanmodning);
 						JOptionPane.showMessageDialog(null, "Låneanmodning er blevet oprettet", "Godkendt", JOptionPane.INFORMATION_MESSAGE, null);
