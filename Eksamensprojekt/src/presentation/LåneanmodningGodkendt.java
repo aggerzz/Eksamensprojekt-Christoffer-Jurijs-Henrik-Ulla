@@ -29,24 +29,21 @@ public class LåneanmodningGodkendt extends Application {
 			scenetitle.setFill(Color.RED);
 			grid.add(scenetitle, 0, 1, 5, 1);
 
-			Label kunde = new Label("Kundeoplysninger:");
-			kunde.setTextFill(Color.RED);
-			grid.add(kunde, 0, 2);
+//			Label kunde = new Label("Kundeoplysninger:");
+//			kunde.setTextFill(Color.RED);
+//			grid.add(kunde, 0, 2);
+//			Label bil = new Label("Biloplysninger:");
+//			bil.setTextFill(Color.RED);
+//			grid.add(bil, 0, 5);
+//			Label sælger = new Label("Sælgeroplysninger:");
+//			sælger.setTextFill(Color.RED);
+//			grid.add(sælger, 0, 8);
+//			Label aftale = new Label("Aftaleoplysninger:");
+//			aftale.setTextFill(Color.RED);
+//			grid.add(aftale, 0, 11);
 			
 			
-			Label bil = new Label("Biloplysninger:");
-			bil.setTextFill(Color.RED);
-			grid.add(bil, 0, 5);
 			
-			Label sælger = new Label("Sælgeroplysninger:");
-			sælger.setTextFill(Color.RED);
-			grid.add(sælger, 0, 8);
-			
-			Label aftale = new Label("Aftaleoplysninger:");
-			aftale.setTextFill(Color.RED);
-			grid.add(aftale, 0, 11);
-			
-
 			Button btnTilbage = new Button("Tilbage");
 			HBox hbBtnTilbage = new HBox(7);
 			hbBtnTilbage.setAlignment(Pos.TOP_LEFT);

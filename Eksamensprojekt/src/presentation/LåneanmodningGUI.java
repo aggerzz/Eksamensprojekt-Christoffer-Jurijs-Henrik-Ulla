@@ -4,10 +4,14 @@ import javax.swing.JOptionPane;
 
 import access.BankAccess;
 import access.RKIAccess;
+import domain.Kunde;
+import domain.Kundelmpl;
 import domain.Låneanmodning;
 import domain.Låneanmodninglmpl;
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -15,7 +19,10 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
@@ -187,7 +194,72 @@ public class LåneanmodningGUI extends Application {
 				}
 			});			
 
-			Scene scene = new Scene(grid, 640, 450);
+
+			Button btnOversigt = new Button("Se låneoversigt");
+			HBox hbBtnOversigt = new HBox(7);
+			hbBtnOversigt.setAlignment(Pos.TOP_LEFT);
+			hbBtnOversigt.getChildren().add(btnOversigt);
+			grid.add(hbBtnOversigt, 13, 18);
+			btnOversigt.setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent e) {
+					Kunde findKunde = new Kundelmpl();
+					findKunde.setTelefonNummer(TelefonnummerTextField.getText());
+					try {
+						FFLogic.getKunde(findKunde);
+					} catch (Exception e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+					try {						
+						// TableView matches
+						TableView<Kunde> kundeTable = new TableView<Kunde>();
+						kundeTable.setEditable(true);
+						ObservableList<Kunde> kundeliste;
+
+						kundeliste = FXCollections.observableArrayList(FFLogic.getKunde(findKunde));
+
+						TableColumn<Kunde, Integer> navn = new TableColumn<Kunde, Integer>("Fornavn");
+						navn.setCellValueFactory(new PropertyValueFactory<Kunde, Integer>("ForNavn"));
+						navn.setMinWidth(50);
+						
+						TableColumn<Kunde, Integer> efterNavn = new TableColumn<Kunde, Integer>("Efternavn");
+						efterNavn.setCellValueFactory(new PropertyValueFactory<Kunde, Integer>("EfterNavn"));
+						efterNavn.setMinWidth(50);
+						
+						TableColumn<Kunde, Integer> adresse = new TableColumn<Kunde, Integer>("Adresse");
+						adresse.setCellValueFactory(new PropertyValueFactory<Kunde, Integer>("Adresse"));
+						adresse.setMinWidth(50);
+						
+						TableColumn<Kunde, Integer> postnummer = new TableColumn<Kunde, Integer>("Postnummer");
+						postnummer.setCellValueFactory(new PropertyValueFactory<Kunde, Integer>("PostNummer"));
+						postnummer.setMinWidth(10);
+						
+						TableColumn<Kunde, Integer> by = new TableColumn<Kunde, Integer>("By");
+						by.setCellValueFactory(new PropertyValueFactory<Kunde, Integer>("By"));
+						by.setMinWidth(50);
+						
+						TableColumn<Kunde, Integer> tlfNummer = new TableColumn<Kunde, Integer>("Telefonnummer");
+						tlfNummer.setCellValueFactory(new PropertyValueFactory<Kunde, Integer>("TelefonNummer"));
+						tlfNummer.setMinWidth(50);
+						
+						TableColumn<Kunde, Integer> email = new TableColumn<Kunde, Integer>("Email");
+						email.setCellValueFactory(new PropertyValueFactory<Kunde, Integer>("Email"));
+						email.setMinWidth(50);
+						 
+						kundeTable.setItems(kundeliste);
+						kundeTable.getColumns().addAll(navn, efterNavn, adresse, postnummer, by, tlfNummer, email);
+						kundeTable.setMinSize(700, 0);
+						kundeTable.setMaxSize(700, 45);
+						grid.add(kundeTable, 10, 0, 10, 5);	
+						
+						} 
+					catch (Exception e1) {
+					}
+
+				}
+			});
+			Scene scene = new Scene(grid, 840, 650);
 			LåneanmodningStage.setScene(scene);
 			scene.getStylesheets().addAll(this.getClass().getResource("/application/application.css").toExternalForm());
 
