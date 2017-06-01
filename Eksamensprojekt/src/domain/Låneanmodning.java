@@ -8,6 +8,8 @@ import exceptions.StelnummerIkkeOplystException;
 import exceptions.LøbetidIkkeUdfyldtException;
 
 public interface Låneanmodning {
+	public double getPris() throws Exception;
+	public void setPris(double pris);
 	public String getPersonNummer() throws PersonnummerIkkeUdfyldtException;
 
 	public void setPersonNummer(String personNummer);

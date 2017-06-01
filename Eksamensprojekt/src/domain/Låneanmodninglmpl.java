@@ -15,11 +15,12 @@ public class Låneanmodninglmpl implements Låneanmodning {
 	private String stelNummer;
 	private int løbetid;
 	private double udbetaling;
+	private double pris;
 
 	public double getUdbetaling() {
 		return udbetaling;
 	}
-
+	
 	public void setUdbetaling(double udbetaling) {
 		this.udbetaling = udbetaling;
 	}
@@ -82,5 +83,13 @@ public class Låneanmodninglmpl implements Låneanmodning {
 
 	public void setLøbetid(int løbetid) {
 		this.løbetid = løbetid;
+	}
+
+	public double getPris() {
+		return pris;
+	}
+
+	public void setPris(double pris) {
+		this.pris = pris;
 	}
 }

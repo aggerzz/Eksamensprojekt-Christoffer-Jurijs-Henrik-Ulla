@@ -15,7 +15,10 @@ public class BeregnRente {
 		return rente;
 
 	}
-
+public static double beregnPrisEfterRente ;
+public double beregnPrisEfterRente(double beregnRente, double bilensPris, double udbetaling){
+	return beregnPrisEfterRente = ((bilensPris-udbetaling)*Math.pow(rente, 1));
+}
 	private void kreditværdighed(char kreditværdighed) {
 		switch (kreditværdighed) {
 		case 'A':

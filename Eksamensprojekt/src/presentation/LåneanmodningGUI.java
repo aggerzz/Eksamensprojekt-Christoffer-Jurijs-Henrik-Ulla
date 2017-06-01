@@ -38,6 +38,7 @@ import logic.BeregnRente;
 import logic.FFLogic;
 public class LåneanmodningGUI extends Application {
 	public void start(Stage LåneanmodningStage) {
+		
 		try {
 			LåneanmodningStage.setTitle("Ferrari forhandler");
 			GridPane grid = new GridPane();
@@ -162,6 +163,8 @@ public class LåneanmodningGUI extends Application {
 					BeregnRente beregnrente = new BeregnRente();
 					beregnrente.beregnRente(kreditværdighedTextField.getText().charAt(0), Double.parseDouble(rentesatsTextField.getText()), 5000000.0, Double.parseDouble(udbetalingTextField.getText()),Integer.parseInt(løbetidTextField.getText()));
 					System.out.println(beregnrente.rente + "renten");
+					beregnrente.beregnPrisEfterRente(beregnrente.rente, 5000000.0, Double.parseDouble(udbetalingTextField.getText()));
+					System.out.println(BeregnRente.beregnPrisEfterRente);
 					try {
 						logic.opretLåneanmodning(nylåneanmodning);
 						JOptionPane.showMessageDialog(null, "Låneanmodning er blevet oprettet", "Godkendt", JOptionPane.INFORMATION_MESSAGE, null);

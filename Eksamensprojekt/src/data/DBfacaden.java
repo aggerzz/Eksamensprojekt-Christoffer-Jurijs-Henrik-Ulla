@@ -87,4 +87,11 @@ public class DBfacaden {
 	public List<Sælger> findSælger(Sælger sælger) throws Exception {
 		return findSælger.findSælger(sælger);
 	}
+	// Find Lån
+		private LåneInfoDB findLån = new LåneInfoDB();
+
+		public List<Låneanmodning> findLån(Låneanmodning låneanmodning) throws Exception {
+			return findLån.findLån(låneanmodning);
+		}
+	
 }
