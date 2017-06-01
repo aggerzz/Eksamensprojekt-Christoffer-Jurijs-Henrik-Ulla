@@ -109,12 +109,12 @@ public class LåneanmodningGUI extends Application {
 			grid.add(udbetalingTextField, 1, 17);
 
 						
-			// Sælger Login
-			Label Login = new Label("Sælger login:");
-			Login.setTextFill(Color.RED);
-			grid.add(Login, 0, 19);
-			TextField loginTextField = new TextField();
-			grid.add(loginTextField, 1, 19);
+			// Sælger ID
+			Label sælgerID = new Label("Sælger id:");
+			sælgerID.setTextFill(Color.RED);
+			grid.add(sælgerID, 0, 19);
+			TextField sælgerIDTextField = new TextField();
+			grid.add(sælgerIDTextField, 1, 19);
 			
 			Button btnTilbage = new Button("Tilbage");
 			HBox hbBtnTilbage = new HBox(7);
@@ -144,7 +144,7 @@ public class LåneanmodningGUI extends Application {
 				    .or(stelNummerTextField.textProperty().isEmpty())
 				    .or(løbetidTextField.textProperty().isEmpty())
 				    .or(udbetalingTextField.textProperty().isEmpty())
-				    .or(loginTextField.textProperty().isEmpty())
+				    .or(sælgerIDTextField.textProperty().isEmpty())
 				);
 			
 			btnlåneanmodning.setOnAction(new EventHandler<ActionEvent>() {
@@ -223,7 +223,7 @@ public class LåneanmodningGUI extends Application {
 					Bil findBiler = new Billmpl();
 					findBiler.setStelNummer(stelNummerTextField.getText());
 					Sælger findSælger = new Sælgerlmpl();
-					findSælger.setLogin(loginTextField.getText());
+					findSælger.setId(Integer.parseInt(sælgerIDTextField.getText()));
 					
 					try {
 						FFLogic.getKunde(findKunde);
