@@ -1,5 +1,10 @@
 package presentation;
 
+import javax.swing.JOptionPane;
+
+import data.IdDB;
+import domain.Sælger;
+import domain.Sælgerlmpl;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -9,9 +14,14 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import logic.FFLogic;
 
 public class MenuGUI {
+	Sælger findID = new Sælgerlmpl();
+	IdDB idc = new IdDB();
+	FFLogic logic = new FFLogic();
 	public void start(Stage menuStage) {
+		
 		try {
 			menuStage.setTitle("Ferrari forhandler");
 			GridPane grid = new GridPane();
@@ -44,11 +54,18 @@ public class MenuGUI {
 			btnOpretSælger.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent e) {
+					if( LoginGUI.id0 == false){
+						JOptionPane.showMessageDialog(null, "Du har ikke rettighed til dette, kontakt salgschef");
+						hbBtnOpretSælger.setDisable(true);
+											}else{
 					SælgerGUI sælgerStage = new SælgerGUI();
 					sælgerStage.start(new Stage());
-					menuStage.hide();
+					menuStage.hide();}
 				}
 			});
+			//Disable opret sælger knap if id != 0
+		
+			
 
 			// Lån
 			Button btnLån = new Button("Opret Låneanmodning");

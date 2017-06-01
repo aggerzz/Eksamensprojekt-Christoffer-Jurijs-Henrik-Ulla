@@ -30,6 +30,10 @@ public class LoginGUI extends Application {
 	Sælger findID = new Sælgerlmpl();
 	IdDB idc = new IdDB();
 	FFLogic logic = new FFLogic();
+	public static boolean id0 = true;
+	public static boolean setID0(){
+		return id0;
+	}
 	public void start(Stage primaryStage) {
 		try {
 			primaryStage.setTitle("Ferrari forhandler");
@@ -86,7 +90,8 @@ public class LoginGUI extends Application {
 					// primaryStage.hide();
 				}
 			});
-
+			
+				
 			Scene scene = new Scene(grid, 300, 375);
 			primaryStage.setScene(scene);
 			scene.getStylesheets().addAll(this.getClass().getResource("/application/application.css").toExternalForm());
@@ -98,6 +103,9 @@ public class LoginGUI extends Application {
 
 	}
 
+
+	
+	
 	public void visData() throws Exception {
 		findID.setLogin(userTextField.getText());
 		findID.setAdgangskode(pwBox.getText());
@@ -105,5 +113,8 @@ public class LoginGUI extends Application {
 		System.out.println(findID.getLogin() + "\n" + findID.getAdgangskode());
 		System.out.println("CYKABLYAT " +  findID.getId());
 		loginController.CheckLoginInforamtion(findID);
+		if(findID.getId()!=0){
+			 id0 = false;
+			 System.out.println("id0 = false");}
 	}
 }

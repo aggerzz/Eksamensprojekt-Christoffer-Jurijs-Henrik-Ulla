@@ -33,6 +33,7 @@ public class LåneanmodningGodkendt extends Application {
 			kunde.setTextFill(Color.RED);
 			grid.add(kunde, 0, 2);
 			
+			
 			Label bil = new Label("Biloplysninger:");
 			bil.setTextFill(Color.RED);
 			grid.add(bil, 0, 5);
