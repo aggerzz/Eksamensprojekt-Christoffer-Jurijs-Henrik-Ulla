@@ -30,7 +30,6 @@ public class IdDB {
 	private void CheckID(DataAccess access, Sælger sælger)
 			throws ModelIkkeOplystException, StelnummerIkkeOplystException, ÅrgangIkkeOplystException,
 			PrisIkkeOplystException, BrugernavnIkkeOplystException, AdgangskodeIkkeOplystException {
-		// System.out.println(bil.getStelNummer());
 		try (PreparedStatement statement = access.getConnection()
 				.prepareStatement("select id from sælger where login=? and adgangskode=?");) {
 			statement.setString(1, sælger.getLogin());
@@ -41,8 +40,6 @@ public class IdDB {
 				id = rs.getInt("Id");
 			System.out.println(id);
 			sælger.setId(id);
-			// System.out.println("Antal rækker berørt : "); ATT; Morten Vi vil
-			// her gerne have pris på bilen ud af databasen
 		} catch (SQLException e) {
 			throw new RuntimeException();
 		}

@@ -1,9 +1,5 @@
 package presentation;
 
-import javax.swing.JOptionPane;
-
-import domain.Bil;
-import domain.Billmpl;
 import domain.Kunde;
 import domain.Kundelmpl;
 import javafx.application.Application;
@@ -77,7 +73,6 @@ public class SøgKundeGUI extends Application {
 					try {
 						FFLogic.getKunde(findKunde);
 					} catch (Exception e2) {
-						// TODO Auto-generated catch block
 						e2.printStackTrace();
 					}
 					try {

@@ -46,22 +46,4 @@ public class LoginDB {
 			throw new RuntimeException("Fejl", e);
 		}
 	}
-
-	// public void CheckID() {
-	// DataAccess access = new DataAccess();
-	// try (
-	// PreparedStatement statement = access.getConnection()
-	// .prepareStatement("select id from sælger where login=? and
-	// adgangskode=?");) {
-	// System.out.println("Checker id på sælger");
-	// statement.setString(1, login);
-	// statement.setString(2, adgangskode);
-	// ResultSet rs = statement.executeQuery();
-	// if(rs.next())
-	// id = rs.getInt("id");
-	// System.out.println(id);
-	//
-	// } catch (SQLException e) {
-	// throw new RuntimeException("Fejl", e);
-	// }
 }

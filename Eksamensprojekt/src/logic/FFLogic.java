@@ -18,13 +18,10 @@ import exceptions.EmailIkkeOplystException;
 import exceptions.FodselsdagIkkeOplystException;
 import exceptions.FornavnIkkeOplystException;
 import exceptions.KreditværdighedIkkeUdfyldtException;
-import exceptions.LøbetidIkkeUdfyldtException;
 import exceptions.PostnummerIkkeOplystException;
 import exceptions.PrisIkkeOplystException;
-import exceptions.RentesatsIkkeUdfyldtException;
 import exceptions.TelefonnummerIkkeOplystException;
 import exceptions.ModelIkkeOplystException;
-import exceptions.PersonnummerIkkeUdfyldtException;
 import exceptions.StelnummerIkkeOplystException;
 import exceptions.ÅrgangIkkeOplystException;
 

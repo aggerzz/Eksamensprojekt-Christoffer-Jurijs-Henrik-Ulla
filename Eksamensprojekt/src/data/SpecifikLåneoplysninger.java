@@ -13,8 +13,6 @@ public class SpecifikLåneoplysninger {
 	public double MånedligYdelse;
 	public int løbetid;
 	public double udbetaling;
-//	public String personNummer;
-	
 	
 	public void findSpecifikLån(Låneanmodning låneanmodning) throws Exception {
 		try (DataAccess access = new DataAccess()) {
@@ -39,12 +37,10 @@ public class SpecifikLåneoplysninger {
 			if (rs.next())
 				Rentesats = rs.getDouble("rentesats");
 			PrisEfterRente = rs.getDouble("PrisEfterRente");
-//			personNummer = rs.getString("PERSONNUMMER");
 			MånedligYdelse = rs.getDouble("MånedligYdelse");
 					løbetid = rs.getInt("løbetid");
 					udbetaling = rs.getDouble("udbetaling");
 					
-//			låneanmodning.setPersonNummer(personNummer);
 			låneanmodning.setRentesats(Rentesats);
 			låneanmodning.setPrisEfterRente(PrisEfterRente);
 			låneanmodning.setMånedligYdelse(MånedligYdelse);

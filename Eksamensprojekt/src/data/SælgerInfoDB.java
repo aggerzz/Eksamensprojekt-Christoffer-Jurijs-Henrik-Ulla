@@ -5,9 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import domain.Bil;
-import domain.Billmpl;
 import domain.Sælger;
 import domain.Sælgerlmpl;
 import exceptions.BrugernavnIkkeOplystException;

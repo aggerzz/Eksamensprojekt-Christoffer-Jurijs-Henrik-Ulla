@@ -18,8 +18,7 @@ public class TestLåneanmodning {
 
 	@Test
 	public void testOprettelseAfNyLåneanmodning()
-			throws StelnummerIkkeOplystException, KreditværdighedIkkeUdfyldtException, PersonnummerIkkeUdfyldtException,
-			TelefonnummerIkkeOplystException, RentesatsIkkeUdfyldtException, LøbetidIkkeUdfyldtException {
+			throws Exception {
 		Låneanmodning nylåneanmodning = new Låneanmodninglmpl();
 		FFLogic logic = new FFLogic();
 
@@ -30,7 +29,12 @@ public class TestLåneanmodning {
 		nylåneanmodning.setStelNummer("CC3483J");
 		nylåneanmodning.setTelefonNummer("34235632");
 		nylåneanmodning.setUdbetaling(456465);
-
+		nylåneanmodning.setMånedligYdelse(0);
+		nylåneanmodning.setPris(0);
+		nylåneanmodning.setPrisEfterRente(0);
+		nylåneanmodning.setSælgerID(0);
+		nylåneanmodning.setUdbetaling(0);
+		
 		logic.opretLåneanmodning(nylåneanmodning);
 	}
 

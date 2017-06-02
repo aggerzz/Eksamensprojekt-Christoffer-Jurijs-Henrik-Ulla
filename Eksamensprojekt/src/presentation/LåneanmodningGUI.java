@@ -205,10 +205,8 @@ public class LåneanmodningGUI extends Application {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
 					}
-					System.out.println(BeregnRente.beregnPrisEfterRente);
 					beregnrente.beregnMånedligYdelse(BeregnRente.beregnPrisEfterRente,
 							(Integer.parseInt(løbetidTextField.getText())));
-					System.out.println(BeregnRente.beregnMånedligYdelse);
 					nylåneanmodning.setSælgerID(Integer.parseInt(sælgerIDTextField.getText()));
 					nylåneanmodning.setPersonNummer(cprNummerTextField.getText());
 					nylåneanmodning.setTelefonNummer(TelefonnummerTextField.getText());
@@ -220,10 +218,8 @@ public class LåneanmodningGUI extends Application {
 					try {
 						nylåneanmodning.setPris(Double.parseDouble(findBil.getPris()));
 					} catch (NumberFormatException e3) {
-						// TODO Auto-generated catch block
 						e3.printStackTrace();
 					} catch (PrisIkkeOplystException e3) {
-						// TODO Auto-generated catch block
 						e3.printStackTrace();
 					}
 					nylåneanmodning.setLøbetid(Integer.parseInt(løbetidTextField.getText()));
@@ -233,9 +229,6 @@ public class LåneanmodningGUI extends Application {
 						logic.opretLåneanmodning(nylåneanmodning);
 						JOptionPane.showMessageDialog(null, "Låneanmodning er blevet oprettet", "Godkendt",
 								JOptionPane.INFORMATION_MESSAGE, null);
-						// LåneanmodningGodkendt LånGodkendt = new
-						// LåneanmodningGodkendt();
-
 					} catch (Exception e1) {
 						JOptionPane.showMessageDialog(null, e1, "Noget gik galt", JOptionPane.ERROR_MESSAGE, null);
 					}
@@ -511,36 +504,6 @@ public class LåneanmodningGUI extends Application {
 						// TODO Auto-generated catch block
 						e4.printStackTrace();
 					}
-//					try {
-						try {
-							//System.out.println(findSælger.getId());
-							//System.out.println(findSælger.getForNavn());
-							//System.out.println(findSælger.getEfterNavn());
-							//System.out.println(findKunde.getForNavn());
-							//System.out.println(findKunde.getEfterNavn());
-							//System.out.println(findLån.getMånedligYdelse());
-							//System.out.println(findLån.getRentesats());
-							//System.out.println(findLån.getPrisEfterRente());
-							//System.out.println(findLån.getLøbetid());
-							//System.out.println(findLån.getUdbetaling());
-							//System.out.println(findBil.getStelNummer());
-							//System.out.println(findBil.getPris());
-							
-						} catch (Exception e2) {
-							// TODO Auto-generated catch block
-							e2.printStackTrace();
-						}
-//					} catch (EfternavnIkkeOplystException e1) {
-//						// TODO Auto-generated catch block
-//						e1.printStackTrace();
-//					}
-					
-					
-					//try {
-//						findKunde.getForNavn();
-//						findKunde.getEfterNavn();
-//						findKunde.getTelefonNummer();
-						
 
 				try {
 						try {

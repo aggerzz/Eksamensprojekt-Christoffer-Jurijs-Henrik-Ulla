@@ -1,7 +1,6 @@
 package access;
 
 import com.ferrari.finances.dk.rki.CreditRator;
-
 import domain.Låneanmodning;
 import domain.Låneanmodninglmpl;
 
@@ -18,8 +17,6 @@ public class RKIAccess extends Thread {
 	@Override
 	public void run() {
 		getKreditværdighed();
-		// TODO Auto-generated method stub
-
 	}
 
 	//

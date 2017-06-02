@@ -1,12 +1,8 @@
 package presentation;
 
-import javax.swing.JOptionPane;
 
-import data.GetBilDB;
 import domain.Bil;
 import domain.Billmpl;
-import domain.Kunde;
-import domain.Kundelmpl;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,7 +25,6 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import logic.FFLogic;
-import data.LoginDB;
 
 public class SøgBilGUI extends Application {
 	public void start(Stage SøgBilStage) {
@@ -72,30 +67,13 @@ public class SøgBilGUI extends Application {
 			hbBtnSøgKunde.getChildren().add(btnSøgKunde);
 			grid.add(hbBtnSøgKunde, 15, 15);
 			btnSøgKunde.setOnAction(new EventHandler<ActionEvent>() {
-				@Override
-				// public void handle(ActionEvent e) {
-				// FFLogic logic = new FFLogic();
-				// Bil findBil = new Billmpl();
-				// findBil.setStelNummer(stelnummerTextField.getText());
-				// try {
-				// logic.findBil(findBil);
-				// JOptionPane.showMessageDialog(null,"bilens pris er: " +
-				// findBil.getPris(), "Godkendt",
-				// JOptionPane.INFORMATION_MESSAGE, null);
-				// } catch (Exception e1) {
-				// JOptionPane.showMessageDialog(null, e1, "Noget gik galt",
-				// JOptionPane.ERROR_MESSAGE, null);
-				// }
-				//
-				// }
-				// });
+
 				public void handle(ActionEvent e) {
 					Bil findBiler = new Billmpl();
 					findBiler.setStelNummer(stelnummerTextField.getText());
 					try {
 						FFLogic.getBil(findBiler);
 					} catch (Exception e2) {
-						// TODO Auto-generated catch block
 						e2.printStackTrace();
 					}
 					try {

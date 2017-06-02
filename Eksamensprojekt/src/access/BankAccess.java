@@ -1,10 +1,7 @@
 package access;
 
-import logic.BeregnRente;
 import com.ferrari.finances.dk.bank.InterestRate;
-
 import domain.Låneanmodning;
-import domain.Låneanmodninglmpl;
 
 public class BankAccess implements Runnable {
 
@@ -18,7 +15,6 @@ public class BankAccess implements Runnable {
 	public void run() {
 		HentRenteVurdering();
 		låneanmodning.setRentesats(HentRenteVurdering());
-
 	}
 
 	public double HentRenteVurdering() {
@@ -31,5 +27,4 @@ public class BankAccess implements Runnable {
 	public Låneanmodning getLaaneAnmodning() {
 		return låneanmodning;
 	}
-
 }

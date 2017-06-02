@@ -5,12 +5,6 @@ import java.sql.SQLException;
 
 import data.DataAccess;
 import domain.Låneanmodning;
-import exceptions.KreditværdighedIkkeUdfyldtException;
-import exceptions.LøbetidIkkeUdfyldtException;
-import exceptions.PersonnummerIkkeUdfyldtException;
-import exceptions.RentesatsIkkeUdfyldtException;
-import exceptions.StelnummerIkkeOplystException;
-import exceptions.TelefonnummerIkkeOplystException;
 
 public class OpretLåneanmodningDB {
 	public void opretLåneanmodning(Låneanmodning låneanmodning) throws Exception {

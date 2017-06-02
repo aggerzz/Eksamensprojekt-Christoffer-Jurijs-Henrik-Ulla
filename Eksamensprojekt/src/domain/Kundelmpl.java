@@ -21,8 +21,8 @@ public class Kundelmpl implements Kunde {
 	private String email;
 
 	public String getForNavn() throws FornavnIkkeOplystException {
-		// if(forNavn.isEmpty())
-		// throw new FornavnIkkeOplystException();
+		if (forNavn.isEmpty())
+			throw new FornavnIkkeOplystException();
 		return forNavn;
 	}
 

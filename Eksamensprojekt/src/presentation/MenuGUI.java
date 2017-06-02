@@ -1,8 +1,6 @@
 package presentation;
 
 import javax.swing.JOptionPane;
-import javax.swing.plaf.synth.SynthSpinnerUI;
-
 import data.IdDB;
 import domain.Sælger;
 import domain.Sælgerlmpl;
