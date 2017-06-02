@@ -24,7 +24,7 @@ import logic.FFLogic;
 
 public class BilGUI extends Application {
 	public void start(Stage BilStage) {
-		//Bil
+		// Bil
 		try {
 			BilStage.setTitle("Ferrari forhandler");
 			GridPane grid = new GridPane();
@@ -57,7 +57,7 @@ public class BilGUI extends Application {
 			grid.add(årgang, 0, 3);
 			TextField årgangTextField = new TextField();
 			grid.add(årgangTextField, 1, 3);
-			
+
 			// Pris
 			Label pris = new Label("Pris:");
 			pris.setTextFill(Color.RED);
@@ -65,8 +65,6 @@ public class BilGUI extends Application {
 			TextField prisTextField = new TextField();
 			grid.add(prisTextField, 1, 4);
 
-			
-			
 			Button btnTilbage = new Button("Tilbage");
 			HBox hbBtnTilbage = new HBox(7);
 			hbBtnTilbage.setAlignment(Pos.TOP_LEFT);
@@ -80,7 +78,6 @@ public class BilGUI extends Application {
 					BilStage.hide();
 				}
 			});
-
 
 			Button btnOpretKunde1 = new Button("Opret bil");
 			HBox hbBtnOpretkunde1 = new HBox(10);
@@ -97,10 +94,10 @@ public class BilGUI extends Application {
 					nyBil.setÅrgang(årgangTextField.getText());
 					nyBil.setPris(prisTextField.getText());
 
-					
 					try {
 						logic.opretBil(nyBil);
-						JOptionPane.showMessageDialog(null, "Bilen er nu oprettet", "Godkendt", JOptionPane.INFORMATION_MESSAGE, null);
+						JOptionPane.showMessageDialog(null, "Bilen er nu oprettet", "Godkendt",
+								JOptionPane.INFORMATION_MESSAGE, null);
 					} catch (Exception e1) {
 						JOptionPane.showMessageDialog(null, e1, "Noget gik galt", JOptionPane.ERROR_MESSAGE, null);
 					}

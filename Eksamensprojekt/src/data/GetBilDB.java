@@ -12,12 +12,14 @@ import exceptions.StelnummerIkkeOplystException;
 import exceptions.ÅrgangIkkeOplystException;
 
 public class GetBilDB {
-	
+
 	public String bilensPris;
+	public String Stelnummer;
+	
 
 	public void findBil(Bil bil) throws ModelIkkeOplystException, StelnummerIkkeOplystException,
 			ÅrgangIkkeOplystException, PrisIkkeOplystException {
-				try (DataAccess access = new DataAccess()) {
+		try (DataAccess access = new DataAccess()) {
 			try {
 				findBil(access, bil);
 				access.commit();
@@ -28,20 +30,22 @@ public class GetBilDB {
 		}
 	}
 
-	private void findBil(DataAccess access, Bil bil) throws ModelIkkeOplystException,
-			StelnummerIkkeOplystException, ÅrgangIkkeOplystException, PrisIkkeOplystException {
+	private void findBil(DataAccess access, Bil bil) throws ModelIkkeOplystException, StelnummerIkkeOplystException,
+			ÅrgangIkkeOplystException, PrisIkkeOplystException {
 		System.out.println(bil.getStelNummer());
 		try (PreparedStatement statement = access.getConnection()
-				.prepareStatement("SELECT pris FROM BIL WHERE  STELNUMMER = ?");) {
+				.prepareStatement("SELECT * FROM BIL WHERE  STELNUMMER = ?");) {
 			statement.setString(1, bil.getStelNummer());
-			
+
 			ResultSet rs = statement.executeQuery();
-			
-			if(rs.next())
+
+			if (rs.next())
 				bilensPris = rs.getString("Pris");
-			
+				Stelnummer = rs.getString("Stelnummer");
+
 			bil.setPris(bilensPris);
-//			System.out.println("Antal rækker berørt : "); ATT; Morten Vi vil her gerne have pris på bilen ud af databasen
+			bil.setStelNummer(Stelnummer);
+			
 		} catch (SQLException e) {
 			throw new RuntimeException();
 		}

@@ -28,7 +28,8 @@ public class LåneInfoDB {
 		return lånliste;
 	}
 
-	public void findLån(DataAccess access, List<Låneanmodning> lånliste, Låneanmodning låneanmodning) throws TelefonnummerIkkeOplystException, StelnummerIkkeOplystException {
+	public void findLån(DataAccess access, List<Låneanmodning> lånliste, Låneanmodning låneanmodning)
+			throws TelefonnummerIkkeOplystException, StelnummerIkkeOplystException {
 		try (PreparedStatement statement = access.getConnection()
 				.prepareStatement("SELECT * FROM LÅNEANMODNING where telefonnummer = ?;");) {
 
@@ -48,7 +49,6 @@ public class LåneInfoDB {
 				findlån.setPris(rs.getDouble("PRIS"));
 				findlån.setLøbetid(rs.getInt("LØBETID"));
 				findlån.setUdbetaling(rs.getDouble("UDBETALING"));
-
 
 				lånliste.add(findlån);
 			}

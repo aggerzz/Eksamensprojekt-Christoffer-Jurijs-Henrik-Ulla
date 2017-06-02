@@ -23,7 +23,7 @@ public class Låneanmodninglmpl implements Låneanmodning {
 	public double getUdbetaling() {
 		return udbetaling;
 	}
-	
+
 	public void setUdbetaling(double udbetaling) {
 		this.udbetaling = udbetaling;
 	}

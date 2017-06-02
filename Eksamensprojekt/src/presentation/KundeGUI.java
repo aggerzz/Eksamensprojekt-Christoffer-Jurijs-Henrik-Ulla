@@ -91,7 +91,7 @@ public class KundeGUI extends Application {
 			grid.add(email, 0, 8);
 			TextField emailTextField = new TextField();
 			grid.add(emailTextField, 1, 8);
-			
+
 			Button btnTilbage = new Button("Tilbage");
 			HBox hbBtnTilbage = new HBox(7);
 			hbBtnTilbage.setAlignment(Pos.TOP_LEFT);
@@ -105,7 +105,6 @@ public class KundeGUI extends Application {
 					KundeStage.hide();
 				}
 			});
-
 
 			Button btnOpretKunde = new Button("Opret kunde");
 			HBox hbBtnOpretkunde = new HBox(10);
@@ -128,7 +127,8 @@ public class KundeGUI extends Application {
 
 					try {
 						logic.opretKunde(nyKunde);
-						JOptionPane.showMessageDialog(null, "Kunde er nu oprettet", "Godkendt", JOptionPane.INFORMATION_MESSAGE, null);
+						JOptionPane.showMessageDialog(null, "Kunde er nu oprettet", "Godkendt",
+								JOptionPane.INFORMATION_MESSAGE, null);
 					} catch (Exception e1) {
 						JOptionPane.showMessageDialog(null, e1, "Noget gik galt", JOptionPane.ERROR_MESSAGE, null);
 					}

@@ -12,9 +12,15 @@ import domain.Låneanmodning;
 import domain.Låneanmodninglmpl;
 import domain.Sælger;
 import domain.Sælgerlmpl;
+import exceptions.EfternavnIkkeOplystException;
+import exceptions.FornavnIkkeOplystException;
+import exceptions.LøbetidIkkeUdfyldtException;
 import exceptions.ModelIkkeOplystException;
+import exceptions.PersonnummerIkkeUdfyldtException;
 import exceptions.PrisIkkeOplystException;
+import exceptions.RentesatsIkkeUdfyldtException;
 import exceptions.StelnummerIkkeOplystException;
+import exceptions.TelefonnummerIkkeOplystException;
 import exceptions.ÅrgangIkkeOplystException;
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
@@ -40,9 +46,21 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import logic.BeregnRente;
 import logic.FFLogic;
+import logic.exportCSV;
+
 public class LåneanmodningGUI extends Application {
+	Bil findBil = new Billmpl();
+	Bil findBiler = new Billmpl();
+	Låneanmodning nylåneanmodning = new Låneanmodninglmpl();
+	Kunde findKunde = new Kundelmpl();
+	Kunde kunde = new Kundelmpl();
+	Sælger findSælger = new Sælgerlmpl();
+	Låneanmodning findLån = new Låneanmodninglmpl();
+	FFLogic logic = new FFLogic();
+	BeregnRente beregnrente = new BeregnRente();
+
 	public void start(Stage LåneanmodningStage) {
-		
+
 		try {
 			LåneanmodningStage.setTitle("Ferrari forhandler");
 			GridPane grid = new GridPane();
@@ -105,7 +123,7 @@ public class LåneanmodningGUI extends Application {
 			grid.add(løbetid, 0, 15);
 			TextField løbetidTextField = new TextField();
 			grid.add(løbetidTextField, 1, 15);
-			
+
 			// Udbetaling
 			Label udbetaling = new Label("Udbetaling:");
 			udbetaling.setTextFill(Color.RED);
@@ -113,14 +131,13 @@ public class LåneanmodningGUI extends Application {
 			TextField udbetalingTextField = new TextField();
 			grid.add(udbetalingTextField, 1, 17);
 
-						
 			// Sælger ID
 			Label sælgerID = new Label("Sælger id:");
 			sælgerID.setTextFill(Color.RED);
 			grid.add(sælgerID, 0, 19);
 			TextField sælgerIDTextField = new TextField();
 			grid.add(sælgerIDTextField, 1, 19);
-			
+
 			Button btnTilbage = new Button("Tilbage");
 			HBox hbBtnTilbage = new HBox(7);
 			hbBtnTilbage.setAlignment(Pos.TOP_LEFT);
@@ -135,30 +152,19 @@ public class LåneanmodningGUI extends Application {
 				}
 			});
 
-			Button btnlåneanmodning = new Button("Opret");
-			HBox hbBtnlåneanmodning = new HBox(10);
-			hbBtnlåneanmodning.setAlignment(Pos.TOP_LEFT);
-			hbBtnlåneanmodning.getChildren().add(btnlåneanmodning);
-			grid.add(hbBtnlåneanmodning, 15, 15);
-			
-			btnlåneanmodning.disableProperty().bind(
-				    Bindings.isEmpty(TelefonnummerTextField.textProperty())
-				    .or(TelefonnummerTextField.lengthProperty().isNotEqualTo(8))
-				    .or(kreditværdighedTextField.textProperty().isEmpty())
-				    .or(rentesatsTextField.textProperty().isEmpty())
-				    .or(stelNummerTextField.textProperty().isEmpty())
-				    .or(løbetidTextField.textProperty().isEmpty())
-				    .or(udbetalingTextField.textProperty().isEmpty())
-				    .or(sælgerIDTextField.textProperty().isEmpty())
-				);
-			
-			btnlåneanmodning.setOnAction(new EventHandler<ActionEvent>() {
+			Button btnOpret = new Button("Opret");
+			HBox hbBtnOpret = new HBox(10);
+			hbBtnOpret.setAlignment(Pos.TOP_LEFT);
+			hbBtnOpret.getChildren().add(btnOpret);
+			grid.add(hbBtnOpret, 15, 15);
+
+			btnOpret.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent e) {
-					FFLogic logic = new FFLogic();
-					BeregnRente beregnrente = new BeregnRente();
-					Bil findBil = new Billmpl();
+					findKunde.setTelefonNummer(TelefonnummerTextField.getText());
 					findBil.setStelNummer(stelNummerTextField.getText());
+					findSælger.setId(Integer.parseInt(sælgerIDTextField.getText()));
+
 					try {
 						logic.findBil(findBil);
 					} catch (ModelIkkeOplystException e4) {
@@ -175,10 +181,12 @@ public class LåneanmodningGUI extends Application {
 						e4.printStackTrace();
 					}
 
-					
 					try {
-						
-						beregnrente.beregnRente(kreditværdighedTextField.getText().charAt(0), Double.parseDouble(rentesatsTextField.getText()),Double.parseDouble(findBil.getPris()), Double.parseDouble(udbetalingTextField.getText()),Integer.parseInt(løbetidTextField.getText()));
+
+						beregnrente.beregnRente(kreditværdighedTextField.getText().charAt(0),
+								Double.parseDouble(rentesatsTextField.getText()), Double.parseDouble(findBil.getPris()),
+								Double.parseDouble(udbetalingTextField.getText()),
+								Integer.parseInt(løbetidTextField.getText()));
 					} catch (NumberFormatException e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
@@ -188,7 +196,8 @@ public class LåneanmodningGUI extends Application {
 					}
 					System.out.println(beregnrente.rente + "renten");
 					try {
-						beregnrente.beregnPrisEfterRente(beregnrente.rente, Double.parseDouble(findBil.getPris()), Double.parseDouble(udbetalingTextField.getText()));
+						beregnrente.beregnPrisEfterRente(beregnrente.rente, Double.parseDouble(findBil.getPris()),
+								Double.parseDouble(udbetalingTextField.getText()));
 					} catch (NumberFormatException e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
@@ -197,9 +206,9 @@ public class LåneanmodningGUI extends Application {
 						e2.printStackTrace();
 					}
 					System.out.println(BeregnRente.beregnPrisEfterRente);
-					beregnrente.beregnMånedligYdelse(BeregnRente.beregnPrisEfterRente, (Integer.parseInt(løbetidTextField.getText())));
+					beregnrente.beregnMånedligYdelse(BeregnRente.beregnPrisEfterRente,
+							(Integer.parseInt(løbetidTextField.getText())));
 					System.out.println(BeregnRente.beregnMånedligYdelse);
-					Låneanmodning nylåneanmodning = new Låneanmodninglmpl();
 					nylåneanmodning.setSælgerID(Integer.parseInt(sælgerIDTextField.getText()));
 					nylåneanmodning.setPersonNummer(cprNummerTextField.getText());
 					nylåneanmodning.setTelefonNummer(TelefonnummerTextField.getText());
@@ -219,13 +228,14 @@ public class LåneanmodningGUI extends Application {
 					}
 					nylåneanmodning.setLøbetid(Integer.parseInt(løbetidTextField.getText()));
 					nylåneanmodning.setUdbetaling(Double.parseDouble(udbetalingTextField.getText()));
-					
-					
+
 					try {
 						logic.opretLåneanmodning(nylåneanmodning);
-						JOptionPane.showMessageDialog(null, "Låneanmodning er blevet oprettet", "Godkendt", JOptionPane.INFORMATION_MESSAGE, null);
-						LåneanmodningGodkendt LånGodkendt = new LåneanmodningGodkendt();
-						
+						JOptionPane.showMessageDialog(null, "Låneanmodning er blevet oprettet", "Godkendt",
+								JOptionPane.INFORMATION_MESSAGE, null);
+						// LåneanmodningGodkendt LånGodkendt = new
+						// LåneanmodningGodkendt();
+
 					} catch (Exception e1) {
 						JOptionPane.showMessageDialog(null, e1, "Noget gik galt", JOptionPane.ERROR_MESSAGE, null);
 					}
@@ -237,13 +247,10 @@ public class LåneanmodningGUI extends Application {
 			hbBtnFindKreditværdighed.setAlignment(Pos.TOP_LEFT);
 			hbBtnFindKreditværdighed.getChildren().add(btnFindKreditværdighed);
 			grid.add(hbBtnFindKreditværdighed, 0, 4);
-			
-			btnFindKreditværdighed.disableProperty().bind(
-				    Bindings.isEmpty(cprNummerTextField.textProperty())
-				    .or(cprNummerTextField.lengthProperty().isNotEqualTo(10))
-				);
-			
-			
+
+			btnFindKreditværdighed.disableProperty().bind(Bindings.isEmpty(cprNummerTextField.textProperty())
+					.or(cprNummerTextField.lengthProperty().isNotEqualTo(10)));
+
 			btnFindKreditværdighed.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent e) {
@@ -259,14 +266,12 @@ public class LåneanmodningGUI extends Application {
 						double renteAfrunding = (double) Math.round(låneanmodning.getRentesats() * 100.0) / 100.0;
 						rentesatsTextField.setText((Double.toString(renteAfrunding)));
 
-
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
 
 				}
-			});			
-
+			});
 
 			Button btnOversigt = new Button("Se låneoversigt");
 			HBox hbBtnOversigt = new HBox(7);
@@ -276,86 +281,99 @@ public class LåneanmodningGUI extends Application {
 			btnOversigt.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent e) {
-					Kunde findKunde = new Kundelmpl();
+
 					findKunde.setTelefonNummer(TelefonnummerTextField.getText());
-					Bil findBiler = new Billmpl();
+
 					findBiler.setStelNummer(stelNummerTextField.getText());
-					Sælger findSælger = new Sælgerlmpl();
+
 					findSælger.setId(Integer.parseInt(sælgerIDTextField.getText()));
-					Låneanmodning findLån = new Låneanmodninglmpl();
+
 					findLån.setTelefonNummer(TelefonnummerTextField.getText());
-					
+
 					try {
-						FFLogic.getKunde(findKunde);
-						FFLogic.getBil(findBiler);
-						FFLogic.getSælger(findSælger);
+
 					} catch (Exception e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
 					}
-					try {						
+					try {
 						// TableView matches låneoversigt
-						
+
 						TableView<Låneanmodning> lånTable = new TableView<Låneanmodning>();
 						lånTable.setEditable(true);
 						ObservableList<Låneanmodning> lånliste;
 
 						lånliste = FXCollections.observableArrayList(FFLogic.getLån(findLån));
 
-						TableColumn<Låneanmodning, Integer> sælgerID = new TableColumn<Låneanmodning, Integer>("Sælgerid");
+						TableColumn<Låneanmodning, Integer> sælgerID = new TableColumn<Låneanmodning, Integer>(
+								"Sælgerid");
 						sælgerID.setCellValueFactory(new PropertyValueFactory<Låneanmodning, Integer>("SælgerID"));
 						sælgerID.setMinWidth(50);
-						
-						TableColumn<Låneanmodning, Integer> personNummer = new TableColumn<Låneanmodning, Integer>("Personnummer");
-						personNummer.setCellValueFactory(new PropertyValueFactory<Låneanmodning, Integer>("PersonNummer"));
+
+						TableColumn<Låneanmodning, Integer> personNummer = new TableColumn<Låneanmodning, Integer>(
+								"Personnummer");
+						personNummer
+								.setCellValueFactory(new PropertyValueFactory<Låneanmodning, Integer>("PersonNummer"));
 						personNummer.setMinWidth(50);
-						
-						TableColumn<Låneanmodning, Integer> tlfNummer = new TableColumn<Låneanmodning, Integer>("Telefonnummer");
-						tlfNummer.setCellValueFactory(new PropertyValueFactory<Låneanmodning, Integer>("TelefonNummer"));
+
+						TableColumn<Låneanmodning, Integer> tlfNummer = new TableColumn<Låneanmodning, Integer>(
+								"Telefonnummer");
+						tlfNummer
+								.setCellValueFactory(new PropertyValueFactory<Låneanmodning, Integer>("TelefonNummer"));
 						tlfNummer.setMinWidth(50);
-						
-						TableColumn<Låneanmodning, Integer> kreditværdighed = new TableColumn<Låneanmodning, Integer>("Kreditværdighed");
-						kreditværdighed.setCellValueFactory(new PropertyValueFactory<Låneanmodning, Integer>("Kreditværdighed"));
+
+						TableColumn<Låneanmodning, Integer> kreditværdighed = new TableColumn<Låneanmodning, Integer>(
+								"Kreditværdighed");
+						kreditværdighed.setCellValueFactory(
+								new PropertyValueFactory<Låneanmodning, Integer>("Kreditværdighed"));
 						kreditværdighed.setMinWidth(50);
-						
-						TableColumn<Låneanmodning, Integer> rentesats = new TableColumn<Låneanmodning, Integer>("Rentesats");
+
+						TableColumn<Låneanmodning, Integer> rentesats = new TableColumn<Låneanmodning, Integer>(
+								"Rentesats");
 						rentesats.setCellValueFactory(new PropertyValueFactory<Låneanmodning, Integer>("Rentesats"));
 						rentesats.setMinWidth(10);
-						
-						TableColumn<Låneanmodning, Integer> månedligYdelse = new TableColumn<Låneanmodning, Integer>("Månedlig ydelse");
-						månedligYdelse.setCellValueFactory(new PropertyValueFactory<Låneanmodning, Integer>("MånedligYdelse"));
+
+						TableColumn<Låneanmodning, Integer> månedligYdelse = new TableColumn<Låneanmodning, Integer>(
+								"Månedlig ydelse");
+						månedligYdelse.setCellValueFactory(
+								new PropertyValueFactory<Låneanmodning, Integer>("MånedligYdelse"));
 						månedligYdelse.setMinWidth(50);
-						
-						
-						TableColumn<Låneanmodning, Integer> PrisEfterRente = new TableColumn<Låneanmodning, Integer>("Pris efter rente");
-						PrisEfterRente.setCellValueFactory(new PropertyValueFactory<Låneanmodning, Integer>("PrisEfterRente"));
+
+						TableColumn<Låneanmodning, Integer> PrisEfterRente = new TableColumn<Låneanmodning, Integer>(
+								"Pris efter rente");
+						PrisEfterRente.setCellValueFactory(
+								new PropertyValueFactory<Låneanmodning, Integer>("PrisEfterRente"));
 						PrisEfterRente.setMinWidth(50);
-						 
-						TableColumn<Låneanmodning, Integer> stelNummer = new TableColumn<Låneanmodning, Integer>("Stelnummer");
+
+						TableColumn<Låneanmodning, Integer> stelNummer = new TableColumn<Låneanmodning, Integer>(
+								"Stelnummer");
 						stelNummer.setCellValueFactory(new PropertyValueFactory<Låneanmodning, Integer>("StelNummer"));
 						stelNummer.setMinWidth(50);
-						
-						TableColumn<Låneanmodning, Integer> pris = new TableColumn<Låneanmodning, Integer>("Bilens pris");
+
+						TableColumn<Låneanmodning, Integer> pris = new TableColumn<Låneanmodning, Integer>(
+								"Bilens pris");
 						pris.setCellValueFactory(new PropertyValueFactory<Låneanmodning, Integer>("Pris"));
 						pris.setMinWidth(50);
-						
-						TableColumn<Låneanmodning, Integer> løbeTid = new TableColumn<Låneanmodning, Integer>("Løbetid");
+
+						TableColumn<Låneanmodning, Integer> løbeTid = new TableColumn<Låneanmodning, Integer>(
+								"Løbetid");
 						løbeTid.setCellValueFactory(new PropertyValueFactory<Låneanmodning, Integer>("Løbetid"));
 						løbeTid.setMinWidth(50);
-						
-						TableColumn<Låneanmodning, Integer> udbetaling = new TableColumn<Låneanmodning, Integer>("Udbetaling");
+
+						TableColumn<Låneanmodning, Integer> udbetaling = new TableColumn<Låneanmodning, Integer>(
+								"Udbetaling");
 						udbetaling.setCellValueFactory(new PropertyValueFactory<Låneanmodning, Integer>("Udbetaling"));
 						udbetaling.setMinWidth(50);
 						lånTable.setItems(lånliste);
-						lånTable.getColumns().addAll(sælgerID, personNummer, tlfNummer, kreditværdighed, rentesats, månedligYdelse, PrisEfterRente, stelNummer, pris, løbeTid, udbetaling);
+						lånTable.getColumns().addAll(sælgerID, personNummer, tlfNummer, kreditværdighed, rentesats,
+								månedligYdelse, PrisEfterRente, stelNummer, pris, løbeTid, udbetaling);
 						lånTable.setMinSize(700, 0);
 						lånTable.setMaxSize(700, 80);
-						grid.add(lånTable, 10, 10, 10, 5);	
-						
-						} 
-					catch (Exception e1) {
+						grid.add(lånTable, 10, 10, 10, 5);
+
+					} catch (Exception e1) {
 					}
-					try {						
+					try {
 						// TableView matches kunde
 						TableView<Kunde> kundeTable = new TableView<Kunde>();
 						kundeTable.setEditable(true);
@@ -366,41 +384,40 @@ public class LåneanmodningGUI extends Application {
 						TableColumn<Kunde, Integer> navn = new TableColumn<Kunde, Integer>("Fornavn");
 						navn.setCellValueFactory(new PropertyValueFactory<Kunde, Integer>("ForNavn"));
 						navn.setMinWidth(50);
-						
+
 						TableColumn<Kunde, Integer> efterNavn = new TableColumn<Kunde, Integer>("Efternavn");
 						efterNavn.setCellValueFactory(new PropertyValueFactory<Kunde, Integer>("EfterNavn"));
 						efterNavn.setMinWidth(50);
-						
+
 						TableColumn<Kunde, Integer> adresse = new TableColumn<Kunde, Integer>("Adresse");
 						adresse.setCellValueFactory(new PropertyValueFactory<Kunde, Integer>("Adresse"));
 						adresse.setMinWidth(50);
-						
+
 						TableColumn<Kunde, Integer> postnummer = new TableColumn<Kunde, Integer>("Postnummer");
 						postnummer.setCellValueFactory(new PropertyValueFactory<Kunde, Integer>("PostNummer"));
 						postnummer.setMinWidth(10);
-						
+
 						TableColumn<Kunde, Integer> by = new TableColumn<Kunde, Integer>("By");
 						by.setCellValueFactory(new PropertyValueFactory<Kunde, Integer>("By"));
 						by.setMinWidth(50);
-						
+
 						TableColumn<Kunde, Integer> tlfNummer = new TableColumn<Kunde, Integer>("Telefonnummer");
 						tlfNummer.setCellValueFactory(new PropertyValueFactory<Kunde, Integer>("TelefonNummer"));
 						tlfNummer.setMinWidth(50);
-						
+
 						TableColumn<Kunde, Integer> email = new TableColumn<Kunde, Integer>("Email");
 						email.setCellValueFactory(new PropertyValueFactory<Kunde, Integer>("Email"));
 						email.setMinWidth(50);
-						 
+
 						kundeTable.setItems(kundeliste);
 						kundeTable.getColumns().addAll(navn, efterNavn, adresse, postnummer, by, tlfNummer, email);
 						kundeTable.setMinSize(700, 0);
 						kundeTable.setMaxSize(700, 45);
-						grid.add(kundeTable, 10, 0, 10, 5);	
-						
-						} 
-					catch (Exception e1) {
+						grid.add(kundeTable, 10, 0, 10, 5);
+
+					} catch (Exception e1) {
 					}
-					try {						
+					try {
 						// TableView matches bil
 						TableView<Bil> BilTable = new TableView<Bil>();
 						BilTable.setEditable(true);
@@ -411,28 +428,27 @@ public class LåneanmodningGUI extends Application {
 						TableColumn<Bil, Integer> model = new TableColumn<Bil, Integer>("Model");
 						model.setCellValueFactory(new PropertyValueFactory<Bil, Integer>("Model"));
 						model.setMinWidth(100);
-						
+
 						TableColumn<Bil, Integer> stelnummer = new TableColumn<Bil, Integer>("Stelnummer");
 						stelnummer.setCellValueFactory(new PropertyValueFactory<Bil, Integer>("StelNummer"));
 						stelnummer.setMinWidth(100);
-						
+
 						TableColumn<Bil, Integer> årgang = new TableColumn<Bil, Integer>("Årgang");
 						årgang.setCellValueFactory(new PropertyValueFactory<Bil, Integer>("Årgang"));
 						årgang.setMinWidth(100);
-						
+
 						TableColumn<Bil, Integer> pris = new TableColumn<Bil, Integer>("Pris");
 						pris.setCellValueFactory(new PropertyValueFactory<Bil, Integer>("Pris"));
 						pris.setMinWidth(100);
-						 
+
 						BilTable.setItems(billiste);
 						BilTable.getColumns().addAll(model, stelnummer, årgang, pris);
 						BilTable.setMinSize(500, 0);
 						BilTable.setMaxSize(500, 45);
-						grid.add(BilTable, 10, 2,5,5);					
-						} 
-					catch (Exception e1) {
+						grid.add(BilTable, 10, 2, 5, 5);
+					} catch (Exception e1) {
 					}
-					try {						
+					try {
 						// TableView matches Sælger
 						TableView<Sælger> sælgerTable = new TableView<Sælger>();
 						sælgerTable.setEditable(true);
@@ -443,57 +459,122 @@ public class LåneanmodningGUI extends Application {
 						TableColumn<Sælger, Integer> navn = new TableColumn<Sælger, Integer>("Fornavn");
 						navn.setCellValueFactory(new PropertyValueFactory<Sælger, Integer>("ForNavn"));
 						navn.setMinWidth(50);
-						
+
 						TableColumn<Sælger, Integer> efterNavn = new TableColumn<Sælger, Integer>("Efternavn");
 						efterNavn.setCellValueFactory(new PropertyValueFactory<Sælger, Integer>("EfterNavn"));
 						efterNavn.setMinWidth(50);
-						
+
 						TableColumn<Sælger, Integer> telefonnummer = new TableColumn<Sælger, Integer>("Telefonnummer");
 						telefonnummer.setCellValueFactory(new PropertyValueFactory<Sælger, Integer>("TelefonNummer"));
 						telefonnummer.setMinWidth(50);
-						
+
 						TableColumn<Sælger, Integer> sælgerEmail = new TableColumn<Sælger, Integer>("Email");
 						sælgerEmail.setCellValueFactory(new PropertyValueFactory<Sælger, Integer>("Email"));
 						sælgerEmail.setMinWidth(10);
-						
-						
-						 
+
 						sælgerTable.setItems(sælgerliste);
 						sælgerTable.getColumns().addAll(navn, efterNavn, telefonnummer, sælgerEmail);
 						sælgerTable.setMinSize(700, 0);
 						sælgerTable.setMaxSize(700, 45);
-						grid.add(sælgerTable, 10, 6, 10, 5);	
-						
-						} 
-					catch (Exception e1) {
+						grid.add(sælgerTable, 10, 6, 10, 5);
+
+					} catch (Exception e1) {
 					}
 				}
 			});
+
+			// ---------------------------------------------- CSV
 			
-			// ---------------------------------------------- CSV -------------------------------------------
 			Button btnOpretCSV = new Button("Eksporter CSV");
 			HBox hbBtnOpretCSV = new HBox(7);
 			hbBtnOpretCSV.setAlignment(Pos.TOP_LEFT);
 			hbBtnOpretCSV.getChildren().add(btnOpretCSV);
 			grid.add(hbBtnOpretCSV, 15, 18);
+
 			btnOpretCSV.setOnAction(new EventHandler<ActionEvent>() {
-				
+
 				@Override
 				public void handle(ActionEvent e) {
-					btnOpretCSV.disableProperty().bind(
-						    Bindings.isEmpty(TelefonnummerTextField.textProperty())
-						    .or(TelefonnummerTextField.lengthProperty().isNotEqualTo(8))
-						    .or(kreditværdighedTextField.textProperty().isEmpty())
-						    .or(rentesatsTextField.textProperty().isEmpty())
-						    .or(stelNummerTextField.textProperty().isEmpty())
-						    .or(løbetidTextField.textProperty().isEmpty())
-						    .or(udbetalingTextField.textProperty().isEmpty())
-						    .or(sælgerIDTextField.textProperty().isEmpty())
-						);
+					findKunde.setTelefonNummer(TelefonnummerTextField.getText());
+					findBil.setStelNummer(stelNummerTextField.getText());
+					findLån.setTelefonNummer(TelefonnummerTextField.getText());
+					findSælger.setId(Integer.parseInt(sælgerIDTextField.getText()));
+					
+					//Kunde kundeTest = new Kundelmpl();
+					try {
+						logic.findKunde(findKunde);
+						logic.findBil(findBil);
+						logic.findSpecifikLån(findLån);
+						logic.findSpecifikSælger(findSælger);
+						
+					} catch (Exception e4) {
+						// TODO Auto-generated catch block
+						e4.printStackTrace();
+					}
+//					try {
+						try {
+							//System.out.println(findSælger.getId());
+							//System.out.println(findSælger.getForNavn());
+							//System.out.println(findSælger.getEfterNavn());
+							//System.out.println(findKunde.getForNavn());
+							//System.out.println(findKunde.getEfterNavn());
+							//System.out.println(findLån.getMånedligYdelse());
+							//System.out.println(findLån.getRentesats());
+							//System.out.println(findLån.getPrisEfterRente());
+							//System.out.println(findLån.getLøbetid());
+							//System.out.println(findLån.getUdbetaling());
+							//System.out.println(findBil.getStelNummer());
+							//System.out.println(findBil.getPris());
+							
+						} catch (Exception e2) {
+							// TODO Auto-generated catch block
+							e2.printStackTrace();
+						}
+//					} catch (EfternavnIkkeOplystException e1) {
+//						// TODO Auto-generated catch block
+//						e1.printStackTrace();
+//					}
+					
+					
+					//try {
+//						findKunde.getForNavn();
+//						findKunde.getEfterNavn();
+//						findKunde.getTelefonNummer();
+						
+
+				try {
+						try {
+							new exportCSV().exportCsv(findBil, findKunde, findLån, findSælger);
+						} catch (PersonnummerIkkeUdfyldtException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					} catch (LøbetidIkkeUdfyldtException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (FornavnIkkeOplystException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (EfternavnIkkeOplystException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (TelefonnummerIkkeOplystException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (ModelIkkeOplystException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (StelnummerIkkeOplystException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (PrisIkkeOplystException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (RentesatsIkkeUdfyldtException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
-					//TODO CSV
-					// set disable
-				
 			});
 			Scene scene = new Scene(grid, 1240, 720);
 			LåneanmodningStage.setScene(scene);
@@ -503,8 +584,7 @@ public class LåneanmodningGUI extends Application {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
+
 	}
-	
+
 }

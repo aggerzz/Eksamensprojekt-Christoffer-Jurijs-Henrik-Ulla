@@ -206,15 +206,14 @@ public class TestKunde {
 	}
 
 	@Test
-	public void testgetFornavn() throws AdresseIkkeOplystException, ByIkkeOplystException,
-			EfternavnIkkeOplystException, EmailIkkeOplystException, FodselsdagIkkeOplystException,
-			FornavnIkkeOplystException, PostnummerIkkeOplystException, TelefonnummerIkkeOplystException {
+	public void testgetFornavn() throws AdresseIkkeOplystException, ByIkkeOplystException, EfternavnIkkeOplystException,
+			EmailIkkeOplystException, FodselsdagIkkeOplystException, FornavnIkkeOplystException,
+			PostnummerIkkeOplystException, TelefonnummerIkkeOplystException {
 		Kunde nykunde = new Kundelmpl();
-		
-		nykunde.setForNavn("peter");
-		
-		assertEquals("peter", nykunde.getForNavn());
 
+		nykunde.setForNavn("peter");
+
+		assertEquals("peter", nykunde.getForNavn());
 
 	}
 }

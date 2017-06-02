@@ -1,5 +1,5 @@
 package exceptions;
 
-public class PrisIkkeOplystException extends Exception{
+public class PrisIkkeOplystException extends Exception {
 
 }

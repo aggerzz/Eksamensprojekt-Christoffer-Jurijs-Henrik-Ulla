@@ -9,7 +9,9 @@ import exceptions.LøbetidIkkeUdfyldtException;
 
 public interface Låneanmodning {
 	public double getPris() throws Exception;
+
 	public void setPris(double pris);
+
 	public String getPersonNummer() throws PersonnummerIkkeUdfyldtException;
 
 	public void setPersonNummer(String personNummer);
@@ -33,19 +35,19 @@ public interface Låneanmodning {
 	public int getLøbetid() throws LøbetidIkkeUdfyldtException;
 
 	public void setLøbetid(int løbetid);
-	
+
 	public double getUdbetaling() throws LøbetidIkkeUdfyldtException;
 
 	public void setUdbetaling(double udbetaling);
-	
+
 	public double getMånedligYdelse() throws LøbetidIkkeUdfyldtException;
 
 	public void setMånedligYdelse(double månedligYdelse);
-	
+
 	public double getPrisEfterRente() throws LøbetidIkkeUdfyldtException;
 
 	public void setPrisEfterRente(double prisEfterRente);
-	
+
 	public int getSælgerID() throws LøbetidIkkeUdfyldtException;
 
 	public void setSælgerID(int sælgerID);

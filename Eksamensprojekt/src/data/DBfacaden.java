@@ -53,44 +53,64 @@ public class DBfacaden {
 
 	private OpretLåneanmodningDB opretLåneanmodningInfo = new OpretLåneanmodningDB();
 
-	public void opretLåneanmodningInfo(Låneanmodning låneanmodning)
-			throws Exception {
+	public void opretLåneanmodningInfo(Låneanmodning låneanmodning) throws Exception {
 		opretLåneanmodningInfo.opretLåneanmodning(låneanmodning);
 	}
+
 	private GetBilDB findBilInfo = new GetBilDB();
 
 	public void findBilInfo(Bil bil) throws ModelIkkeOplystException, StelnummerIkkeOplystException,
 			ÅrgangIkkeOplystException, PrisIkkeOplystException {
 		findBilInfo.findBil(bil);
 	}
+
 	private IdDB userInfo = new IdDB();
 
 	public void userInfo(Sælger sælger) throws Exception {
 		userInfo.CheckID(sælger);
 	}
+
 	// Find Kunde
 	private GetKundeDB findKunder = new GetKundeDB();
 
 	public List<Kunde> findKunder(Kunde kunde) throws Exception {
 		return findKunder.findKunde(kunde);
 	}
+
+	private SpecifikKundeDB findKunde = new SpecifikKundeDB();
+
+	public void findKunde(Kunde kunde) throws Exception {
+		findKunde.findSpecifikKunde(kunde);
+}
+	private SpecifikLåneoplysninger findSpecifikLån = new SpecifikLåneoplysninger();
+
+	public void findSpecifikLån(Låneanmodning låneanmodning) throws Exception {
+		findSpecifikLån.findSpecifikLån(låneanmodning);
+}
+	private SpecifikSælgerDB findSpecifikSælger = new SpecifikSælgerDB();
+
+	public void findSpecifikSælger(Sælger sælger) throws Exception {
+		findSpecifikSælger.findSpecifikSælger(sælger);
+}
 	// Find Biler
 	private GetBilerDB findBiler = new GetBilerDB();
 
 	public List<Bil> findBiler(Bil bil) throws Exception {
 		return findBiler.findBiler(bil);
 	}
+
 	// Find Sælger
 	private SælgerInfoDB findSælger = new SælgerInfoDB();
 
 	public List<Sælger> findSælger(Sælger sælger) throws Exception {
 		return findSælger.findSælger(sælger);
 	}
-	// Find Lån
-		private LåneInfoDB findLån = new LåneInfoDB();
 
-		public List<Låneanmodning> findLån(Låneanmodning låneanmodning) throws Exception {
-			return findLån.findLån(låneanmodning);
-		}
-	
+	// Find Lån
+	private LåneInfoDB findLån = new LåneInfoDB();
+
+	public List<Låneanmodning> findLån(Låneanmodning låneanmodning) throws Exception {
+		return findLån.findLån(låneanmodning);
+	}
+
 }

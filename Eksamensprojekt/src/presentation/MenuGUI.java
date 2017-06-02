@@ -1,6 +1,7 @@
 package presentation;
 
 import javax.swing.JOptionPane;
+import javax.swing.plaf.synth.SynthSpinnerUI;
 
 import data.IdDB;
 import domain.Sælger;
@@ -20,8 +21,9 @@ public class MenuGUI {
 	Sælger findID = new Sælgerlmpl();
 	IdDB idc = new IdDB();
 	FFLogic logic = new FFLogic();
+
 	public void start(Stage menuStage) {
-		
+
 		try {
 			menuStage.setTitle("Ferrari forhandler");
 			GridPane grid = new GridPane();
@@ -29,7 +31,7 @@ public class MenuGUI {
 			grid.setHgap(10);
 			grid.setVgap(10);
 			grid.setPadding(new Insets(25, 25, 25, 25));
-			
+
 			// Opret kunde
 			Button btnOpretKunde = new Button("Opret kunde");
 			HBox hbBtnOpretkunde = new HBox(10);
@@ -54,18 +56,17 @@ public class MenuGUI {
 			btnOpretSælger.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent e) {
-					if( LoginGUI.id0 == false){
+					if (LoginGUI.id0 == false) {
 						JOptionPane.showMessageDialog(null, "Du har ikke rettighed til dette, kontakt salgschef");
 						hbBtnOpretSælger.setDisable(true);
-											}else{
-					SælgerGUI sælgerStage = new SælgerGUI();
-					sælgerStage.start(new Stage());
-					menuStage.hide();}
+					} else {
+						SælgerGUI sælgerStage = new SælgerGUI();
+						sælgerStage.start(new Stage());
+						menuStage.hide();
+					}
 				}
 			});
-			//Disable opret sælger knap if id != 0
-		
-			
+			// Disable opret sælger knap if id != 0
 
 			// Lån
 			Button btnLån = new Button("Opret Låneanmodning");
@@ -81,49 +82,49 @@ public class MenuGUI {
 					menuStage.hide();
 				}
 			});
-			
+
 			// Opret bil
-						Button btnBil = new Button("Opret Bil");
-						HBox hbBtnBil = new HBox(10);
-						hbBtnBil.setAlignment(Pos.TOP_CENTER);
-						hbBtnBil.getChildren().add(btnBil);
-						grid.add(hbBtnBil, 1, 3);
-						btnBil.setOnAction(new EventHandler<ActionEvent>() {
-							@Override
-							public void handle(ActionEvent e) {
-								BilGUI bilStage = new BilGUI();
-								bilStage.start(new Stage());
-								menuStage.hide();
-							}
-						});
-						// Søg Kunde
-						Button btnSøgKunde = new Button("Søg Kunde");
-						HBox hbBtnSøgKunde = new HBox(10);
-						hbBtnSøgKunde.setAlignment(Pos.TOP_CENTER);
-						hbBtnSøgKunde.getChildren().add(btnSøgKunde);
-						grid.add(hbBtnSøgKunde, 1, 5);
-						btnSøgKunde.setOnAction(new EventHandler<ActionEvent>() {
-							@Override
-							public void handle(ActionEvent e) {
-								SøgKundeGUI søgKundeStage = new SøgKundeGUI();
-								søgKundeStage.start(new Stage());
-								menuStage.hide();
-							}
-						});
-						// Søg BIL
-						Button btnSøgBil = new Button("Søg Bilens Pris");
-						HBox hbBtnSøgBil = new HBox(10);
-						hbBtnSøgBil.setAlignment(Pos.TOP_CENTER);
-						hbBtnSøgBil.getChildren().add(btnSøgBil);
-						grid.add(hbBtnSøgBil, 1, 7);
-						btnSøgBil.setOnAction(new EventHandler<ActionEvent>() {
-							@Override
-							public void handle(ActionEvent e) {
-								SøgBilGUI søgBilStage = new SøgBilGUI();
-								søgBilStage.start(new Stage());
-								menuStage.hide();
-							}
-						});
+			Button btnBil = new Button("Opret Bil");
+			HBox hbBtnBil = new HBox(10);
+			hbBtnBil.setAlignment(Pos.TOP_CENTER);
+			hbBtnBil.getChildren().add(btnBil);
+			grid.add(hbBtnBil, 1, 3);
+			btnBil.setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent e) {
+					BilGUI bilStage = new BilGUI();
+					bilStage.start(new Stage());
+					menuStage.hide();
+				}
+			});
+			// Søg Kunde
+			Button btnSøgKunde = new Button("Søg Kunde");
+			HBox hbBtnSøgKunde = new HBox(10);
+			hbBtnSøgKunde.setAlignment(Pos.TOP_CENTER);
+			hbBtnSøgKunde.getChildren().add(btnSøgKunde);
+			grid.add(hbBtnSøgKunde, 1, 5);
+			btnSøgKunde.setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent e) {
+					SøgKundeGUI søgKundeStage = new SøgKundeGUI();
+					søgKundeStage.start(new Stage());
+					menuStage.hide();
+				}
+			});
+			// Søg BIL
+			Button btnSøgBil = new Button("Søg Bilens Pris");
+			HBox hbBtnSøgBil = new HBox(10);
+			hbBtnSøgBil.setAlignment(Pos.TOP_CENTER);
+			hbBtnSøgBil.getChildren().add(btnSøgBil);
+			grid.add(hbBtnSøgBil, 1, 7);
+			btnSøgBil.setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent e) {
+					SøgBilGUI søgBilStage = new SøgBilGUI();
+					søgBilStage.start(new Stage());
+					menuStage.hide();
+				}
+			});
 
 			Scene scene = new Scene(grid, 640, 450);
 			menuStage.setScene(scene);

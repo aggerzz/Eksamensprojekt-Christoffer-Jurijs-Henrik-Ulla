@@ -13,8 +13,7 @@ import exceptions.StelnummerIkkeOplystException;
 import exceptions.TelefonnummerIkkeOplystException;
 
 public class OpretLåneanmodningDB {
-	public void opretLåneanmodning(Låneanmodning låneanmodning)
-			throws Exception {
+	public void opretLåneanmodning(Låneanmodning låneanmodning) throws Exception {
 		try (DataAccess access = new DataAccess()) {
 			try {
 				opretLåneanmodning(access, låneanmodning);
@@ -26,8 +25,7 @@ public class OpretLåneanmodningDB {
 		}
 	}
 
-	private void opretLåneanmodning(DataAccess access, Låneanmodning låneanmodning)
-			throws Exception {
+	private void opretLåneanmodning(DataAccess access, Låneanmodning låneanmodning) throws Exception {
 		try (PreparedStatement statement = access.getConnection().prepareStatement(
 				"INSERT INTO LÅNEANMODNING (SÆLGERID, PERSONNUMMER, TELEFONNUMMER, KREDITVÆRDIGHED,RENTESATS, MÅNEDLIGYDELSE, PRISEFTERRENTE, STELNUMMER,PRIS, LØBETID, UDBETALING) VALUES ( ?, ?, ?,?,?,?,?,?,?,?,?)");) {
 			statement.setInt(1, låneanmodning.getSælgerID());

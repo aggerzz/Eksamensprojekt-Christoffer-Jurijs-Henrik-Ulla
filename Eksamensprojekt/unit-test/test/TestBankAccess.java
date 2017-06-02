@@ -15,7 +15,7 @@ public class TestBankAccess {
 	public void testGetDagensRente() {
 		BankAccess bankAccess = new BankAccess(new Låneanmodninglmpl());
 		InterestRate interestRate = InterestRate.i();
-		
+
 		System.out.println("Rente fra Jar: " + interestRate.todaysRate());
 		System.out.println("Rente fra Bank: " + bankAccess.HentRenteVurdering());
 

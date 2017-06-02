@@ -73,20 +73,23 @@ public class SøgBilGUI extends Application {
 			grid.add(hbBtnSøgKunde, 15, 15);
 			btnSøgKunde.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
-//				public void handle(ActionEvent e) {					
-//					FFLogic logic = new FFLogic();
-//					Bil findBil = new Billmpl();
-//					findBil.setStelNummer(stelnummerTextField.getText());
-//					try {						
-//						logic.findBil(findBil);
-//						JOptionPane.showMessageDialog(null,"bilens pris er: " + findBil.getPris(), "Godkendt", JOptionPane.INFORMATION_MESSAGE, null);
-//					} catch (Exception e1) {
-//						JOptionPane.showMessageDialog(null, e1, "Noget gik galt", JOptionPane.ERROR_MESSAGE, null);
-//					}
-//
-//				}
-//			}); 
-				public void handle(ActionEvent e) {					
+				// public void handle(ActionEvent e) {
+				// FFLogic logic = new FFLogic();
+				// Bil findBil = new Billmpl();
+				// findBil.setStelNummer(stelnummerTextField.getText());
+				// try {
+				// logic.findBil(findBil);
+				// JOptionPane.showMessageDialog(null,"bilens pris er: " +
+				// findBil.getPris(), "Godkendt",
+				// JOptionPane.INFORMATION_MESSAGE, null);
+				// } catch (Exception e1) {
+				// JOptionPane.showMessageDialog(null, e1, "Noget gik galt",
+				// JOptionPane.ERROR_MESSAGE, null);
+				// }
+				//
+				// }
+				// });
+				public void handle(ActionEvent e) {
 					Bil findBiler = new Billmpl();
 					findBiler.setStelNummer(stelnummerTextField.getText());
 					try {
@@ -95,7 +98,7 @@ public class SøgBilGUI extends Application {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
 					}
-					try {						
+					try {
 						// TableView matches
 						TableView<Bil> BilTable = new TableView<Bil>();
 						BilTable.setEditable(true);
@@ -106,25 +109,24 @@ public class SøgBilGUI extends Application {
 						TableColumn<Bil, Integer> model = new TableColumn<Bil, Integer>("Model");
 						model.setCellValueFactory(new PropertyValueFactory<Bil, Integer>("Model"));
 						model.setMinWidth(100);
-						
+
 						TableColumn<Bil, Integer> stelnummer = new TableColumn<Bil, Integer>("Stelnummer");
 						stelnummer.setCellValueFactory(new PropertyValueFactory<Bil, Integer>("StelNummer"));
 						stelnummer.setMinWidth(100);
-						
+
 						TableColumn<Bil, Integer> årgang = new TableColumn<Bil, Integer>("Årgang");
 						årgang.setCellValueFactory(new PropertyValueFactory<Bil, Integer>("Årgang"));
 						årgang.setMinWidth(100);
-						
+
 						TableColumn<Bil, Integer> pris = new TableColumn<Bil, Integer>("Pris");
 						pris.setCellValueFactory(new PropertyValueFactory<Bil, Integer>("Pris"));
 						pris.setMinWidth(100);
-						 
+
 						BilTable.setItems(billiste);
 						BilTable.getColumns().addAll(model, stelnummer, årgang, pris);
 						BilTable.setMinSize(500, 200);
-						grid.add(BilTable, 0, 8,5,5);					
-						} 
-					catch (Exception e1) {
+						grid.add(BilTable, 0, 8, 5, 5);
+					} catch (Exception e1) {
 					}
 
 				}

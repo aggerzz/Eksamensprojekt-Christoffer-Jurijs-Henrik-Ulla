@@ -13,7 +13,6 @@ import exceptions.TelefonnummerIkkeOplystException;
 
 public class GetBilerDB {
 
-
 	public List<Bil> findBiler(Bil bil) throws Exception {
 		List<Bil> billiste = new ArrayList<>();
 		try (DataAccess access = new DataAccess()) {
@@ -28,7 +27,8 @@ public class GetBilerDB {
 		return billiste;
 	}
 
-	public void findBiler(DataAccess access, List<Bil> billiste, Bil bil) throws TelefonnummerIkkeOplystException, StelnummerIkkeOplystException {
+	public void findBiler(DataAccess access, List<Bil> billiste, Bil bil)
+			throws TelefonnummerIkkeOplystException, StelnummerIkkeOplystException {
 		try (PreparedStatement statement = access.getConnection()
 				.prepareStatement("SELECT * FROM BIL where stelnummer = ?;");) {
 
@@ -38,10 +38,9 @@ public class GetBilerDB {
 			while (rs.next()) {
 				Bil findbiler = new Billmpl();
 				findbiler.setModel(rs.getString("MODEL"));
-				findbiler.setStelNummer(rs.getString("STELNUMMER")); 
+				findbiler.setStelNummer(rs.getString("STELNUMMER"));
 				findbiler.setÅrgang(rs.getString("ÅRGANG"));
 				findbiler.setPris(rs.getString("PRIS"));
-
 
 				billiste.add(findbiler);
 			}

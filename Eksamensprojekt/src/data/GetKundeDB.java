@@ -12,7 +12,6 @@ import exceptions.TelefonnummerIkkeOplystException;
 
 public class GetKundeDB {
 
-
 	public List<Kunde> findKunde(Kunde kunde) throws Exception {
 		List<Kunde> kundeliste = new ArrayList<>();
 		try (DataAccess access = new DataAccess()) {
@@ -27,7 +26,8 @@ public class GetKundeDB {
 		return kundeliste;
 	}
 
-	public void findKunde(DataAccess access, List<Kunde> kundeliste, Kunde kunde) throws TelefonnummerIkkeOplystException {
+	public void findKunde(DataAccess access, List<Kunde> kundeliste, Kunde kunde)
+			throws TelefonnummerIkkeOplystException {
 		try (PreparedStatement statement = access.getConnection()
 				.prepareStatement("SELECT * FROM KUNDE where telefonnummer = ?;");) {
 
@@ -37,7 +37,7 @@ public class GetKundeDB {
 			while (rs.next()) {
 				Kunde findkunde = new Kundelmpl();
 				findkunde.setForNavn(rs.getString("FORNAVN"));
-				findkunde.setEfterNavn(rs.getString("EFTERNAVN")); 
+				findkunde.setEfterNavn(rs.getString("EFTERNAVN"));
 				findkunde.setAdresse(rs.getString("ADRESSE"));
 				findkunde.setPostNummer(rs.getString("POSTNUMMER"));
 				findkunde.setBy(rs.getString("BYEN"));

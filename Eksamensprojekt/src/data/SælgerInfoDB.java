@@ -29,7 +29,8 @@ public class SælgerInfoDB {
 		return sælgerinfo;
 	}
 
-	public void findSælger(DataAccess access, List<Sælger> sælgerinfo, Sælger sælger) throws TelefonnummerIkkeOplystException, StelnummerIkkeOplystException, BrugernavnIkkeOplystException {
+	public void findSælger(DataAccess access, List<Sælger> sælgerinfo, Sælger sælger)
+			throws TelefonnummerIkkeOplystException, StelnummerIkkeOplystException, BrugernavnIkkeOplystException {
 		try (PreparedStatement statement = access.getConnection()
 				.prepareStatement("SELECT * FROM SÆLGER where id = ?;");) {
 
@@ -39,10 +40,9 @@ public class SælgerInfoDB {
 			while (rs.next()) {
 				Sælger findsælger = new Sælgerlmpl();
 				findsælger.setForNavn(rs.getString("FORNAVN"));
-				findsælger.setEfterNavn(rs.getString("EFTERNAVN")); 
+				findsælger.setEfterNavn(rs.getString("EFTERNAVN"));
 				findsælger.setTelefonNummer(rs.getString("TELEFONNUMMER"));
 				findsælger.setEmail(rs.getString("EMAIL"));
-
 
 				sælgerinfo.add(findsælger);
 			}
@@ -51,4 +51,3 @@ public class SælgerInfoDB {
 		}
 	}
 }
-

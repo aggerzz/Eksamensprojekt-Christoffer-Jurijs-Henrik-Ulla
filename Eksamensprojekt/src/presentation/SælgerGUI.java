@@ -64,7 +64,7 @@ public class SælgerGUI extends Application {
 			grid.add(email, 0, 4);
 			TextField emailTextField = new TextField();
 			grid.add(emailTextField, 1, 4);
-			
+
 			// Login
 			Label login = new Label("Login:");
 			login.setTextFill(Color.RED);
@@ -78,7 +78,7 @@ public class SælgerGUI extends Application {
 			grid.add(adgangskode, 0, 6);
 			PasswordField adgangskodeTextField = new PasswordField();
 			grid.add(adgangskodeTextField, 1, 6);
-			
+
 			Button btnTilbage = new Button("Tilbage");
 			HBox hbBtnTilbage = new HBox(7);
 			hbBtnTilbage.setAlignment(Pos.TOP_LEFT);
@@ -92,7 +92,6 @@ public class SælgerGUI extends Application {
 					SælgerStage.hide();
 				}
 			});
-
 
 			Button btnOpretSælger = new Button("Opret sælger");
 			HBox hbBtnOpretSælger = new HBox(10);
@@ -110,10 +109,11 @@ public class SælgerGUI extends Application {
 					nySælger.setEfterNavn(efterNavnTextField.getText());
 					nySælger.setTelefonNummer(telefonNummerTextField.getText());
 					nySælger.setEmail(emailTextField.getText());
-					
+
 					try {
 						logic.opretSælger(nySælger);
-						JOptionPane.showMessageDialog(null, "Sælger er nu oprettet", "Godkendt", JOptionPane.INFORMATION_MESSAGE, null);
+						JOptionPane.showMessageDialog(null, "Sælger er nu oprettet", "Godkendt",
+								JOptionPane.INFORMATION_MESSAGE, null);
 					} catch (Exception e1) {
 						JOptionPane.showMessageDialog(null, e1, "Noget gik galt", JOptionPane.ERROR_MESSAGE, null);
 					}

@@ -55,53 +55,80 @@ public class FFLogic {
 			ÅrgangIkkeOplystException, PrisIkkeOplystException {
 		opretBilInfo.opretBilInfo(bil);
 	}
+
 	// Find Bil
 	private DBfacaden findBilInfo = new DBfacaden();
-	
+
 	public void findBil(Bil bil) throws ModelIkkeOplystException, StelnummerIkkeOplystException,
 			ÅrgangIkkeOplystException, PrisIkkeOplystException {
 		findBilInfo.findBilInfo(bil);
-		}
+	}
+
 	// Find Id
 	private DBfacaden userInfo = new DBfacaden();
-	
+
 	public void CheckID(Sælger sælger) throws Exception {
 		userInfo.userInfo(sælger);
-		}
+	}
+
 	// Opret Låneanmodning
 	private DBfacaden opretLåneanmodningInfo = new DBfacaden();
 
-	public void opretLåneanmodning(Låneanmodning låneanmodning)
-			throws Exception {
+	public void opretLåneanmodning(Låneanmodning låneanmodning) throws Exception {
 		opretLåneanmodningInfo.opretLåneanmodningInfo(låneanmodning);
 	}
-	// Find Kunder
-	private static DBfacaden kundeAccess = new DBfacaden();
+
+	// Find Kunde
+	private static DBfacaden kundeListAccess = new DBfacaden();
 
 	public static List<Kunde> getKunde(Kunde findKunde) throws Exception {
-		return kundeAccess.findKunder(findKunde);
-	}
-	// Find Lån
-		private static DBfacaden lånAccess = new DBfacaden();
+		return kundeListAccess.findKunder(findKunde);
 
-		public static List<Låneanmodning> getLån(Låneanmodning findLån) throws Exception {
-			return lånAccess.findLån(findLån);
-		}
+	}
+
+	// Find specifik Kunde
+	private DBfacaden findKunde = new DBfacaden();
+
+	public void findKunde(Kunde kunde) throws Exception {
+		findKunde.findKunde(kunde);
+	}	
+
+	// Find specifik Lån
+		private DBfacaden findSpecifikLån = new DBfacaden();
+
+		public void findSpecifikLån(Låneanmodning låneanmodning) throws Exception {
+			findSpecifikLån.findSpecifikLån(låneanmodning);
+		}	
+		// Find specifik Sælger
+				private DBfacaden findSpecifikSælger = new DBfacaden();
+
+				public void findSpecifikSælger(Sælger sælger) throws Exception {
+					findSpecifikSælger.findSpecifikSælger(sælger);
+				}
+	// Find Lån
+	private static DBfacaden lånAccess = new DBfacaden();
+
+	public static List<Låneanmodning> getLån(Låneanmodning findLån) throws Exception {
+		return lånAccess.findLån(findLån);
+	}
+
 	// Find Sælger
 	private static DBfacaden sælgerAccess = new DBfacaden();
 
 	public static List<Sælger> getSælger(Sælger findSælger) throws Exception {
 		return sælgerAccess.findSælger(findSælger);
 	}
+
 	// Find Biler
 	private static DBfacaden bilAccess = new DBfacaden();
 
 	public static List<Bil> getBil(Bil findBiler) throws Exception {
 		return bilAccess.findBiler(findBiler);
 	}
-	
+
 	//
-	public void getKreditværdighed(String personNummer, Låneanmodninglmpl låneanmodning) throws KreditværdighedIkkeUdfyldtException {
+	public void getKreditværdighed(String personNummer, Låneanmodninglmpl låneanmodning)
+			throws KreditværdighedIkkeUdfyldtException {
 		Runnable rkiAccess = new RKIAccess(låneanmodning, personNummer);
 		Thread getKreditværdighedThread = new Thread(rkiAccess, personNummer);
 		getKreditværdighedThread.start();

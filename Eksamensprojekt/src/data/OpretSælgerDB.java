@@ -13,8 +13,9 @@ import exceptions.FornavnIkkeOplystException;
 import exceptions.TelefonnummerIkkeOplystException;
 
 public class OpretSælgerDB {
-	public void opretSælger(Sælger sælger) throws FornavnIkkeOplystException, EfternavnIkkeOplystException, TelefonnummerIkkeOplystException,
-	EmailIkkeOplystException, BrugernavnIkkeOplystException, AdgangskodeIkkeOplystException {
+	public void opretSælger(Sælger sælger)
+			throws FornavnIkkeOplystException, EfternavnIkkeOplystException, TelefonnummerIkkeOplystException,
+			EmailIkkeOplystException, BrugernavnIkkeOplystException, AdgangskodeIkkeOplystException {
 		try (DataAccess access = new DataAccess()) {
 			try {
 				opretSælger(access, sælger);
@@ -26,10 +27,11 @@ public class OpretSælgerDB {
 		}
 	}
 
-	private void opretSælger(DataAccess access, Sælger sælger) throws FornavnIkkeOplystException, EfternavnIkkeOplystException, TelefonnummerIkkeOplystException,
-	EmailIkkeOplystException, BrugernavnIkkeOplystException, AdgangskodeIkkeOplystException {
-		try (PreparedStatement statement = access.getConnection()
-				.prepareStatement("INSERT INTO SÆLGER (LOGIN, ADGANGSKODE, FORNAVN, EFTERNAVN, TELEFONNUMMER, EMAIL) VALUES ( ?, ?, ?,? , ?, ?)");) {
+	private void opretSælger(DataAccess access, Sælger sælger)
+			throws FornavnIkkeOplystException, EfternavnIkkeOplystException, TelefonnummerIkkeOplystException,
+			EmailIkkeOplystException, BrugernavnIkkeOplystException, AdgangskodeIkkeOplystException {
+		try (PreparedStatement statement = access.getConnection().prepareStatement(
+				"INSERT INTO SÆLGER (LOGIN, ADGANGSKODE, FORNAVN, EFTERNAVN, TELEFONNUMMER, EMAIL) VALUES ( ?, ?, ?,? , ?, ?)");) {
 			statement.setString(1, sælger.getLogin());
 			statement.setString(2, sælger.getAdgangskode());
 			statement.setString(3, sælger.getForNavn());

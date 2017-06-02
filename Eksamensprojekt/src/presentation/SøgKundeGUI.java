@@ -71,7 +71,7 @@ public class SøgKundeGUI extends Application {
 			grid.add(hbBtnSøgKunde, 15, 15);
 			btnSøgKunde.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
-				public void handle(ActionEvent e) {					
+				public void handle(ActionEvent e) {
 					Kunde findKunde = new Kundelmpl();
 					findKunde.setTelefonNummer(telefonNummerTextField.getText());
 					try {
@@ -80,7 +80,7 @@ public class SøgKundeGUI extends Application {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
 					}
-					try {						
+					try {
 						// TableView matches
 						TableView<Kunde> kundeTable = new TableView<Kunde>();
 						kundeTable.setEditable(true);
@@ -91,37 +91,36 @@ public class SøgKundeGUI extends Application {
 						TableColumn<Kunde, Integer> navn = new TableColumn<Kunde, Integer>("Fornavn");
 						navn.setCellValueFactory(new PropertyValueFactory<Kunde, Integer>("ForNavn"));
 						navn.setMinWidth(50);
-						
+
 						TableColumn<Kunde, Integer> efterNavn = new TableColumn<Kunde, Integer>("Efternavn");
 						efterNavn.setCellValueFactory(new PropertyValueFactory<Kunde, Integer>("EfterNavn"));
 						efterNavn.setMinWidth(50);
-						
+
 						TableColumn<Kunde, Integer> adresse = new TableColumn<Kunde, Integer>("Adresse");
 						adresse.setCellValueFactory(new PropertyValueFactory<Kunde, Integer>("Adresse"));
 						adresse.setMinWidth(50);
-						
+
 						TableColumn<Kunde, Integer> postnummer = new TableColumn<Kunde, Integer>("Postnummer");
 						postnummer.setCellValueFactory(new PropertyValueFactory<Kunde, Integer>("PostNummer"));
 						postnummer.setMinWidth(10);
-						
+
 						TableColumn<Kunde, Integer> by = new TableColumn<Kunde, Integer>("By");
 						by.setCellValueFactory(new PropertyValueFactory<Kunde, Integer>("By"));
 						by.setMinWidth(50);
-						
+
 						TableColumn<Kunde, Integer> tlfNummer = new TableColumn<Kunde, Integer>("Telefonnummer");
 						tlfNummer.setCellValueFactory(new PropertyValueFactory<Kunde, Integer>("TelefonNummer"));
 						tlfNummer.setMinWidth(50);
-						
+
 						TableColumn<Kunde, Integer> email = new TableColumn<Kunde, Integer>("Email");
 						email.setCellValueFactory(new PropertyValueFactory<Kunde, Integer>("Email"));
 						email.setMinWidth(50);
-						 
+
 						kundeTable.setItems(kundeliste);
 						kundeTable.getColumns().addAll(navn, efterNavn, adresse, postnummer, by, tlfNummer, email);
 						kundeTable.setMinSize(700, 200);
-						grid.add(kundeTable, 0, 8, 5, 5);					
-						} 
-					catch (Exception e1) {
+						grid.add(kundeTable, 0, 8, 5, 5);
+					} catch (Exception e1) {
 					}
 
 				}
